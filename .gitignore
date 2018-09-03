@@ -1,0 +1,10 @@
+node_modules
+public/js
+public/css
+public/dev_images
+.env
+bin/*
+nodemon.json
+seeds.js
+public/libs
+gulpfile.js

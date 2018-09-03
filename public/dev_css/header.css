@@ -1,0 +1,107 @@
+header {
+    display: none;
+} 
+@media only screen and (min-width: 767px) {
+    header {
+        display: block;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        z-index: 0;
+    }
+}
+/* CrossFade */
+#CrossFade {
+	position: absolute;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	z-index: 5;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-image: rgb(255, 255, 255);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: cover;
+  	transform: scale(1.4) rotate(12deg);
+  	animation: CrossFade 25s infinite;
+}
+@keyframes CrossFade {
+  25% {
+    transform: scale(1) rotate(0);
+  }
+} 
+/*Slidshow styles*/
+.slideshow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url('../images/bcg5.jpeg');
+}
+
+.slideshow li:nth-child(2) {
+    background-image: url('../images/bcg6.jpg');
+    animation-delay: 30s;
+}
+#spLogo,
+#spLogoMobile,
+.ui.small.image.spLogoMobile {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+@media only screen and (min-width: 767px) {
+    #spLogo {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        left: 0;
+    }
+}
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: .0.5;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+        animation-timing-function: ease-out;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+    	opacity: 0;
+    }
+} 

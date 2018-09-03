@@ -1,0 +1,90 @@
+<% layout('layout') -%>
+<section id="landing_section">
+  <div class="ui container">
+    <div class="ui stackable inverted divided equal height stackable centered grid">
+      <div class="sixteen wide center aligned column headlines">
+        <div class="ui center aligned row">
+          <div class="four wide center aligned column">
+            <img class="ui circle small image" src="/images/RC_primary_positive_RGB.png" alt="Klaukkaaln rengas ja rengashotelli">
+          </div>
+          <div class="eight wide center aligned column">
+            <h1 class="center aligned text container">RengasCenter Klaukkala</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="fourteen wide center aligned column">
+          <h3><em>Rengashotelli ja rengastyöt</em></h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column center aligned">
+          <div class="ui center aligned segment">
+            <h3 class="header">Palvelut</h3>
+            <img class="ui medium image"
+            sizes="(max-width: 900px) 100vw, 900px"
+            srcset="
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_200.jpg 200w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_352.jpg 352w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_471.jpg 471w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_570.jpg 570w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_657.jpg 657w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_756.jpg 756w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_838.jpg 838w,
+            /images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_900.jpg 900w"
+            src="/images/bcg8_un0z9q/bcg8_un0z9q_c_scale,w_900.jpg"
+            alt="rengashotelli">
+            <p class="presentation">Tutustu <strong>rengashotellimme</strong> ja <strong>rengaspalveluidemme</strong> tarjontaan, sekä näiden <strong>ajankohtaisiin tarjouksiin</strong>.</p> 
+            <a class="ui orange button" href="/rengashotelli">Rengashotelli</a>
+            <a class="ui orange button" href="/rengaspalvelut">Rengastyöt</a>
+          </div>
+        </div>
+        <div class="five wide column center aligned">
+          <div class="ui center aligned segment">
+            <h3 class="header">Varaa aika</h3>
+            <img class="ui medium image"
+            sizes="(max-width: 900px) 100vw, 900px"
+            srcset="
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_200.jpg 200w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_354.jpg 354w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_479.jpg 479w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_585.jpg 585w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_680.jpg 680w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_784.jpg 784w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_874.jpg 874w,
+            /images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_900.jpg 900w"
+            src="/images/ajanvaraus_zoe1k5/ajanvaraus_zoe1k5_c_scale,w_900.jpg"
+            alt="ajanvaraus">
+            <p class="presentation">Varaa valitsemasi <strong>palvelu</strong> ja <strong>aika</strong> entistäkin helpommin ja nopeammin, meidän selkeän <strong>online ajanvarauksen</strong> avulla.</p>
+            <a class="ui orange button" href="/ajanvaraus/<%= session.cart._id %>">Siirry varaamaan</a> 
+          </div>
+        </div>
+        <div class="five wide column center aligned">
+          <div class="ui center aligned segment">
+            <h3 class="header">Yhteystiedot</h3>
+            <img class="ui medium image" src="/images/sijainti.jpeg">
+            <p class="presentation">Katso meidän <strong>tarkka sijantimme</strong> ja <strong>yhteystietomme</strong>, jotta pääsisit mahdollisimman mutkattomasti perille.</p> 
+            <a class="ui orange button" href="/sijainti">Katso Sijanti</a>
+          </div>
+        </div>
+        <div style="margin-top: 25px;" class="row">
+          <div class="ui text container">
+            <div class="ui segments">
+              <div class="ui segment">
+                <h2 class="header" style="font-size: 23px;">Rengashotellin avajaistarjous</h2>
+                <p class="additionalInfo" style="color: #000000; font-size: 20px;"><strong style="font-size: 1.2em;">48 €</strong>/kausi koosta riippumatta!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+<aside>
+  <div class="ui stackable inverted divided equal height stackable grid">
+    <div class="twelve wide column centered">
+      <h2 class="header">Meiltä myös <a class="white" href="/renkaat">Renkaat</a> ja <a class="white" href="/renkaat/vanteet">Vanteet</a>.</h2>
+      <p class="additionalInfo"><strong>Hyvästit piilokustannuksille!</strong> Klaukkalan Renkaalla kaikki hinnat on laskettu valmiiksi teitä varten, mahdollistaen selkeän ja mieluisan asioinnin kanssamme.</p>
+    </div>
+  </div>
+</aside>

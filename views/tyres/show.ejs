@@ -1,0 +1,63 @@
+<% layout('tyres') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide column">
+				<div class="ui page header">
+					<h2><%= tyre.manufacturer %> <%= tyre.model %></h2>
+					<hr>
+				</div>
+				<div class="ui segment">
+					<div class="ui equal width center aligned padded stackable grid">
+						<div class="row">
+							<div class="column">
+								<div class="ui small image">
+									<img src="<%= tyre.cover %>" alt="<%= tyre.manufacturer %> <%= tyre.model %>, <%= tyre.car_type %>">
+								</div>
+							</div>
+							<div class="column">
+								<h2 class="ui header">
+									<i class="tag icon"></i>
+									<div class="content">
+										<h4 class="black">Hinnat sisältäen työt, alkaen:</h4> 
+										<p><%= tyre.getMinPrice() %>,00 €/Sarja</p>
+									</div>
+								</h2>
+							</div>
+						</div>
+						<div class="row">
+							<div class="column">
+								<table class="ui stackable orange table">
+									<thead class="tablet desktop">
+										<tr>
+											<th>"<%= tyre.car_type %>" renkaiden koot</th>
+											<th>Hinta "€/Sarja" sis. alv 24%</th>
+										</tr>
+									</thead>
+									<tbody id="datarow">
+										<% tyre.size_and_price.forEach(function(item) { %>
+										<tr>
+											<td><%= item.size %></td>
+											<td><%= item.unit_price %>,00 €</td>
+										</tr>
+										<% }); %>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="column">
+								<a href="/renkaat?manufacturer=<%= tyre.manufacturer %>" class="ui orange basic button">Selaa muita <strong><%= tyre.manufacturer %></strong> rengasmalleja</a>
+							</div>
+							<div class="column">
+								<p>Meiltä nyt myös edullinen ja kattava renkaiden säilytys, voit tutustua tähän tarkemmin
+								<a href="/hinnasto"><strong>Hinnastostamme</strong></a>.</p>
+								<p>Kysy tarjous puhelimitse <strong><i class="fa fa-phone" aria-hidden="true"></i> +358 (0)50 591 73 22</strong> tai sähköpostitse<strong><i class="fa fa-mail" aria-hidden="true"></i> klaukkalanrengas@gmail.com</strong>.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116214050-1"></script>
+	<script>
+  		window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+			gtag('config', 'UA-116214050-1');
+	</script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="description" content="Rengascenter Klaukkala - Klaukkalan Rengas & Rengashotelli. Renkaat Klaukkala Vanteet Klaukkala Rengasliike Rengashulto Klaukkala">
+	<meta http-equiv="cache-control" content="max-age=120" />
+	<title>Rengascenter Klaukkala - Klaukkalan Rengas & Rengashotelli</title>
+	<!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Exo+2:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=cyrillic,latin-ext" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;subset=latin-ext" rel="stylesheet">
+	<link href="https://klaukkalanrengas.fi/" rel="canonical">
+	<!-- favicons -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- libraries -->
+	<link rel="stylesheet" href="/libs/semantic/dist/semantic.min.css">
+	<link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/libs/zabuto_calendar/zabuto_calendar.min.css">
+	<!-- custom css -->
+	<link rel="stylesheet" type="text/css" href="/css/text.css">
+	<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="/css/navbar.css">
+	<link rel="stylesheet" type="text/css" href="/css/header.css">
+	<link rel="stylesheet" type="text/css" href="/css/body.css">
+	<link rel="stylesheet" type="text/css" href="/css/form.css">
+	<link rel="stylesheet" type="text/css" href="/css/footer.css">
+</head>
+<body>
+	<% include ./partials/navbar %>
+	<div id="vertical-menu" class="ui left vertical orange sidebar menu">
+		<a href="/" class="active item">
+			Etusivu
+		</a>
+		<a href="/rengashotelli" class="item">
+			Rengashotelli
+		</a>
+		<a href="/rengaspalvelut" class="item">
+			Rengastyöt
+		</a>
+		<a href="/renkaat" class="item">
+			Renkaat
+		</a>
+		<a href="/renkaat/vanteet" class="item">
+			Vanteet
+		</a>
+		<a href="/renkaat/rengaspaketit" class="item">
+			Rengaspaketit
+		</a>
+		<a href="/ajanvaraus/<%= session.cart._id %>" class="item">
+			Ajanvaraus
+		</a>
+		<a href="/hinnasto" class="item">
+			Hinnasto
+		</a>
+		<a href="/sijainti" class="item">
+			Yhteystiedot
+		</a>
+	</div>
+	<div class="pusher">
+		<header>
+			<div id="CrossFade">
+				<ul class="slideshow">
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</header>
+		<%- body -%>
+	</div>
+  <% include ./partials/footer %>
+	<!-- Bootstrap Core JavaScript -->
+  	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
+  	<script type="text/javascript" src="/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/libs/semantic/dist/semantic.min.js"></script>
+	<script type="text/javascript" src="/libs/zabuto_calendar/zabuto_calendar.min.js"></script>
+	<script type="text/javascript" src="/libs/moment/min/moment-with-locales.min.js"></script>
+  	<!-- custom js files -->
+  	<script type="text/javascript" src="/js/index.js"></script>
+  	<script type="text/javascript" src="/js/booking.js"></script>
+  	<script type="text/javascript" src="/js/validation.js"></script>
+</body>
+</html>

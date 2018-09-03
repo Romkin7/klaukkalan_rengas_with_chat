@@ -1,0 +1,131 @@
+<% layout('layout') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable grid">
+			<div class="ui centered row">
+				<div class="twelve wide column">
+					<div class="page header">
+						<h2>Vaihe 3</h2>
+						<input type="hidden" id="cartId" value="<%= session.cart._id %>">
+					</div>
+					<div class="ui massive breadcrumb">
+						<div class="section">Palvelu</div>
+						<div class="divider"> / </div>
+						<div class="section">Ajankohta</div>
+						<div class="divider"> / </div>
+						<div class="active section">Henkilötiedot</div>
+						<div class="divider"> / </div>
+						<div class="section">Valmis</div>
+					</div>
+				</div>
+			</div>
+			<div class="ui centered row">
+				<div class="twelve wide centered column">
+					<div class="ui top attached segment">
+						<div id="errors"></div>
+						<div id="message">
+							<% if(error && error.length > 0) { %>
+							<div class="ui negative message">
+								<i class="close icon"></i>
+								<div class="header">
+									Ups!
+								</div>
+								<p><%= error %></p>
+							</div>
+							<% } %>
+							<% if(success && success.length > 0) { %>
+							<div class="ui success message">
+								<i class="close icon"></i>
+								<div class="header">
+									Onnistui!
+								</div>
+								<p><%= success %></p>
+							</div>
+							<% } %>
+						</div>
+						<div class="ui centered stackable grid">
+							<div class="eight wide column">
+								<p>Ole hyvä ja syötä henkilötiedot ja ajoneuvon tiedot. </p>
+								<p>Pakolliset kentät on merkitty tähdillä, tarkentavat tiedot ovat suositeltavia.</p>
+								<table class="ui orange table">
+									<thead class="tablet desktop">
+										<tr>
+											<th>Valittu Päivänne</th>
+											<th>Valittu Aikanne</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><%= moment(cart.time.day).format('DD.MM.YYYY') %></td>
+											<td>klo: <%= cart.time.time %></td>
+										</tr>
+									</tbody>
+								</table>
+								<table class="ui orange table">
+									<thead class="tablet desktop">
+										<tr>
+											<th>Nimi</th>
+											<th>Hinta</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% cart.items.forEach(function(item) { %> 
+										<tr>
+											<td><%= item.name%></td>
+											<td><%= item.discounted_unit_price !== 0 ? item.discounted_unit_price+",00 €" : item.unit_price+",00 €" %></td>
+										</tr>
+										<% }); %>
+									</tbody>
+								</table>
+							</div>
+							<div class="eight wide column">
+								<form if="bookForm" class="ui large centered form" action="/ajanvaraus/<%= session.cart._id %>/henkilotiedot" method="POST">
+									<div class="two fields">
+										<div class="field">
+											<label for="firstname">Etunimi *</label>
+											<input type="text" name="firstname" id="firstname" placeholder="Etunimi *" required>
+										</div>
+										<div class="field">
+											<label for="lastname">Sukunimi *</label>
+											<input type="text" name="lastname" id="lastname" placeholder="Sukuimi *" required>
+										</div>
+									</div>
+									<div class="two fields">
+										<div class="field">
+											<label for="phone">Matkapuhelin *</label>
+											<input type="tel" name="phone" id="phone" placeholder="Matkapuhelin *" required>
+										</div>
+										<div class="field">
+											<label for="registernumber">Rekisterinumero *</label>
+											<input type="text" name="registernumber" id="registernumber" placeholder="Rekisterinumero *" required />
+										</div>
+									</div>
+									<div class="field">
+										<label for="email">Sähköposti *</label>
+										<input type="email" name="email" id="email" placeholder="Sähköposti *" required>
+									</div>
+									<div class="field">
+										<label for="street">Osoite</label>
+										<input type="text" name="street" id="street" placeholder="Osoite">
+									</div>
+									<div class="two fields">
+										<div class="field">
+											<label for="city">Kaupunki</label>
+											<input type="text" name="city" id="city" placeholder="Kaupunki">
+										</div>
+										<div class="field">
+											<label for="index">Postinumero</label>
+											<input type="text" name="index" id="index" placeholder="Postinumero">
+										</div>
+									</div>	
+									<a class="ui button" href="/ajanvaraus/<%= session.cart._id%>/ajankohta">Muuta ajankohtaa</a>
+									<button id="submitBtn" type="submit" class="ui green button" disabled="true">Lähetä</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

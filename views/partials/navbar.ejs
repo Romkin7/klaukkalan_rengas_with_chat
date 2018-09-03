@@ -1,0 +1,62 @@
+<div id="topNav" class="ui basic top fixed icon menu">
+  <a id="toggle" class="item">
+    <i class="orange sidebar icon"></i>
+    Valikko
+  </a>
+  <div class="item navItem2">
+    <a href="https://suomalainentyo.fi/kuluttajille" id="spLogoMobile">
+        <img src="/images/sp.png" class="ui small image spLogoMobile" alt="RengasCenter Klaukkala - Suomalaista Palvelua">
+      </a>
+  </div>
+  <div class="ui left item navItem">
+    <div class="item">
+      <a href="/">Etusivu</a>
+    </div>
+    <div class="item">
+      <a href="/renkaat">Renkaat</a>
+    </div>
+  </div>
+  <div class="ui right item navItem">
+    <% if(user && user.admin.isAdmin) { %>
+      <div class="item">
+      <a href="/admin">
+        <i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Hallintapaneeli
+      </a>
+    </div>
+    <% } %>
+    <div class="item">
+      <a href="https://suomalainentyo.fi/kuluttajille" id="spLogo">
+        <img src="/images/sp.png" class="ui small image" alt="RengasCenter Klaukkala - Suomalaista Palvelua">
+      </a>
+    </div>
+    <div class="item">
+      <a href="/hinnasto">
+        Palvelu hinnasto
+      </a>
+    </div>
+  </div>
+</div>
+<div id="messagesContainer" class="ui container">
+  <div class="ui centered grid">
+    <div class="ten wide column">
+      <% if(error && error.length > 0) { %>
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">
+          Ups!
+        </div>
+        <p><%= error %></p>
+      </div>
+      <% } %>
+      <% if(success && success.length > 0) { %>
+        <div class="ui success message">
+          <i class="close icon"></i>
+          <div class="header">
+            Onnistui!
+          </div>
+          <p><%= success %></p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

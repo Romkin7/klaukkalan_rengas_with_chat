@@ -1,0 +1,61 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide stretched column">
+				<div class="ui page header">
+					<h2><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</h2>
+					<p class="lead in"><i class="fa fa-calendar" aria-hidden="true"></i> <%= moment(Date.now()).format('DD.MM.YYYY') %></p>
+					<hr>
+					<div class="ui fluid three item silver stackable menu">
+						<div class="item">
+							<form class="ui horizontal form" action="/admin/orders" method="GET">
+								<div class="ui icon input">
+									<i class="search icon"></i>
+										<input type="text" name="search" placeholder="Hae varauksia...">
+								</div>
+							</form>
+						</div>
+						<div class="ui floating dropdown icon button item">
+							Suodata
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item"><a href="/admin/orders"><%= moment(new Date()).format('DD.MM.YYYY') %> Päivän varaukset</a></div>
+								<div class="item"><a href="/admin/orders">Viikon</a></div>
+								<div class="item"><a href="/admin/orders">Kuukauden</a></div>
+							</div>
+						</div>
+						<div class="ui floating dropdown icon button item">
+							Taso
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item"><a href="/admin/orders?status=done">Suoritetut</a></div>
+								<div class="item"><a href="/admin/orders?status=recieved">Suorittamattomat</a></div>
+								<div class="item"><a href="/admin/orders">Kaikki</a></div>
+							</div>
+						</div>
+					</div><!-- menu ends here -->
+					<div class="ui list">
+					<% orders.forEach(function(order) { %>
+						<div class="item">
+							<div class="right floated content">
+      							<a class="ui blue button" href="/admin/orders/<%= order._id %>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+      							<form class="ui form inline" action="/admin/orders/<%= order._id %>?_method=PATCH" method="POST">
+      								<div class="field">
+      									<input type="hidden" name="id" value="<%= order._id %>">
+      									<button class="ui green button" type="submit" id="MarkOrderBtn"><i class="fa fa-check" aria-hidden="true"></i></button>
+      								</div>
+      							</form>
+    						</div>
+							<h3 class="header">Varaus rekisterinumerolle <%= order.client.register_number %></h3>
+    						<p class="lead in"><%= order.client.name.firstname %>, <%= order.client.name.lastname %> </p>
+    						<p class="lead in">Varaus luotu: <%= moment(order.createdAt).format('LLL') %></p>
+						</div>
+						<hr>
+					<% }); %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

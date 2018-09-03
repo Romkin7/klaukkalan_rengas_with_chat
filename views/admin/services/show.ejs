@@ -1,0 +1,84 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide column">
+				<div class="ui page header">
+					<h2><i class="fa fa-edit" aria-hidden="true"></i> <%= service.name %></h2>
+					<hr>
+				</div>
+			</div>
+			<div class="fourteen wide column">
+				<div class="ui raised orange segment">
+					<form class="ui form" action="/admin/services/<%= service._id %>?_method=PUT" method="POST">
+						<div class="field">
+							<div class="three fields">
+								<div class="field">
+									<label for="name">Nimi *</label>
+									<input type="text" name="name" id="name" required value="<%= service.name %>">
+								</div>
+								<div class="field">
+									<label for="type">Tyyppy *</label>
+									<select id="type" name="type" class="ui fluid dropdown" required>
+										<option value="<%= service.type %>"><%= service.type %></option>
+										<option value="Rengas">Rengas</option> 
+										<option value="Sarja">Sarja</option>
+										<option value="Sarja / Kausi">Sarja / Kausi</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="category">Kategoria *</label>
+									<select id="category" name="category" class="ui fluid dropdown" required>
+										<option value="<%= service.category %>"><%= service.category %></option>
+										<option value="tyrehotel">Rengashotelli</option> 
+										<option value="maintainance">Rengastyö</option>
+										<option value="wash">Rengaspesu</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="field">
+							<div class="three fields">
+								<div class="field">
+									<label for="unit_price">Hinta *</label>
+									<input type="number" step="0.01" min="0" max="10000" id="unit_price" name="unit_price" value="<%= service.unit_price %>" required>
+								</div>
+								<div class="field">
+									<label for="vat">Alv *</label>
+									<select class="ui fluid dropdown" required id="vat" name="vat">
+										<option value="0.24">24%</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="discounted_unit_price">Alennettu hinta</label>
+									<input type="number" name="discounted_unit_price" id="discounted_unit_price" value="<%= service.discounted_unit_price !== 0 ? service.discounted_unit_price : 0 %>" step="0.01" min="0" max="10000">
+								</div>
+							</div>
+						</div>
+						<div class="field">
+							<div class="two fields">
+								<div class="field">
+									<label for="tyre_size">Koko *</label>
+									<select id="tyre_size" name="tyre_size" required class="ui fluid dropdown">
+										<option value="<%= service.tyre_size %>"><%= service.tyre_size %></option>
+										<option value="16">16</option>
+										<option value="17">17</option>
+										<option value="19">19</option>
+									</select>
+								</div>
+								<div class="field">
+									<label for="additional_info">Lisätietoa</label>
+									<input type="text" name="additional_info" id="additional_info" value="<%= service.additional_info %>">
+								</div>
+							</div>
+						</div>
+						<div class="field">
+							<a href="/admin/services" class="ui blue button"><i class="fa fa-chevron-left" aria-hidden="true"></i> Takaisin</a>
+							<button type="submit" class="ui yellow button" id="serviceSubmitBtn"><i class="fa fa-edit"></i> Muokkaa</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

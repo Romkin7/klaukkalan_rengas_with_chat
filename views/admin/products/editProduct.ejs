@@ -1,0 +1,287 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide column">
+				<div class="ui page header">
+					<h2><i class="fa fa-edit" aria-hidden="true"></i> <%= tyre.manufacturer %> <%= tyre.model %></h2>
+					<hr>
+				</div>
+			</div>
+			<div class="ten wide column">
+				<div class="ui tabular menu">
+					<a class="active item" data-tab="Main_info">
+						Renkaan tiedot
+					</a>
+					<a class="item" data-tab="price&size">
+						Hinta ja Koko
+					</a>
+					<a class="item" data-tab="cover">
+						Kuva
+					</a>
+				</div>
+				<div class="ui tab" data-tab="Main_info">
+  					<h3 class="ui dividing header"><i class="fa fa-edit" aria-hidden="true"></i> Renkaan tietoja</h3>
+  					<form class="ui form" action="/admin/products/<%= tyre._id %>?_method=PUT" method="POST">
+  						<div class="field">
+  							<label for="category">Kategoria</label>
+  							<select id="category" class="ui fluid dropdown" name="category" required>
+  								<option value="<%= tyre.category %>"><%= tyre.category %></option>
+  								<option value="Kesärenkaat">Kesärenkaat</option>
+								<option value="Talvirenkaat">Talvirenkaat</option>
+  							</select>
+  						</div>
+  						<div class="field">
+  							<div class="two fields">
+  								<div class="field">
+  									<label for="type_of_product">Tyyppi</label>
+  									<select id="type" name="type_of_product" class="ui fluid dropdown">
+										<option value="<%= tyre.type_of_product %>"><%= tyre.type_of_product %></option>
+										<option value="Renkaat">Renkaat</option>
+										<option value="Rengaspaketti">Rengaspaketti</option>
+									</select>
+  								</div>
+  								<div class="field">
+  									<label for="car_type">Ajoneuvotyyppi *</label>
+									<select id="car_type" name="car_type" class="ui fluid dropdown" required>
+										<option value="<%= tyre.car_type %>"><%= tyre.car_type %></option>
+										<option value="Henkilöauto">Henkilöauto</option> 
+										<option value="SUV">SUV</option>
+										<option value="C-LL">Pakettiauto</option>
+									</select>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="field">
+  							<div class="two fields">
+  								<div class="field">
+  									<label for="model">Malli</label>
+  									<input type="text" name="model" id="model" required value="<%= tyre.model %>">
+  								</div>
+  								<div class="field">
+  									<label for="manufacturer">Valmistaja</label>
+  									<select id="manufacturer" name="manufacturer" required class="ui fluid dropdown">
+  										<option value="<%= tyre.manufacturer %>"><%= tyre.manufacturer %></option>
+  										<option value="Bridgestone">Bridgestone</option> 
+  										<option value="Sava">Sava</option> 
+										<option value="Nokian Renkaat">Nokian Renkaat</option>
+										<option value="Nokian Nordman">Nokian Nordman</option>
+										<option value="Goodyear">Goodyear</option>
+										<option value="Continental">Continental</option>
+										<option value="Nexen">Nexen</option>
+										<option value="Nordman">Nordman</option>
+										<option value="Nordexx">Nordexx</option>
+										<option value="Toyo">Toyo</option>
+  									</select>
+  								</div>
+  							</div>
+  						</div>
+  						<div class="field">
+  							<label for="additional_info">Lisätietoa</label>
+  							<textarea id="additional_info" name="additional_info" required rows="7"></textarea>
+  						</div>
+  						<div class="field">
+  							<button type="submit" class="ui green large button">Muokkaa</button>
+  						</div>
+  					</form>
+				</div>
+				<div class="ui tab" data-tab="price&size">
+					<h3 class="ui dividing header">Muokkaa hintaa ja kokoa</h3>
+  					<% tyre.size_and_price.forEach(function(item) { %>
+  					<form class="ui form" action="/admin/products/<%= tyre._id %>?_method=PATCH" method="POST">
+  						<div class="field">
+  							<div class="three fields">
+  								<input type="hidden" name="_id" value="<%= item._id %>">
+  								<input type="hidden" name="vat" value="0.24">
+  								<div class="field">
+  									<label for="unit_price">Hinta "€/Sarja"</label>
+  									<input type="number" name="unit_price" placeholder="Hinta *" id="unit_price"  value="<%= item.unit_price %>">
+  								</div>
+  								<div class="field">
+  									<label for="size">Koko "<%= tyre.car_type %>"</label>
+									<select id="size" name="size" required class="ui fluid dropdown">
+										<% if(tyre.car_type === "Henkilöauto") { %>
+										<option class="henkiloauto" value="<%= item.size %>"><%= item.size %></option>
+										<option class="henkiloauto" value="">13</option>
+										<option class="henkiloauto" value="175/70-13">175/70-13</option>
+										<option class="henkiloauto" value="">14</option>
+										<option class="henkiloauto" value="155/65-14">155/65-14</option>       
+										<option class="henkiloauto" value="175/65-14">175/65-14</option>
+										<option class="henkiloauto" value="">15</option>
+										<option class="henkiloauto" value="185/65-15">185/65-15</option>      
+										<option class="henkiloauto" value="195/65-15">195/65-15</option>      
+										<option class="henkiloauto" value="205/65-15">205/65-15</option>      
+										<option class="henkiloauto" value="185/60-15">185/60-15</option>      
+										<option class="henkiloauto" value="195/60-15">195/60-15</option>      
+										<option class="henkiloauto" value="185/55-15">185/55-15</option>      
+										<option class="henkiloauto" value="195/55-15">195/55-15</option>
+										<option class="henkiloauto" value="">16</option>     
+										<option class="henkiloauto" value="205/60-16">205/60-16</option>      
+										<option class="henkiloauto" value="195/55-16">195/55-16</option>      
+										<option class="henkiloauto" value="205/55-16">205/55-16</option>      
+										<option class="henkiloauto" value="215/55-16">215/55-16</option>      
+										<option class="henkiloauto" value="225/55-16">225/55-16</option>
+										<option class="henkiloauto" value="">17</option>
+										<option class="henkiloauto" value="215/55-17">215/55-17</option>     
+										<option class="henkiloauto" value="225/55-17">225/55-17</option>    
+										<option class="henkiloauto" value="205/50-17">205/50-17</option>    
+										<option class="henkiloauto" value="215/50-17">215/50-17</option>    
+										<option class="henkiloauto" value="225/50-17">225/50-17</option>    
+										<option class="henkiloauto" value="215/45-17">215/45-17</option>    
+										<option class="henkiloauto" value="225/45-17">225/45-17</option>    
+										<option class="henkiloauto" value="235/45-17">235/45-17</option>
+										<option class="henkiloauto" value="">18</option>    
+										<option class="henkiloauto" value="245/45-18">245/45-18</option>    
+										<option class="henkiloauto" value="225/40-18">225/40-18</option>    
+										<option class="henkiloauto" value="235/40-18">235/40-18</option>    
+										<option class="henkiloauto" value="245/40-18">245/40-18</option>
+										<option class="henkiloauto" value="">19</option>
+										<option class="henkiloauto" value="235/35-19">235/35-19</option>   
+										<option class="henkiloauto" value="245/40-19">245/40-19</option>
+										<% } %>   
+										<!-- SUV options -->
+										<% if(tyre.car_type === "SUV") { %>
+										<option class="suv" value="<%= item.size %>"><%= item.size %></option>
+										<option class="suv" value="">16</option>     
+										<option class="suv" value="215/65-16">215/65-16</option>      
+										<option class="suv" value="215/60-16">215/60-16</option>      
+										<option class="suv" value="235/60-16">235/60-16</option>      
+										<option class="suv" value="">17</option>
+										<option class="suv" value="225/60-17">225/60-17</option>     
+										<option class="suv" value="225/65-17">225/65-17</option>    
+										<option class="suv" value="235/65-17">235/65-17</option>    
+										<option class="suv" value="235/55-17">235/55-17</option> 
+										<option class="suv" value="">18</option>    
+										<option class="suv" value="235/60-18">235/60-18</option>
+										<option class="suv" value="255/55-18">255/55-18</option>
+										<option class="suv" value="">19</option>
+										<option class="suv" value="235/55-19">235/55-19</option>   
+										<option class="suv" value="255/50-19">255/50-19</option>
+										<% } %>
+										<!-- c/ll -->
+										<% if(tyre.car_type === "C-LL") { %>
+										<option class="c-ll" value="<%= item.size %>"><%= item.size %></option> 
+										<option class="c-ll" value="">14</option> 
+										<option class="c-ll" value="175/65-14C">175/65-14C</option>
+										<option class="c-ll" value="">15</option>
+										<option class="c-ll" value="195/70-15C">195/70-15C</option> 
+										<option class="c-ll" value="225/70-15C">225/70-15C</option>
+										<option class="c-ll" value="">16</option>
+										<option class="c-ll" value="205/65-16C">205/65-16C</option>
+										<option class="c-ll" value="215/65-16C">215/65-16C</option>
+										<option class="c-ll" value="225/65-16C">225/65-16C</option>
+										<option class="c-ll" value="235/65-16C">235/65-16C</option>
+										<option class="c-ll" value="">17</option> 
+										<option class="c-ll" value="215/60-17C">215/60-17C</option>
+										<% } %> 
+									</select>
+  								</div>
+  								<div class="field">
+  									<label>Hyväksy</label>
+  									<button type="submit" class="ui yellow button"><i class="fa fa-edit" aria-hidden="true"></i> Muokkaa</button>
+  								</div>
+  							</div>
+  						</div>
+  					</form>
+  					<% }); %>
+  					<hr>
+  					<form class="ui form" action="/admin/products/<%= tyre._id %>?_method=PATCH" method="POST">
+  						<h4 class="ui dividing header">Lisää hinta ja koko</h4>
+  						<div class="field">
+  							<div class="three fields">
+  								<input type="hidden" name="vat" value="0.24">
+  								<div class="field">
+  									<label for="unit_price">Hinta "€/Sarja"</label>
+  									<input type="number" name="unit_price" placeholder="Hinta *" id="unit_price" required>
+  								</div>
+  								<div class="field">
+  									<label for="size">Koko "<%= tyre.car_type %>"</label>
+									<select id="size" name="size" required class="ui fluid dropdown">
+										<% if(tyre.car_type === "Henkilöauto") { %>
+										<option class="henkiloauto" value="">13</option>
+										<option class="henkiloauto" value="175/70-13">175/70-13</option>
+										<option class="henkiloauto" value="">14</option>
+										<option class="henkiloauto" value="155/65-14">155/65-14</option>       
+										<option class="henkiloauto" value="175/65-14">175/65-14</option>
+										<option class="henkiloauto" value="">15</option>
+										<option class="henkiloauto" value="185/65-15">185/65-15</option>      
+										<option class="henkiloauto" value="195/65-15">195/65-15</option>      
+										<option class="henkiloauto" value="205/65-15">205/65-15</option>      
+										<option class="henkiloauto" value="185/60-15">185/60-15</option>      
+										<option class="henkiloauto" value="195/60-15">195/60-15</option>      
+										<option class="henkiloauto" value="185/55-15">185/55-15</option>      
+										<option class="henkiloauto" value="195/55-15">195/55-15</option>
+										<option class="henkiloauto" value="">16</option>     
+										<option class="henkiloauto" value="205/60-16">205/60-16</option>      
+										<option class="henkiloauto" value="195/55-16">195/55-16</option>      
+										<option class="henkiloauto" value="205/55-16">205/55-16</option>      
+										<option class="henkiloauto" value="215/55-16">215/55-16</option>      
+										<option class="henkiloauto" value="225/55-16">225/55-16</option>
+										<option class="henkiloauto" value="">17</option>
+										<option class="henkiloauto" value="215/55-17">215/55-17</option>     
+										<option class="henkiloauto" value="225/55-17">225/55-17</option>    
+										<option class="henkiloauto" value="205/50-17">205/50-17</option>    
+										<option class="henkiloauto" value="215/50-17">215/50-17</option>    
+										<option class="henkiloauto" value="225/50-17">225/50-17</option>    
+										<option class="henkiloauto" value="215/45-17">215/45-17</option>    
+										<option class="henkiloauto" value="225/45-17">225/45-17</option>    
+										<option class="henkiloauto" value="235/45-17">235/45-17</option>
+										<option class="henkiloauto" value="">18</option>    
+										<option class="henkiloauto" value="245/45-18">245/45-18</option>    
+										<option class="henkiloauto" value="225/40-18">225/40-18</option>    
+										<option class="henkiloauto" value="235/40-18">235/40-18</option>    
+										<option class="henkiloauto" value="245/40-18">245/40-18</option>
+										<option class="henkiloauto" value="">19</option>
+										<option class="henkiloauto" value="235/35-19">235/35-19</option>   
+										<option class="henkiloauto" value="245/40-19">245/40-19</option>
+										<% } %>   
+										<!-- SUV options -->
+										<% if(tyre.car_type === "SUV") { %>
+										<option class="suv" value="">16</option>     
+										<option class="suv" value="215/65-16">215/65-16</option>      
+										<option class="suv" value="215/60-16">215/60-16</option>      
+										<option class="suv" value="235/60-16">235/60-16</option>      
+										<option class="suv" value="">17</option>
+										<option class="suv" value="225/60-17">225/60-17</option>     
+										<option class="suv" value="225/65-17">225/65-17</option>    
+										<option class="suv" value="235/65-17">235/65-17</option>    
+										<option class="suv" value="235/55-17">235/55-17</option> 
+										<option class="suv" value="">18</option>    
+										<option class="suv" value="235/60-18">235/60-18</option>
+										<option class="suv" value="255/55-18">255/55-18</option>
+										<option class="suv" value="">19</option>
+										<option class="suv" value="235/55-19">235/55-19</option>   
+										<option class="suv" value="255/50-19">255/50-19</option>
+										<% } %>
+										<!-- c/ll -->
+										<% if(tyre.car_type === "C-LL") { %>
+										<option class="c-ll" value="">14</option> 
+										<option class="c-ll" value="175/65-14C">175/65-14C</option>
+										<option class="c-ll" value="">15</option>
+										<option class="c-ll" value="195/70-15C">195/70-15C</option> 
+										<option class="c-ll" value="225/70-15C">225/70-15C</option>
+										<option class="c-ll" value="">16</option>
+										<option class="c-ll" value="205/65-16C">205/65-16C</option>
+										<option class="c-ll" value="215/65-16C">215/65-16C</option>
+										<option class="c-ll" value="225/65-16C">225/65-16C</option>
+										<option class="c-ll" value="235/65-16C">235/65-16C</option>
+										<option class="c-ll" value="">17</option> 
+										<option class="c-ll" value="215/60-17C">215/60-17C</option>
+										<% } %> 
+									</select>
+  								</div>
+  								<div class="field">
+  									<label>Hyväksy</label>
+  									<button type="submit" class="ui green button"><i class="fa fa-plus" aria-hidden="true"></i> Lisää</button>
+  								</div>
+  							</div>
+  						</div>
+  					</form>
+				</div>
+				<div class="ui tab" data-tab="cover">
+  					<!-- Tab Content !-->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

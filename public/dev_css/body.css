@@ -1,0 +1,123 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+aside {
+	background-color: #333333;
+	z-index: 11;
+	height: 30vh;
+	padding: 10px;
+	position: relative;
+}
+.header-section {
+	height: 78px;
+}
+.tyrecard:hover {
+	text-transform: bold;
+	text-decoration: none;
+	color: #000000;
+}
+.desktop,
+.tablet {
+	visibility: hidden;
+}
+.inline {
+	display: inline;
+}
+@media only screen and (max-width: 300px) {
+	.desktop,
+	.tablet {
+		height: 0;
+		width: 0;
+		padding: 0;
+		margin: 0;
+	}
+}
+.ui.cards.desktop, 
+.ui.cards.tablet {
+	display: none;
+}
+.mobile {
+	display: block;
+}
+@media only screen and (min-width: 767px) {
+	aside {
+		padding: 15px;
+		height: 20vh;
+	}
+	section {
+		width: 100%;
+		padding-bottom: 30px;
+		margin-top: 60px;
+		height: 100%;
+		min-height: 120vh;
+		position: relative;
+	}
+	.desktop,
+	.tablet {
+		visibility: visible;
+	}
+	.ui.cards.desktop, 
+	.ui.cards.tablet {
+		display: flex;
+	}
+	.mobile {
+		display: none;
+	}
+}
+section .container {
+	padding-top: 35px;
+}
+section {
+	width: 100%;
+	padding-bottom: 40px;
+	margin-top: 60px;
+	height: 100%;
+	position: relative;
+	z-index: 7;
+}
+.headlines {
+	position: relative;
+	z-index: 11;
+}
+/*section>.ui.container */ 
+#landing_section {
+	min-height: 100vh;
+	background-color: rgba(255, 255, 255, 0.4);
+}
+section {
+	background-color: #f6f5f3;
+}
+/*timebooking*/
+
+/* MAP */
+#map {
+	height: 40vh;
+}
+/* Image uploads */
+/* Image uploader and cropper styles */
+#imgPreviewContainer,
+#imgPreviewContainer .cropper-container {
+  max-height: 700px !important;
+}
+.custom-file-upload {
+    border: 1px ridge #3498db;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s;
+}
+#cover {
+  display: none;
+  background: transparent;
+  border: 1px ridge #3498db;
+}
+#imgBtns {
+  display: none;
+}
+

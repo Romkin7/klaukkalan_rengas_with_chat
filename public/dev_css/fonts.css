@@ -1,0 +1,151 @@
+* {
+	font-family: 'Exo 2', sans-serif;
+}
+.headlines h1,
+.headlines h3, 
+.headlines p,
+.headlines a,
+.headlines i {
+	color: #000000;
+}
+.black {
+	color: #000000;
+	font-size: 20px;
+	margin-bottom: 0px; 
+}
+.no_margin {
+	margin-bottom: 0; 
+}
+h4.smaller.black {
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+.headlines h1  {
+	padding-top: 10px;
+	margin-top: 0px;
+	font-size: 42px;
+}
+.headlines h3 {
+	font-size: 24px;
+	font-weight: 600;
+}
+.headlines .four.wide.column {
+	margin: 0 auto;
+}
+.footerP, .footerP>a, footer h4 {
+	color: #434343;
+	text-shadow: none;
+}
+.header {
+	font-family: 'Exo 2', sans-serif;
+	padding: 5px;
+	font-weight: 400;
+	font-size: 22px;
+	line-height: 1em;
+	letter-spacing: 1.1px;
+	text-shadow: none;
+	color: #000000;
+}
+.content {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1em;
+	letter-spacing: 1.1px;
+	text-shadow: none;
+	color: #000000;
+}
+h1:first-child {
+	margin-top: 15px;
+}
+h1 {
+	font-family: 'Exo 2', sans-serif;
+	font-size: 56px;
+	line-height: 1.5em;
+	font-weight: 300;
+	letter-spacing: 1.2px;
+	text-transform: capitalize;
+}
+h2 {
+	font-size: 42px;
+	line-height: 1.5em;
+	font-weight: 300;
+	letter-spacing: 1.2px;
+}
+h3, .header>h3 {
+	color: #000000;
+	text-shadow: none;
+	font-size: 32px;
+	line-height: 1.5em;
+	font-weight: 300;
+	letter-spacing: 1.2px;
+}
+h4 {
+	font-size: 24px;
+	line-height: 1.5em;
+	font-weight: 400;
+	letter-spacing: 1.2px;
+	color: #f6f5f3;
+}
+.black {
+	color: #000000;
+}
+p {	
+	font-size: 16px;
+	line-height: 1.2em;
+	font-weight: 600;
+	letter-spacing: 1.1px;
+}
+a.white {
+	font-weight: 600;
+	color: #ffffff;
+}
+a {
+	color: #333333;
+}
+.presentation {
+
+}
+.lead-in {
+	font-size: 18px;
+	text-transform: italic;
+}
+.additionalInfo {
+	color: #f6f5f3;
+}
+.segment p {
+	padding: 5px;
+}
+.black {
+	color: #000000;
+}
+aside .header {
+	color: #f6f5f3;
+}
+.header {
+	margin-top: 45px;
+}
+.ui.horizontal.centered.divider {
+	font-size: 0.9rem;
+}
+table tr,
+table th {
+		font-size: 16px;
+	}
+@media only screen and (min-width: 767px) {
+	.headlines h1 {
+		font-size: 72px;
+		text-align: left;
+	}
+	h1:first-child {
+		margin-top: 70px;
+	}
+	.headlines .four.wide.column {
+		margin: 0;
+	}
+	.ui.horizontal.centered.divider {
+		font-size: 1rem;
+	}
+	table tr {
+		font-size: 14px;
+	}
+}

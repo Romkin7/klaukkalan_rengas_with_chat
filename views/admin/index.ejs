@@ -1,0 +1,105 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+				<div class="fourteen wide column">
+          <div class="ui page header">
+            <h2><i class="fa fa-dashboard fa-fw" aria-hidden="true"></i> Hallintapaneeli | <%= user.name.firstname %> <%= user.name.lastname %></h2>
+          <hr>
+          </div>
+          <p class="lead in"><i class="fa fa-calendar" aria-hidden="true"></i> <%= moment(Date.now()).format('DD.MM.YYYY') %></p>
+          <div class="ui grey segment">
+            <div class="ui stackable four column grid special cards">
+              <div class="column">
+                <div class="ui fluid orange card">
+                  <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <a href="/admin/products/new" class="ui orange button"><i class="fa fa-plus" aria-hidden="true"></i> Luo tuote</a>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="/images/bcg6.jpg">
+                  </div>
+                  <div class="content">
+                    <a class="header"><i class="fa fa-plus" aria-hidden="true"></i> Luo tuote</a>
+                    <div class="meta">
+                      <span class="date">Rengas, vanne tai rengaspaketti</span>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- four wide column ends here -->
+              <div class="column">
+                <div class="ui fluid orange card">
+                  <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <a href="/admin/services/add" class="ui orange button"><i class="fa fa-plus" aria-hidden="true"></i> Luo palvelu</a>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="/images/bcg8.jpg">
+                  </div>
+                  <div class="content">
+                    <a class="header"><i class="fa fa-plus" aria-hidden="true"></i> Luo palvelu</a>
+                    <div class="meta">
+                      <span class="date">Rengashotelli, rengastyö tai renkaanspesu</span>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- four wide column ends here -->
+              <div class="column">
+                <div class="ui fluid orange card">
+                  <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <a href="/admin/products/new" class="ui orange button"><i class="fa fa-user-plus" aria-hidden="true"></i> Käyttäjähallinta</a>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="/images/bcg11.jpg">
+                  </div>
+                  <div class="content">
+                    <a class="header"><i class="fa fa-user-plus" aria-hidden="true"></i> Käyttäjähallinta</a>
+                    <div class="meta">
+                      <span class="date">Muokkaa ja rajoita käyttäjiä</span>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- four wide column ends here -->
+              <div class="column">
+                <div class="ui fluid orange card">
+                  <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                      <div class="content">
+                        <div class="center">
+                          <a href="/admin/orders" class="ui orange button"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</a>
+                        </div>
+                      </div>
+                    </div>
+                    <img src="/images/orders.jpg">
+                  </div>
+                  <div class="content">
+                    <a class="header"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</a>
+                    <div class="meta">
+                      <span class="date">Selaa, muokkaa ja hallinnoi varauksia</span>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- four wide column ends here -->
+            </div>
+          </div> <!-- end of grey segment -->
+          <div class="ui grey raised segment">
+            <div id="notificationList" class="ui items">
+              <h4 class="black" id="infoHeading">Kaikki on ajantasalla</h4>
+              <hr>  
+              <!-- here will be appended item of this list by websocket.io -->
+            </div><!-- end of notificationList -->
+          </div>      
+        </div>
+		</div>		
+	</div>
+</section>

@@ -1,0 +1,145 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide streched column">
+				<div class="ui page header">
+					<h2><i class="fa fa-edit" aria-hidden="true"></i> Muokkaa Renkaita</h2>
+					<p class="lead in"><i class="fa fa-calendar" aria-hidden="true"></i> <%= moment(Date.now()).format('DD.MM.YYYY') %></p>
+					<hr>
+				</div>
+				<div class="ui stackable centered grid">
+					<div class="sixteen wide column">
+						<div class="ui fluid six item silver stackable menu">
+							<div class="ui floating dropdown icon button item">
+								Merkit 
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item"><a href="/admin/products?manufacturer=Nokian Renkaat&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nokian</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Nokian Nordman&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nordman</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Bridgestone&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Bridgestone</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Sava&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Sava</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Continental&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Continental</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Nordexx&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nordexx</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Nexen&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nexen</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Goodyear&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Goodyear</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=Toyo&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Toyo</a></div>
+								</div>
+							</div>
+							<div class="item">
+								<form class="ui horizontal form" action="/admin/products" method="GET">
+									<div class="ui icon input">
+										<i class="search icon"></i>
+  										<input type="text" name="search" placeholder="Hae renkaita...">
+									</div>
+								</form>
+							</div>
+							<div class="ui floating dropdown icon button item">
+								Automallit
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item"><a href="/admin/products?car_type=Henkilöauto&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">Henkilöauto</a></div>
+									<div class="item"><a href="/admin/products?car_type=SUV&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">City Maasturi/SUV</a></div>
+									<div class="item"><a href="/admin/products?car_type=C-LL&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">C/LL</a></div>
+								</div>
+							</div>
+							<div class="ui floating dropdown icon button item">
+								Koot Henkilöauto
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=155/65-14">155/65-14</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=175/65-14">175/65-14</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/65-15">185/65-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/65-15">195/65-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/65-15">205/65-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/60-15">185/60-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/60-15">195/60-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/55-15">185/55-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/55-15">195/55-15</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/60-16">205/60-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/55-16">195/55-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/55-16">205/55-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/55-16">225/55-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-17">215/55-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/55-17">225/55-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/50-17">205/50-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/50-17">215/50-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/50-17">225/50-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/45-17">215/45-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/45-17">225/45-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/45-17">235/45-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/45-18">245/45-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/40-18">225/40-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/40-18">235/40-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/40-18">245/40-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/35-19">235/35-19</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/40-19">245/40-19</a></div>
+								</div>
+							</div>
+							<div class="ui floating dropdown icon button item">
+								Koot SUV
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=215/65-16">215/65-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=215/60-16">215/60-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/60-16">235/60-16</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=225/60-17">225/60-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=225/65-17">225/65-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/65-17">235/65-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/55-17">235/55-17</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/60-18">235/60-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=255/55-18">255/55-18</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/55-19">235/55-19</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=255/50-19">255/50-19</a></div>
+								</div>
+							</div>
+							<div class="ui floating dropdown icon button item">
+								Koot C/LL
+								<i class="dropdown icon"></i>
+								<div class="menu">
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=175/65-14C">175/65-14C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=195/70-15C">195/70-15C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=225/70-15C">225/70-15C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=205/65-16C">205/65-16C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=215/65-16C">215/65-16C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=225/65-16C">225/65-16C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=235/65-16C">235/65-16C</a></div>
+									<div class="item"><a href="/admin/products?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=215/60-17C">215/60-17C</a></div>
+								</div>
+							</div>
+						</div><!-- menu ends here -->
+						<hr>
+					</div>
+					<div class="sixteen wide column">
+						<div class="ui list">
+						<% tyres.forEach(function(tyre) { %>
+							<div class="item">
+								<div class="left floated content">
+									<img src="<%= tyre.cover %>" class="ui tiny image" alt="<%= tyre.manufacturer %>, <%= tyre.model %>" />
+								</div>
+								<div class="right floated content">
+      								<a class="ui yellow button" href="/admin/products/<%= tyre._id %>"><i class="fa fa-edit" aria-hidden="true"></i></a>
+      								<form class="ui form" action="/admin/products/<%= tyre._id %>?_method=DELETE" method="POST">
+      									<div class="field">
+      										<input type="hidden" name="_id" value="<%= tyre._id %>">
+      										<button type="submit" class="ui red button">
+      											<i class="fa fa-trash" aria-hidden="true"></i> 
+      										</button>
+      									</div>
+      								</form>
+    							</div>
+								<h3 class="header"><%= tyre.manufacturer %></h3>
+    							<p class="lead in"><%= tyre.model %>, <%= tyre.car_type %> </p>
+    							<p class="lead in"> Renkaiden hinta ja koko alkaen <%= tyre.size_and_price[0].size %>, <%= tyre.size_and_price[0].unit_price %>,00 €/Sarja</p>
+							</div>
+							<hr>
+						<% }); %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

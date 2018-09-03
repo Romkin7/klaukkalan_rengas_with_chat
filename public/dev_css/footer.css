@@ -1,0 +1,50 @@
+footer.ui.footer.segment {
+	position: relative;
+	height: auto;
+	background-color: #e3e3e3;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	z-index: 0;
+	margin: 0;
+}
+footer p {
+	margin-bottom: 5px;
+}
+div.social-buttons div a {
+    text-align: center;
+	display: block;
+	background-color: #434343;
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    font-size: 26px;
+    line-height: 60px;
+    color: white;
+    outline: none;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+div.social-buttons div a .fa {
+	text-align: center;
+    display: inline-block;
+    font: normal normal normal 26px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+.ui.massive.horizontal.divided.list.social-buttons {
+	list-style: none;
+}
+.ui.tiny.circle.image {
+    display: inline;
+}
+@media only screen and (min-width: 767px) {
+    footer.ui.footer.segment {
+        height: 55vh;
+    }
+}
+#map {
+    height: 100%;
+}

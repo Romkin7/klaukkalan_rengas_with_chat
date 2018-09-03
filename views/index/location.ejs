@@ -1,0 +1,54 @@
+<% layout('layout') -%>
+<section>
+	<div class="ui container">
+		<div class="ui centered row">
+			<div class="ui stackable centered grid">
+				<div class="fourteen wide column">
+					<div class="header">
+						<h2>Yheystiedot</h2>
+						<div class="ui horizontal divider">
+							<i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+				<div class="fourteen wide column">
+					<h3>Ajo-ohjeet</h3>
+					<div id="map"></div>
+					<script>
+					 	function initMap() {
+					 		var GPS = {lat: 60.389942, lng: 24.741092};
+					 		var map = new google.maps.Map(document.getElementById('map'), {
+					 			zoom: 13,
+					 			center: GPS
+					 		});
+					 		var marker = new google.maps.Marker({
+					 			position: GPS,
+					 			map: map
+					 		});
+					 	}
+					</script>
+					<script async defer
+						src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlKhYCSj32qqvH06Dd-C0Y8FUOQuEQtFk&callback=initMap">
+					</script>
+					<hr>
+				</div>
+				<div class="five wide column">
+					<h4 class="black">Anton Kalishevich</h4>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> +358 (0)45 186 30 33</p>
+					<p>Toimitusjohtaja</p>
+				</div>
+				<div class="five wide column">
+					<h4 class="black">Kristian Rättö</h4>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> +358 (0)50 591 73 22</p>
+					<p>Työnjohtaja</p>
+				</div>
+				<div class="five wide column">
+					<h4 class="black">Klaukkalan rengas & Hotelli</h4>
+        			<p><i class="fa fa-map-marker" aria-hidden="true"></i> Klaukkalantie 74</p>
+        			<p>01800, Klaukkala</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</section>

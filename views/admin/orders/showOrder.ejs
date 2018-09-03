@@ -1,0 +1,98 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide centered column">
+				<div class="ui top attached orange segment">
+					<div class="content">
+						<div class="ui page header">Varausvahvistus - rekisterinumerolle: <%= order.client.register_number %></div>
+						<hr>
+					</div>
+					<div class="content">
+						<h4 class="ui sub header">Tiedot</h4>
+						<div class="ui small feed">
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<p>Nimi: <%= order.client.name.firstname %>, <%= order.client.name.lastname %></p> 
+									</div>
+								</div>
+							</div>
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<p>Sähköposti: <%= order.client.contact_information.email %></p> 
+									</div>
+								</div>
+							</div>
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<p>Puhelinnumero: <%= order.client.contact_information.phone %></p>
+									</div>
+								</div>
+							</div>
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<p>Osoite: <%= order.client.address.street %>, <%= order.client.address.index %> <%= order.client.address.city %></p>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<h4 class="ui header">Aika</h4>
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<table class="ui orange table">
+											<thead class="tablet desktop">
+												<tr>
+													<th>Päivä</th>
+													<th>Aika</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><%= moment(order.time.day).format('DD.MM.YYYY') %></td>
+													<td>klo: <%= order.time.time %></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<hr>
+							<h4 class="ui header">Palvelut</h4>
+							<div class="event">
+								<div class="content">
+									<div class="summary">
+										<table class="ui orange table">
+											<thead class="tablet desktop">
+												<tr>
+													<th>Nimi</th>
+													<th>Hinta</th>
+												</tr>
+											</thead>
+											<tbody>
+												<% order.services.forEach(function(service) { %> 
+												<tr>
+													<td><%= service.name%></td>
+													<td><%= service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €" %></td>
+												</tr>
+												<% }); %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<hr>
+					<div class="extra content">
+						<a href="/admin/orders" class="ui blue button"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+						<button class="ui orange button" alt="print screen" onclick="window.print();">Tulosta</button>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</section>
