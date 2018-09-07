@@ -1,868 +1,96 @@
-var times = [
-{
-  day: "2018-09-03",
-  time: "07:00"
-},
-{
-  day: "2018-09-03",
-  time: "08:00"
-},
-{
-  day: "2018-09-03",
-  time: "09:00"
-},
-{
-  day: "2018-09-03",
-  time: "10:00"
-},
-{
-  day: "2018-09-03",
-  time: "11:00"
-},
-{
-  day: "2018-09-03",
-  time: "12:00"
-},
-{
-  day: "2018-09-03",
-  time: "13:00"
-},
-{
-  day: "2018-09-03",
-  time: "14:00"
-},
-{
-  day: "2018-09-03",
-  time: "15:00"
-},
-{
-  day: "2018-09-03",
-  time: "16:00"
-},
-{
-  day: "2018-09-03",
-  time: "17:00"
-},
-{
-  day: "2018-09-04",
-  time: "07:00"
-},
-{
-  day: "2018-09-04",
-  time: "08:00"
-},
-{
-  day: "2018-09-04",
-  time: "09:00"
-},
-{
-  day: "2018-09-04",
-  time: "10:00"
-},
-{
-  day: "2018-09-04",
-  time: "11:00"
-},
-{
-  day: "2018-09-04",
-  time: "12:00"
-},
-{
-  day: "2018-09-04",
-  time: "13:00"
-},
-{
-  day: "2018-09-04",
-  time: "14:00"
-},
-{
-  day: "2018-09-04",
-  time: "15:00"
-},
-{
-  day: "2018-09-04",
-  time: "16:00"
-},
-{
-  day: "2018-09-04",
-  time: "17:00"
-},
-{
-  day: "2018-09-05",
-  time: "07:00"
-},
-{
-  day: "2018-09-05",
-  time: "08:00"
-},
-{
-  day: "2018-09-05",
-  time: "09:00"
-},
-{
-  day: "2018-09-05",
-  time: "10:00"
-},
-{
-  day: "2018-09-05",
-  time: "11:00"
-},
-{
-  day: "2018-09-05",
-  time: "12:00"
-},
-{
-  day: "2018-09-05",
-  time: "13:00"
-},
-{
-  day: "2018-09-05",
-  time: "14:00"
-},
-{
-  day: "2018-09-05",
-  time: "15:00"
-},
-{
-  day: "2018-09-05",
-  time: "16:00"
-},
-{
-  day: "2018-09-05",
-  time: "17:00"
-},
-{
-  day: "2018-09-06",
-  time: "07:00"
-},
-{
-  day: "2018-09-06",
-  time: "08:00"
-},
-{
-  day: "2018-09-06",
-  time: "09:00"
-},
-{
-  day: "2018-09-06",
-  time: "10:00"
-},
-{
-  day: "2018-09-06",
-  time: "11:00"
-},
-{
-  day: "2018-09-06",
-  time: "12:00"
-},
-{
-  day: "2018-09-06",
-  time: "13:00"
-},
-{
-  day: "2018-09-06",
-  time: "14:00"
-},
-{
-  day: "2018-09-06",
-  time: "15:00"
-},
-{
-  day: "2018-09-06",
-  time: "16:00"
-},
-{
-  day: "2018-09-06",
-  time: "17:00"
-},
-{
-  day: "2018-09-07",
-  time: "07:00"
-},
-{
-  day: "2018-09-07",
-  time: "08:00"
-},
-{
-  day: "2018-09-07",
-  time: "09:00"
-},
-{
-  day: "2018-09-07",
-  time: "10:00"
-},
-{
-  day: "2018-09-07",
-  time: "11:00"
-},
-{
-  day: "2018-09-07",
-  time: "12:00"
-},
-{
-  day: "2018-09-07",
-  time: "13:00"
-},
-{
-  day: "2018-09-07",
-  time: "14:00"
-},
-{
-  day: "2018-09-07",
-  time: "15:00"
-},
-{
-  day: "2018-09-07",
-  time: "16:00"
-},
-{
-  day: "2018-09-07",
-  time: "17:00"
-},
-{
-  day: "2018-09-08",
-  time: "07:00"
-},
-{
-  day: "2018-09-08",
-  time: "08:00"
-},
-{
-  day: "2018-09-08",
-  time: "09:00"
-},
-{
-  day: "2018-09-08",
-  time: "10:00"
-},
-{
-  day: "2018-09-08",
-  time: "11:00"
-},
-{
-  day: "2018-09-08",
-  time: "12:00"
-},
-{
-  day: "2018-09-08",
-  time: "13:00"
-},
-{
-  day: "2018-09-08",
-  time: "14:00"
-},
-{
-  day: "2018-09-08",
-  time: "15:00"
-},
-{
-  day: "2018-09-08",
-  time: "16:00"
-},
-{
-  day: "2018-09-08",
-  time: "17:00"
-},
-{
-  day: "2018-09-09",
-  time: "07:00"
-},
-{
-  day: "2018-09-09",
-  time: "08:00"
-},
-{
-  day: "2018-09-09",
-  time: "09:00"
-},
-{
-  day: "2018-09-09",
-  time: "10:00"
-},
-{
-  day: "2018-09-09",
-  time: "11:00"
-},
-{
-  day: "2018-09-09",
-  time: "12:00"
-},
-{
-  day: "2018-09-09",
-  time: "13:00"
-},
-{
-  day: "2018-09-09",
-  time: "14:00"
-},
-{
-  day: "2018-09-09",
-  time: "15:00"
-},
-{
-  day: "2018-09-09",
-  time: "16:00"
-},
-{
-  day: "2018-09-09",
-  time: "17:00"
-},
-{
-  day: "2018-09-10",
-  time: "07:00"
-},
-{
-  day: "2018-09-10",
-  time: "08:00"
-},
-{
-  day: "2018-09-10",
-  time: "09:00"
-},
-{
-  day: "2018-09-10",
-  time: "10:00"
-},
-{
-  day: "2018-09-10",
-  time: "11:00"
-},
-{
-  day: "2018-09-10",
-  time: "12:00"
-},
-{
-  day: "2018-09-10",
-  time: "13:00"
-},
-{
-  day: "2018-09-10",
-  time: "14:00"
-},
-{
-  day: "2018-09-10",
-  time: "15:00"
-},
-{
-  day: "2018-09-10",
-  time: "16:00"
-},
-{
-  day: "2018-09-10",
-  time: "17:00"
-},
-{
-  day: "2018-09-11",
-  time: "07:00"
-},
-{
-  day: "2018-09-11",
-  time: "08:00"
-},
-{
-  day: "2018-09-11",
-  time: "09:00"
-},
-{
-  day: "2018-09-11",
-  time: "10:00"
-},
-{
-  day: "2018-09-11",
-  time: "11:00"
-},
-{
-  day: "2018-09-11",
-  time: "12:00"
-},
-{
-  day: "2018-09-11",
-  time: "13:00"
-},
-{
-  day: "2018-09-11",
-  time: "14:00"
-},
-{
-  day: "2018-09-11",
-  time: "15:00"
-},
-{
-  day: "2018-09-11",
-  time: "16:00"
-},
-{
-  day: "2018-09-11",
-  time: "17:00"
-},
-{
-  day: "2018-09-12",
-  time: "07:00"
-},
-{
-  day: "2018-09-12",
-  time: "08:00"
-},
-{
-  day: "2018-09-12",
-  time: "09:00"
-},
-{
-  day: "2018-09-12",
-  time: "10:00"
-},
-{
-  day: "2018-09-12",
-  time: "11:00"
-},
-{
-  day: "2018-09-12",
-  time: "12:00"
-},
-{
-  day: "2018-09-12",
-  time: "13:00"
-},
-{
-  day: "2018-09-12",
-  time: "14:00"
-},
-{
-  day: "2018-09-12",
-  time: "15:00"
-},
-{
-  day: "2018-09-12",
-  time: "16:00"
-},
-{
-  day: "2018-09-12",
-  time: "17:00"
-},
-{
-  day: "2018-09-13",
-  time: "07:00"
-},
-{
-  day: "2018-09-13",
-  time: "08:00"
-},
-{
-  day: "2018-09-13",
-  time: "09:00"
-},
-{
-  day: "2018-09-13",
-  time: "10:00"
-},
-{
-  day: "2018-09-13",
-  time: "11:00"
-},
-{
-  day: "2018-09-13",
-  time: "12:00"
-},
-{
-  day: "2018-09-13",
-  time: "13:00"
-},
-{
-  day: "2018-09-13",
-  time: "14:00"
-},
-{
-  day: "2018-09-13",
-  time: "15:00"
-},
-{
-  day: "2018-09-13",
-  time: "16:00"
-},
-{
-  day: "2018-09-13",
-  time: "17:00"
-},
-{
-  day: "2018-09-14",
-  time: "07:00"
-},
-{
-  day: "2018-09-14",
-  time: "08:00"
-},
-{
-  day: "2018-09-14",
-  time: "09:00"
-},
-{
-  day: "2018-09-14",
-  time: "10:00"
-},
-{
-  day: "2018-09-14",
-  time: "11:00"
-},
-{
-  day: "2018-09-14",
-  time: "12:00"
-},
-{
-  day: "2018-09-14",
-  time: "13:00"
-},
-{
-  day: "2018-09-14",
-  time: "14:00"
-},
-{
-  day: "2018-09-14",
-  time: "15:00"
-},
-{
-  day: "2018-09-14",
-  time: "16:00"
-},
-{
-  day: "2018-09-14",
-  time: "17:00"
-},
-{
-  day: "2018-09-15",
-  time: "07:00"
-},
-{
-  day: "2018-09-15",
-  time: "08:00"
-},
-{
-  day: "2018-09-15",
-  time: "09:00"
-},
-{
-  day: "2018-09-15",
-  time: "10:00"
-},
-{
-  day: "2018-09-15",
-  time: "11:00"
-},
-{
-  day: "2018-09-15",
-  time: "12:00"
-},
-{
-  day: "2018-09-15",
-  time: "13:00"
-},
-{
-  day: "2018-09-15",
-  time: "14:00"
-},
-{
-  day: "2018-09-15",
-  time: "15:00"
-},
-{
-  day: "2018-09-15",
-  time: "16:00"
-},
-{
-  day: "2018-09-15",
-  time: "17:00"
-},
-{
-  day: "2018-09-16",
-  time: "07:00"
-},
-{
-  day: "2018-09-16",
-  time: "08:00"
-},
-{
-  day: "2018-09-16",
-  time: "09:00"
-},
-{
-  day: "2018-09-16",
-  time: "10:00"
-},
-{
-  day: "2018-09-16",
-  time: "11:00"
-},
-{
-  day: "2018-09-16",
-  time: "12:00"
-},
-{
-  day: "2018-09-16",
-  time: "13:00"
-},
-{
-  day: "2018-09-16",
-  time: "14:00"
-},
-{
-  day: "2018-09-16",
-  time: "15:00"
-},
-{
-  day: "2018-09-16",
-  time: "16:00"
-},
-{
-  day: "2018-09-16",
-  time: "17:00"
-},
-{
-  day: "2018-09-17",
-  time: "07:00"
-},
-{
-  day: "2018-09-17",
-  time: "08:00"
-},
-{
-  day: "2018-09-17",
-  time: "09:00"
-},
-{
-  day: "2018-09-17",
-  time: "10:00"
-},
-{
-  day: "2018-09-17",
-  time: "11:00"
-},
-{
-  day: "2018-09-17",
-  time: "12:00"
-},
-{
-  day: "2018-09-17",
-  time: "13:00"
-},
-{
-  day: "2018-09-17",
-  time: "14:00"
-},
-{
-  day: "2018-09-17",
-  time: "15:00"
-},
-{
-  day: "2018-09-17",
-  time: "16:00"
-},
-{
-  day: "2018-09-17",
-  time: "17:00"
-},{
-  day: "2018-09-18",
-  time: "07:00"
-},
-{
-  day: "2018-09-18",
-  time: "08:00"
-},
-{
-  day: "2018-09-18",
-  time: "09:00"
-},
-{
-  day: "2018-09-18",
-  time: "10:00"
-},
-{
-  day: "2018-09-18",
-  time: "11:00"
-},
-{
-  day: "2018-09-18",
-  time: "12:00"
-},
-{
-  day: "2018-09-18",
-  time: "13:00"
-},
-{
-  day: "2018-09-18",
-  time: "14:00"
-},
-{
-  day: "2018-09-18",
-  time: "15:00"
-},
-{
-  day: "2018-09-18",
-  time: "16:00"
-},
-{
-  day: "2018-09-18",
-  time: "17:00"
-},
-{
-  day: "2018-09-19",
-  time: "07:00"
-},
-{
-  day: "2018-09-19",
-  time: "08:00"
-},
-{
-  day: "2018-09-19",
-  time: "09:00"
-},
-{
-  day: "2018-09-19",
-  time: "10:00"
-},
-{
-  day: "2018-09-19",
-  time: "11:00"
-},
-{
-  day: "2018-09-19",
-  time: "12:00"
-},
-{
-  day: "2018-09-19",
-  time: "13:00"
-},
-{
-  day: "2018-09-19",
-  time: "14:00"
-},
-{
-  day: "2018-09-19",
-  time: "15:00"
-},
-{
-  day: "2018-09-19",
-  time: "16:00"
-},
-{
-  day: "2018-09-19",
-  time: "17:00"
-},
-{
-  day: "2018-09-20",
-  time: "07:00"
-},
-{
-  day: "2018-09-20",
-  time: "08:00"
-},
-{
-  day: "2018-09-20",
-  time: "09:00"
-},
-{
-  day: "2018-09-20",
-  time: "10:00"
-},
-{
-  day: "2018-09-20",
-  time: "11:00"
-},
-{
-  day: "2018-09-20",
-  time: "12:00"
-},
-{
-  day: "2018-09-20",
-  time: "13:00"
-},
-{
-  day: "2018-09-20",
-  time: "14:00"
-},
-{
-  day: "2018-09-20",
-  time: "15:00"
-},
-{
-  day: "2018-09-20",
-  time: "16:00"
-},
-{
-  day: "2018-09-20",
-  time: "17:00"
-},
-{
-  day: "2018-09-21",
-  time: "07:00"
-},
-{
-  day: "2018-09-21",
-  time: "08:00"
-},
-{
-  day: "2018-09-21",
-  time: "09:00"
-},
-{
-  day: "2018-09-21",
-  time: "10:00"
-},
-{
-  day: "2018-09-21",
-  time: "11:00"
-},
-{
-  day: "2018-09-21",
-  time: "12:00"
-},
-{
-  day: "2018-09-21",
-  time: "13:00"
-},
-{
-  day: "2018-09-21",
-  time: "14:00"
-},
-{
-  day: "2018-09-21",
-  time: "15:00"
-},
-{
-  day: "2018-09-21",
-  time: "16:00"
-},
-{
-  day: "2018-09-21",
-  time: "17:00"
-},
-];
-for(var i = 0; i < times.length; i++) {
-  Calendar.create(times[i], (err, newTime) => {
-    if(err) {
-      return req.flash("error", err.message);
-      res.redirect("/");
-    } else {
-      console.log(newTime);
+// this function will take a time in 7:00 and adds the given minutes to it
+function addMmintutesToTime(time, duration) {
+  // determine how many hours should it increse
+  var hours = Math.floor((time.mintute + duration) / 60);
+
+  // if no hours just return the given time + the given duration
+  if (hours === 0) {
+    return { hour: time.hour, mintute: time.mintute + duration };
+  } else {
+    // determine how many minutes should it increse
+    var mintute = duration - 60 * Math.floor(duration / 60);
+
+    // if minutes was 60, return 0 as the minutes
+    if (time.mintute + mintute === 60) {
+      return { hour: time.hour + hours, mintute: 0 };
     }
-  });
+
+    // return the given time + given duration
+    return { hour: time.hour + hours, mintute: time.mintute + mintute };
+  }
 }
-var count = 10;
-var today = new Date();
-var days = today.getMonth() +1 === 02 ? 28 : today.getMonth() +1 === 04 || 06 || 09 || 11 ? 30 : 31;
-while(days !== 0) {
-  var calendar = new Calendar();
-  calendar.day = "2018-"+today.getMonth() +1+"-"+days;
-  calendar.time = count === 10 ? "07:00" : count === 9 ? "08:00" : count === 8 ? "09:00" : count === 7 ? "10:00" : count === 6 ? "11:00" : count === 5 ? "12:00" : count === 4 ? "13:00" : count === 3 ? "14:00" : count === 2 ? "15:00" : count === 1 ? "16:00" : "17:00";
-  calendar.save((err, newCalendar) => {
-    if(err) {
-      io.emit("error", err);
-      return
-    } else {
-      count --;
-      console.log(newCalendar);
-      if(count === 0) {
-        days --;
-        count = 10;
-      }
-    };
-  });
-}
+function generateTimes(year, month) {
+  // covert the given time and year to number
+  year = Number(year);
+  month = Number(month);
+
+  // determine what the days should be depending upon the given month
+  switch (month) {
+    case 1:
+      var days = 31;
+      break;
+    case 2:
+      var days = 28;
+      break;
+    case 3:
+      var days = 31;
+      break;
+    case 4:
+      var days = 30;
+      break;
+    case 5:
+      var days = 31;
+      break;
+    case 6:
+      var days = 30;
+      break;
+    case 7:
+      var days = 31;
+      break;
+    case 8:
+      var days = 31;
+      break;
+    case 9:
+      var days = 30;
+      break;
+    case 10:
+      var days = 31;
+      break;
+    case 11:
+      var days = 30;
+      break;
+    case 12:
+      var days = 31;
+      break;
+  }
+
+  var arr = []; // initialize the array, this is the big array that the function will return
+  var startTime = `${year}-${month}-01`;
+  startTime = moment(startTime, "YYYY-MM-DD").format("YYYY-MM-DD"); // format the start time
+  var duration = 10;
+  var startHour = { hour: 7, mintute: 0 };
+
+  for (var i = 1; i <= days; i++) { // iterate (days) times
+    startHour = { hour: 7, mintute: 0 }; // reset the startHour when it goes to the next day
+    for (var j = 1; j <= 61; j++) { // 61 becase each day should have 61 times, satring from 7:00 ending in 17:00
+      var obj = {
+        day: startTime,
+        time: moment({
+          hours: startHour.hour,
+          minutes: startHour.mintute
+        }).format("HH:mm")
+      };
+      startHour = addMmintutesToTime(startHour, 10); // add 10 minutes to the time
+      arr.push(obj);
+    }
+    startTime = moment(startTime, "YYYY-MM-DD")
+      .add(1, "d")
+      .format("YYYY-MM-DD"); // add 1 day to the startTime
+  }
+
+  return arr;
+};
+// whenever you desire invoke the function like this:
+//  generateTimes(2016, 2)
+//  generateTimes('2016', '02') also works
+//  generateTimes('2016', 02) also works

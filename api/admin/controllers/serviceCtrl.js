@@ -77,7 +77,8 @@ module.exports.postService = (req, res, next) => {
   		discounted_unit_price_excluding_taxes: Number(req.body.discounted_unit_price) !== 0 ? (parseInt(req.body.discounted_unit_price) - tax).toFixed(2) : 0,
 		tyre_size: parseInt(req.body.tyre_size),
 		additional_info: req.body.additional_info !== "" ? req.body.additional_info.trim() : "",
-		category: req.body.category.trim()
+		category: req.body.category.trim(),
+		time_cost: req.body.time_cost
 	};
 	Service.create(service, (err, newService) => {
 		if(err) {
@@ -122,6 +123,7 @@ module.exports.updateService = (req, res, next) => {
 			foundService.tyre_size = parseInt(req.body.tyre_size);
 			foundService.additional_info = req.body.additional_info !== "" ? req.body.additional_info.trim() : "";
 			foundService.category = req.body.category.trim();
+			foundService.time_cost = req.body.time_cost;
 			foundService.save((err, updatedService) => {
 				if(err) {
 					req.flash("error", err.message);

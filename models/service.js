@@ -14,7 +14,8 @@ const serviceSchema = new Schema({
 	discounted_unit_price_excluding_taxes: Number,
 	tyre_size: Number,
 	additional_info: String,
-	category: String	
+	category: String,
+	time_cost: {type: Number}	
 });
 //Export serviceSchema
 module.exports = mongoose.model("Service", serviceSchema);
