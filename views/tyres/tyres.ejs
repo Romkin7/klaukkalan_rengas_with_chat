@@ -14,7 +14,7 @@
 						<div class="sixteen wide column">
 							<div class="ui fluid six item silver stackable menu">
 								<div class="ui floating dropdown icon button item">
-									Merkit 
+									Merkit
 									<i class="dropdown icon"></i>
 									<div class="menu">
 										<div class="item"><a href="/renkaat?manufacturer=Nokian Renkaat&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nokian</a></div>
@@ -28,11 +28,11 @@
 										<div class="item"><a href="/renkaat?manufacturer=Goodyear&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Goodyear</a></div>
 									</div>
 								</div>
-								<div class="item">
+								<div class="item" id="a-1">
 									<form class="ui horizontal form" action="/renkaat" method="GET">
 										<div class="ui icon input">
 											<i class="search icon"></i>
-  											<input type="text" name="search" placeholder="Hae renkaita...">
+  											<input type="text" name="search" placeholder="Haew renkaita...">
 										</div>
 									</form>
 								</div>
@@ -120,7 +120,7 @@
 								<div class="ui orange segment">
 									<div class="header-section">
 										<h4 class="black"><%= tyre.manufacturer %></h4>
-										<h4 class="smaller black"><%= tyre.model %></h4>	
+										<h4 class="smaller black"><%= tyre.model %></h4>
 									</div>
 									<img class="ui medium image" alt="<%= tyre.manufacturer %>, <%= tyre.model %>" src="<%= tyre.cover %>">
 									<p class="no_margin">Alkaen: </p>
