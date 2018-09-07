@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
@@ -34,7 +35,7 @@ aside {
 		margin: 0;
 	}
 }
-.ui.cards.desktop, 
+.ui.cards.desktop,
 .ui.cards.tablet {
 	display: none;
 }
@@ -58,7 +59,7 @@ aside {
 	.tablet {
 		visibility: visible;
 	}
-	.ui.cards.desktop, 
+	.ui.cards.desktop,
 	.ui.cards.tablet {
 		display: flex;
 	}
@@ -81,7 +82,7 @@ section {
 	position: relative;
 	z-index: 11;
 }
-/*section>.ui.container */ 
+/*section>.ui.container */
 #landing_section {
 	min-height: 100vh;
 	background-color: rgba(255, 255, 255, 0.4);
@@ -93,31 +94,30 @@ section {
 
 /* MAP */
 #map {
-	height: 40vh;
+	height: 400px;
 }
 /* Image uploads */
 /* Image uploader and cropper styles */
 #imgPreviewContainer,
 #imgPreviewContainer .cropper-container {
-  max-height: 700px !important;
+	max-height: 700px !important;
 }
 .custom-file-upload {
-    border: 1px ridge #3498db;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
-    background: transparent;
-    transition: all 0.2s;
+	border: 1px ridge #3498db;
+	border-radius: 5px;
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	padding: 6px 12px;
+	cursor: pointer;
+	background: transparent;
+	transition: all 0.2s;
 }
 #cover {
-  display: none;
-  background: transparent;
-  border: 1px ridge #3498db;
+	display: none;
+	background: transparent;
+	border: 1px ridge #3498db;
 }
 #imgBtns {
-  display: none;
+	display: none;
 }
-
