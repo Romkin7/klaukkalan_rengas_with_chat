@@ -50,6 +50,9 @@
 	<link rel="stylesheet" type="text/css" href="/css/body.css">
 	<link rel="stylesheet" type="text/css" href="/css/form.css">
 	<link rel="stylesheet" type="text/css" href="/css/footer.css">
+	<!-- Chat setup -->
+	<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '78b8e1d7-3f59-4c96-ac08-46efd20bf35a', f: true }); done = true; } }; })();
+	</script>
 </head>
 <body>
 	<% include ./partials/navbar %>
@@ -93,6 +96,7 @@
 		</header>
 		<%- body -%>
 	</div>
+	<button type="button" class="purechat-button-expand">Keskustele kanssamme!</button>
   <% include ./partials/footer %>
 	<!-- Bootstrap Core JavaScript -->
   	<script type="text/javascript" src="/libs/jquery/dist/jquery.min.js"></script>
@@ -100,8 +104,6 @@
 	<script type="text/javascript" src="/libs/semantic/dist/semantic.min.js"></script>
 	<script type="text/javascript" src="/libs/zabuto_calendar/zabuto_calendar.min.js"></script>
 	<script type="text/javascript" src="/libs/moment/min/moment-with-locales.min.js"></script>
-	<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '78b8e1d7-3f59-4c96-ac08-46efd20bf35a', f: true }); done = true; } }; })();
-	</script>
   	<!-- custom js files -->
   	<script type="text/javascript" src="/js/index.js"></script>
   	<script type="text/javascript" src="/js/booking.js"></script>
