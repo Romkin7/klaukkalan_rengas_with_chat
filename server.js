@@ -98,7 +98,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(csrf({ cookie: { signed: true } }));
+//app.use(csrf({ cookie: { signed: true } }));
 // You can set morgan to log differently depending on your environment
 if (app.get("env") == "Websiteion") {
 	app.use(
@@ -164,8 +164,6 @@ app.use("/admin/orders", adminOrdersRoutes);
 app.use("/admin/products", adminProductRoutes);
 app.use("/admin/services", serviceRoutes);
 app.use("/admin/calendar", calendarRoutes);
-app.get("*", function(req,res, next) {
-res.sendFile(__dirname+"/public/404_notfound.html");
 app.get("*", function(req, res, next) {
 	res.sendFile(__dirname + "/public/404_notfound.html");
 });
