@@ -142,7 +142,7 @@ moment.locale("fi");
 app.locals.moment = moment;
 //Local variables
 app.use(function(req, res, next) {
-	res.cookie("_csrfToken", req.csrfToken());
+	//res.cookie("_csrfToken", req.csrfToken());
 	res.locals.session = req.session;
 	res.locals.cart = req.session.cart;
 	res.locals.user = req.user;
@@ -164,9 +164,7 @@ app.use("/admin/orders", adminOrdersRoutes);
 app.use("/admin/products", adminProductRoutes);
 app.use("/admin/services", serviceRoutes);
 app.use("/admin/calendar", calendarRoutes);
-app.get("*", function(req, res, next) {
-	res.sendFile(__dirname + "/public/404_notfound.html");
-});
+
 //Start server
 let server = httpServer.listen(app.get("port"), app.get("ip"), err => {
 	if (err) {
