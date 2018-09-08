@@ -315,7 +315,7 @@ function finalSubmit() {
 			document.querySelector("#final-message").innerHTML =
 				"Success! All those times were saved to Database.";
 			messageModal();
-		} else {
+		} else if (this.status === 500) {
 			document.querySelector("#final-message").innerHTML =
 				"An unkown error occured, please refresh the page and try again.";
 			messageModal();
