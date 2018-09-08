@@ -1,4 +1,61 @@
 <% layout('admin') -%>
+<style>
+
+.time-form__inputs {
+	display: block;
+	width: 100%;
+}
+
+.time-form__inputs div {
+	display: inline-block;
+	width: 48%;
+}
+
+.time-form__checkbox {
+	display: block;
+	margin: 20px 0;
+}
+
+.time-form__button {
+	width: 100%;
+	text-align: right;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  margin: 0px auto;
+  background-color: #333;
+
+  border-radius: 100%;
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+.display-none {
+	display: none !important;
+}
+
+</style>
 <section>
 	<div class="ui container">
 		<div class="ui stackable centered grid">
@@ -77,6 +134,8 @@
                       <div class="content">
                         <div class="center">
                           <a href="/admin/orders" class="ui orange button"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</a>
+													<br><br>
+                          <a href="javascript:void(0)" onclick="openModal()" class="ui orange button">Varausjärjestelmä</a>
                         </div>
                       </div>
                     </div>
@@ -95,11 +154,175 @@
           <div class="ui grey raised segment">
             <div id="notificationList" class="ui items">
               <h4 class="black" id="infoHeading">Kaikki on ajantasalla</h4>
-              <hr>  
+              <hr>
               <!-- here will be appended item of this list by websocket.io -->
             </div><!-- end of notificationList -->
-          </div>      
+          </div>
         </div>
-		</div>		
+		</div>
 	</div>
+
+
+	<div class="ui small modal">
+		<i class="close icon"></i>
+	  <div class="header">
+	    Generate Times
+	  </div>
+	  <div class="content" id="modal-content">
+			<h4 class="ui dividing header">Provide the year and the month here to generate it's times</h4>
+			<form class="time-form" id="form" onsubmit="sendForConfirmation(event);">
+				<div class="time-form__inputs">
+					<div class="ui input">
+						<input type="number" placeholder="Year" id="year" min="1990" max="2050" required>
+					</div>
+					<div class="ui input">
+						<input type="number" placeholder="Month" id="month" min="1" max="12" required>
+					</div>
+				</div>
+
+				<div class="ui checkbox time-form__checkbox">
+	      	<input type="checkbox" tabindex="0" id="check">
+	      	<label>Remove all the last non-taken bookable times</label>
+	    	</div>
+				<div class="time-form__button">
+					<button class="ui primary button" type="submit">
+						Generate
+					</button>
+				</div>
+			</form>
+	  </div>
+
+		<div class="content" id="modal-loading">
+			<div class='spinner'></div>
+		</div>
+
+		<div class="content" id="modal-confirmation">
+			<h4 class="ui header" id="confirm-message"></h4>
+			<div class="time-form__button">
+				<button class="ui button" onclick="closeModal()">
+					Cancel
+				</button>
+				<button class="ui positive button" onclick="finalSubmit()">
+					Confirm
+				</button>
+			</div>
+		</div>
+
+		<div class="content" id="modal-message">
+			<h4 class="ui header" id="final-message"></h4>
+			<div class="time-form__button">
+				<button class="ui button" onclick="closeModal()">
+					Close
+				</button>
+			</div>
+		</div>
+
+	</div>
+
+
+
 </section>
+
+<script>
+// reset the modal to its intial state
+function resetModal() {
+	// get the current year and month to set the inputs values
+	var currentYear = new Date().getFullYear();
+	var currentMonth = new Date().getMonth() + 1;
+
+	document.querySelector("#year").value = currentYear;
+	document.querySelector("#month").value = currentMonth;
+
+	document.querySelector("#modal-content").classList.remove("display-none");
+	document.querySelector("#modal-loading").classList.add("display-none");
+	document.querySelector("#modal-confirmation").classList.add("display-none");
+	document.querySelector("#modal-message").classList.add("display-none");
+}
+
+// sets the modal in loading state
+function loadingModal() {
+	document.querySelector("#modal-confirmation").classList.add("display-none");
+	document.querySelector("#modal-content").classList.add("display-none");
+	document.querySelector("#modal-message").classList.add("display-none");
+	document.querySelector("#modal-loading").classList.remove("display-none");
+}
+
+// sent the modal to displays the confirmation status
+function confirmModal() {
+	document.querySelector("#modal-content").classList.add("display-none");
+	document.querySelector("#modal-loading").classList.add("display-none");
+	document.querySelector("#modal-message").classList.add("display-none");
+	document
+		.querySelector("#modal-confirmation")
+		.classList.remove("display-none");
+}
+
+// set the modal to displays a final message
+function messageModal() {
+	document.querySelector("#modal-confirmation").classList.add("display-none");
+	document.querySelector("#modal-content").classList.add("display-none");
+	document.querySelector("#modal-loading").classList.add("display-none");
+	document.querySelector("#modal-message").classList.remove("display-none");
+}
+
+// opens modal
+function openModal() {
+	$(".ui.modal").modal("show");
+	resetModal();
+}
+
+// closes modal
+function closeModal() {
+	$(".ui.modal").modal("hide");
+}
+
+// initialize 3 variables that should be sent to server twice
+var check = null;
+var year = null;
+var month = null;
+
+// submits to server to get the confirmation text
+function sendForConfirmation(e) {
+	e.preventDefault();
+	loadingModal();
+
+	year = document.querySelector("#year").value;
+	month = document.querySelector("#month").value;
+	check = document.querySelector("#check").checked;
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.response.length > 0) {
+			try {
+				var message = JSON.parse(this.response).message;
+				document.querySelector("#confirm-message").innerHTML = message;
+				confirmModal();
+			} catch (e) {}
+		}
+	};
+	xhttp.open("POST", "/generate-times-confirmation", true);
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.send(JSON.stringify({ year: year, month: month }));
+}
+
+// submit to server to save the times into DB
+function finalSubmit() {
+	loadingModal();
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.status === 200) {
+			document.querySelector("#final-message").innerHTML =
+				"Success! All those times were saved to Database.";
+			messageModal();
+		} else {
+			document.querySelector("#final-message").innerHTML =
+				"An unkown error occured, please refresh the page and try again.";
+			messageModal();
+		}
+	};
+	xhttp.open("POST", "/generate-times-save-to-database", true);
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.send(JSON.stringify({ year: year, month: month, check: check }));
+}
+</script>

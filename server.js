@@ -49,6 +49,9 @@ const adminOrdersRoutes = require("./api/admin/routes/orders");
 const adminProductRoutes = require("./api/admin/routes/products");
 const serviceRoutes = require("./api/admin/routes/service");
 const calendarRoutes = require("./api/admin/routes/calendar");
+// Utility functions
+const util = require("./lib/util");
+
 /*Setup View engine*/
 //REDIRECT www.domain.com TO domain.com
 if (process.env.NODE_ENV === "production") {
@@ -164,6 +167,33 @@ app.use("/admin/orders", adminOrdersRoutes);
 app.use("/admin/products", adminProductRoutes);
 app.use("/admin/services", serviceRoutes);
 app.use("/admin/calendar", calendarRoutes);
+
+// this route will get the year and month from the Admin, and sends a message for confirmation
+app.post("/generate-times-confirmation", (req, res) => {
+	const data = util.generateTimes(req.body.year, req.body.month, "data");
+
+	res.send({
+		message: `${data.quantity} bookable times were generated from 1th ${
+			data.month
+		} to ${data.days}th ${
+			data.month
+		}, are you sure that you want to save them into the Database?`
+	});
+});
+// this route will get the year, month and check property from Admin, generates times and return 200 if success
+app.post("/generate-times-save-to-database", (req, res) => {
+	const year = req.body.year;
+	const month = req.body.month;
+	const check = req.body.check;
+
+	// save the times in time constants
+	const times = util.generateTimes(year, month);
+
+	/********  here we need to save those time into database ********/
+
+	/******** for now, it just sends 200 indicating that the times were save to DB successfully *********/
+	res.status(200).send();
+});
 
 //Start server
 let server = httpServer.listen(app.get("port"), app.get("ip"), err => {
