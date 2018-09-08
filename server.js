@@ -180,6 +180,7 @@ app.post("/generate-times-confirmation", (req, res) => {
 		}, are you sure that you want to save them into the Database?`
 	});
 });
+
 // this route will get the year, month and check property from Admin, generates times and return 200 if success
 app.post("/generate-times-save-to-database", (req, res) => {
 	const year = req.body.year;
@@ -189,10 +190,16 @@ app.post("/generate-times-save-to-database", (req, res) => {
 	// save the times in time constants
 	const times = util.generateTimes(year, month);
 
-	/********  here we need to save those time into database ********/
+	// save the times into database
+	Calendar.insertMany(times, (err, results) => {
+		if (err) return res.status(500).send();
+		res.status(200).send();
+	});
 
-	/******** for now, it just sends 200 indicating that the times were save to DB successfully *********/
-	res.status(200).send();
+	// if admin wanted, remove all non-taken bookable times of past
+	if (check) {
+		Calendar.deleteMany({ taken: false }, err => {});
+	}
 });
 
 //Start server
