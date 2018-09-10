@@ -15,7 +15,7 @@ const serviceSchema = new Schema({
 	tyre_size: Number,
 	additional_info: String,
 	category: String,
-	time_cost: {type: Number}	
+	duration: {type: Number, default: null}	
 });
 //Export serviceSchema
 module.exports = mongoose.model("Service", serviceSchema);

@@ -1,0 +1,42 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui centered grid">
+			<div class="ui fourteen wide column">
+				<div class="ui page header">
+					<h2><i class="table icon"></i> Palveluiden hallinta</h2>
+					<p class="lead in"><i class="fa fa-calendar" aria-hidden="true"></i> <%= moment(Date.now()).format('DD.MM.YYYY') %></p>
+					<hr>
+					<div class="ui fluid three item silver stackable menu">
+						<div class="item">
+							<form class="ui horizontal form" action="/admin/orders" method="GET">
+								<div class="ui icon input">
+									<i class="search icon"></i>
+										<input type="text" name="search" placeholder="Hae varauksia...">
+								</div>
+							</form>
+						</div>
+						<div class="ui floating dropdown icon button item">
+							Suodata
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item"><a href="/admin/orders"><%= moment(new Date()).format('DD.MM.YYYY') %> Päivän varaukset</a></div>
+								<div class="item"><a href="/admin/orders">Viikon</a></div>
+								<div class="item"><a href="/admin/orders">Kuukauden</a></div>
+							</div>
+						</div>
+						<div class="ui floating dropdown icon button item">
+							Taso
+							<i class="dropdown icon"></i>
+							<div class="menu">
+								<div class="item"><a href="/admin/orders?status=done">Suoritetut</a></div>
+								<div class="item"><a href="/admin/orders?status=recieved">Suorittamattomat</a></div>
+								<div class="item"><a href="/admin/orders">Kaikki</a></div>
+							</div>
+						</div>
+					</div><!-- menu ends here -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

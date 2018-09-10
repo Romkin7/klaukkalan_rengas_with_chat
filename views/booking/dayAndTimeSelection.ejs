@@ -23,7 +23,7 @@
 				<div class="twelve wide column">
 					<div class="ui top attached sgement">
 						<div class="ui centered stackable grid">
-							<div class="eight wide column">
+							<div class="sixteen wide column">
 								<div id="message">
 								 <% if(error && error.length > 0) { %>
 								 <div class="ui negative message">
@@ -44,16 +44,21 @@
 								 </div>
 								 <% } %>
 								</div>
+								<div class="ui calendar" id="calendar">
+									
+								</div>
+							</div>
+							<div class="sixteen wide column">
 								<h4 id="day" class="black"></h4>
 								<table id="selectedTime" class="ui orange table">
 									<thead class="tablet desktop">
 										<tr>
-											<th><%= session.cart.time !== null ? "Aika" : "Valittu Päivänne" %></th>
-											<th><%= session.cart.time !== null ? "Status" : "Valittu Aikanne" %></th>
+											<th><%= session.cart.times.length ? "Aika" : "Valittu Päivänne" %></th>
+											<th><%= session.cart.times.length ? "Status" : "Valittu Aikanne" %></th>
 										</tr>
 									</thead>
 									<tbody id="times">
-										<% if(session.cart.time === undefined) { %>
+										<% if(session.cart.times.length) { %>
 											<% times.forEach(function(time) { %>
 											<tr time_id="<%=time._id%>" class="<%= time.taken === 'taken' ? 'notSelectable' : 'selectTime' %>">
 												<td><%= time.time %></td>
@@ -68,11 +73,7 @@
 										<% } %>
 									</tbody>
 								</table>
-							</div>
-							<div class="eight wide column">
-								<div class="ui calendar" id="calendar">
-									
-								</div>
+								
 								<a class="ui default button" href="/ajanvaraus/<%= session.cart._id%>">Muuta palvelua</a>
 								<a id="submitBtn2" class="ui green button btn-disabled" href="/ajanvaraus/<%= session.cart._id%>/henkilotiedot" disabled="disabled">Täytä tietosi</a>
 							</div>

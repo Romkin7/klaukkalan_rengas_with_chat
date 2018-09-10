@@ -49,9 +49,7 @@ const adminOrdersRoutes = require("./api/admin/routes/orders");
 const adminProductRoutes = require("./api/admin/routes/products");
 const serviceRoutes = require("./api/admin/routes/service");
 const calendarRoutes = require("./api/admin/routes/calendar");
-// Utility functions
-const util = require("./lib/util");
-
+const generateTimesRoutes = require('./routes/booking/generatetimes');
 /*Setup View engine*/
 //REDIRECT www.domain.com TO domain.com
 if (process.env.NODE_ENV === "production") {
@@ -163,44 +161,11 @@ app.use("/ajanvaraus", bookingRoutes);
 app.use("/hinnasto", priceListRoutes);
 // admin routes
 app.use("/admin", adminRoutes);
+app.use("/admin/generate-times", generateTimesRoutes);
 app.use("/admin/orders", adminOrdersRoutes);
 app.use("/admin/products", adminProductRoutes);
 app.use("/admin/services", serviceRoutes);
 app.use("/admin/calendar", calendarRoutes);
-
-// this route will get the year and month from the Admin, and sends a message for confirmation
-app.post("/generate-times-confirmation", (req, res) => {
-	const data = util.generateTimes(req.body.year, req.body.month, "data");
-
-	res.send({
-		message: `${data.quantity} bookable times were generated from 1th ${
-			data.month
-		} to ${data.days}th ${
-			data.month
-		}, are you sure that you want to save them into the Database?`
-	});
-});
-
-// this route will get the year, month and check property from Admin, generates times and return 200 if success
-app.post("/generate-times-save-to-database", (req, res) => {
-	const year = req.body.year;
-	const month = req.body.month;
-	const check = req.body.check;
-
-	// save the times in time constants
-	const times = util.generateTimes(year, month);
-
-	// save the times into database
-	Calendar.insertMany(times, (err, results) => {
-		if (err) return res.status(500).send();
-		res.status(200).send();
-	});
-
-	// if admin wanted, remove all non-taken bookable times of past
-	if (check) {
-		Calendar.deleteMany({ taken: false }, err => {});
-	}
-});
 
 //Start server
 let server = httpServer.listen(app.get("port"), app.get("ip"), err => {

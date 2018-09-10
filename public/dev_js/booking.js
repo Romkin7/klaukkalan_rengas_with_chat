@@ -48,6 +48,7 @@ $(document).ready(function() {
           <tr class="service" value="${service._id}">
             <td>${service.name}</td>
             <td>${service.tyre_size === 0 ? '16" ja alle / 17"' : service.tyre_size === 16 ? service.tyre_size+" ja alle" : service.tyre_size+" ja yli"}</td> 
+            <td>${service.duration}min</td>
             <td>${service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €"}</td>
             <td>${service.additional_info}</td>
             <td>
@@ -97,6 +98,7 @@ $(document).ready(function() {
                 <tr class="service" value="${service._id}">
                   <td>${service.name}</td>
                   <td>${service.tyre_size === 0 ? '16" ja alle / 17"' : service.tyre_size === 16 ? service.tyre_size+" ja alle" : service.tyre_size+" ja yli"}</td> 
+                  <td>${service.duration}min</td>
                   <td>${service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €"}</td>
                   <td>${service.additional_info}</td>
                   <td>
@@ -173,6 +175,7 @@ $(document).ready(function() {
                 <tr class="service" value="${service._id}">
                   <td>${service.name}</td>
                   <td>${service.tyre_size === 0 ? '16" ja alle / 17"' : service.tyre_size === 16 ? service.tyre_size+" ja alle" : service.tyre_size+" ja yli"}</td> 
+                  <td>${service.duration}min</td>
                   <td>${service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €"}</td>
                   <td>${service.additional_info}</td>
                     <td>

@@ -78,7 +78,7 @@ module.exports.postService = (req, res, next) => {
 		tyre_size: parseInt(req.body.tyre_size),
 		additional_info: req.body.additional_info !== "" ? req.body.additional_info.trim() : "",
 		category: req.body.category.trim(),
-		time_cost: req.body.time_cost
+		duration: req.body.duration
 	};
 	Service.create(service, (err, newService) => {
 		if(err) {
@@ -116,6 +116,7 @@ module.exports.updateService = (req, res, next) => {
 			foundService.vat = parseFloat(req.body.vat).toFixed(2);
 			foundService.unit_price = Number(req.body.unit_price);
 			foundService.tax = tax;
+			foundService.duration = req.body.duration;
 			foundService.discounted_tax = discountedTax;
   			foundService.unit_price_excluding_tax = (parseInt(req.body.unit_price) - tax).toFixed(2);
   			foundService.discounted_unit_price = Number(req.body.discounted_unit_price);

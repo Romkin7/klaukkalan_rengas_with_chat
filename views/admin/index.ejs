@@ -1,60 +1,58 @@
 <% layout('admin') -%>
 <style>
+	.time-form__inputs {
+		display: block;
+		width: 100%;
+	}
 
-.time-form__inputs {
-	display: block;
-	width: 100%;
-}
+	.time-form__inputs div {
+		display: inline-block;
+		width: 48%;
+	}
 
-.time-form__inputs div {
-	display: inline-block;
-	width: 48%;
-}
+	.time-form__checkbox {
+		display: block;
+		margin: 20px 0;
+	}
 
-.time-form__checkbox {
-	display: block;
-	margin: 20px 0;
-}
+	.time-form__button {
+		width: 100%;
+		text-align: right;
+	}	
 
-.time-form__button {
-	width: 100%;
-	text-align: right;
-}
+	.spinner {
+  		width: 30px;
+  		height: 30px;
+  		margin: 0px auto;
+  		background-color: #333;
 
-.spinner {
-  width: 30px;
-  height: 30px;
-  margin: 0px auto;
-  background-color: #333;
+  		border-radius: 100%;
+  		-webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  		animation: sk-scaleout 1.0s infinite ease-in-out;
+	}
 
-  border-radius: 100%;
-  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-  animation: sk-scaleout 1.0s infinite ease-in-out;
-}
+	@-webkit-keyframes sk-scaleout {
+  		0% { -webkit-transform: scale(0) }
+  		100% {
+    		-webkit-transform: scale(1.0);
+    		opacity: 0;
+  		}
+	}	
 
-@-webkit-keyframes sk-scaleout {
-  0% { -webkit-transform: scale(0) }
-  100% {
-    -webkit-transform: scale(1.0);
-    opacity: 0;
-  }
-}
-
-@keyframes sk-scaleout {
-  0% {
-    -webkit-transform: scale(0);
-    transform: scale(0);
-  } 100% {
-    -webkit-transform: scale(1.0);
-    transform: scale(1.0);
-    opacity: 0;
-  }
-}
-
-.display-none {
-	display: none !important;
-}
-
+	@keyframes sk-scaleout {
+  		0% {
+    		-webkit-transform: scale(0);
+    		transform: scale(0);
+  		} 100% {
+    		-webkit-transform: scale(1.0);
+    		transform: scale(1.0);
+   			opacity: 0;
+  		}
+	}
+	
+	.display-none {
+		display: none !important;
+	}
 </style>
 <section>
 	<div class="ui container">
@@ -133,7 +131,7 @@
                     <div class="ui inverted dimmer">
                       <div class="content">
                         <div class="center">
-                          <a href="/admin/orders" class="ui orange button"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</a>
+                          <a href="/admin/orders" class="ui orange button"><i class="fa fa-clipboard" aria-hidden="true"></i> Varausket</a>
 													<br><br>
                           <a href="javascript:void(0)" onclick="openModal()" class="ui orange button">Varausjärjestelmä</a>
                         </div>
@@ -142,9 +140,9 @@
                     <img src="/images/orders.jpg">
                   </div>
                   <div class="content">
-                    <a class="header"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset</a>
+                    <a class="header"><i class="fa fa-clipboard" aria-hidden="true"></i> Varaukset ja ajanvaraus ajat</a>
                     <div class="meta">
-                      <span class="date">Selaa, muokkaa ja hallinnoi varauksia</span>
+                      <span class="date">Selaa, muokkaa ja hallinnoi varauksia sekä ajanvaraus aikoja</span>
                     </div>
                   </div>
                 </div>
@@ -166,10 +164,10 @@
 	<div class="ui small modal">
 		<i class="close icon"></i>
 	  <div class="header">
-	    Generate Times
+	    Luo Aikoja
 	  </div>
 	  <div class="content" id="modal-content">
-			<h4 class="ui dividing header">Provide the year and the month here to generate it's times</h4>
+			<h4 class="ui dividing header">Määritä vuosi ja kuukausi tähä, jotta saat luotua kyseiselle ajanjaksolle ajat</h4>
 			<form class="time-form" id="form" onsubmit="sendForConfirmation(event);">
 				<div class="time-form__inputs">
 					<div class="ui input">
@@ -182,11 +180,11 @@
 
 				<div class="ui checkbox time-form__checkbox">
 	      	<input type="checkbox" tabindex="0" id="check">
-	      	<label>Remove all the last non-taken bookable times</label>
+	      	<label>Poista kaikki menneet käyttämättömät ajat</label>
 	    	</div>
 				<div class="time-form__button">
 					<button class="ui primary button" type="submit">
-						Generate
+						Luo
 					</button>
 				</div>
 			</form>
@@ -200,10 +198,10 @@
 			<h4 class="ui header" id="confirm-message"></h4>
 			<div class="time-form__button">
 				<button class="ui button" onclick="closeModal()">
-					Cancel
+					Peruuta
 				</button>
 				<button class="ui positive button" onclick="finalSubmit()">
-					Confirm
+					Vahvista
 				</button>
 			</div>
 		</div>
@@ -212,7 +210,7 @@
 			<h4 class="ui header" id="final-message"></h4>
 			<div class="time-form__button">
 				<button class="ui button" onclick="closeModal()">
-					Close
+					Sulje
 				</button>
 			</div>
 		</div>
@@ -300,7 +298,7 @@ function sendForConfirmation(e) {
 			} catch (e) {}
 		}
 	};
-	xhttp.open("POST", "/generate-times-confirmation", true);
+	xhttp.open("POST", "/admin/generate-times/generate-times-confirmation", true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send(JSON.stringify({ year: year, month: month }));
 }
@@ -321,7 +319,7 @@ function finalSubmit() {
 			messageModal();
 		}
 	};
-	xhttp.open("POST", "/generate-times-save-to-database", true);
+	xhttp.open("POST", "/admin/generate-times/generate-times-save-to-database", true);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send(JSON.stringify({ year: year, month: month, check: check }));
 }

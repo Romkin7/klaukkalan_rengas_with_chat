@@ -15,10 +15,10 @@ const cartSchema = new Schema({
     }
   ],
   expires: {type: Date},
-  time: {
+  times: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: "Calendar"
-  }
+  }]
 },
 {
   timestamps: true,
