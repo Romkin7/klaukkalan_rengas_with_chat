@@ -5,7 +5,10 @@ const dburl = process.env.DATABASE;
 mongoose.Promise = global.Promise;
 
 // establish Connection
-mongoose.connect(dburl, { useMongoClient: true });
+mongoose.connect(dburl, { 
+	keepAlive: true,
+	useNewUrlParser: true
+});
 
 //Mongoose events
 //Successfull Connection

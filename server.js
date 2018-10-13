@@ -40,7 +40,7 @@ const indexRoutes = require("./api/client/routes/index");
 const authRoutes = require("./api/client/routes/auth");
 const tyreHotelRoutes = require("./api/client/routes/tyrehotel");
 const tyreServiceRoutes = require("./api/client/routes/tyreservices");
-const tyreRoutes = require("./api/client/routes/tyres");
+const tyreRoutes = require("./routes/tyres/tyre");
 const bookingRoutes = require("./api/client/routes/booking");
 const priceListRoutes = require("./api/client/routes/pricelist");
 //Admin routes
@@ -58,7 +58,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(compression());
 app.use(helmet());
 app.engine("ejs", engine);
-app.set("view-engine", "ejs");
+app.set("view engine", "ejs");
 //set port and ip
 app.set("port", process.env.PORT || 3000);
 app.set("ip", process.env.IP || "0.0.0.0");

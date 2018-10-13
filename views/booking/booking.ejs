@@ -1,6 +1,165 @@
 <% layout('layout') -%>
-
 <section>
+  <input type="hidden" id="cartId" value="<%=session.cart._id%>">
+  <div class="ui container">
+    <div class="ui doubling stackable grid">
+      <div class="ui centered row">
+        <div class="twelve wide column">
+          <div class="page header">
+            <h2>Vaihe 1</h2>
+          </div>
+          <div class="ui massive breadcrumb">
+            <div class="active section">Palvelu</div>
+            <div class="divider"> / </div>
+            <div class="section">Ajankohta</div>
+            <div class="divider"> / </div>
+            <div class="section">Henkilötiedot</div>
+            <div class="divider"> / </div>
+            <div class="section">Valmis</div>
+          </div>
+        </div>
+      </div>
+      <div class="ui centered row">
+        <div class="twelve wide column">
+          <div class="ui desktop tablet three cards">
+            <a id="TyreHotel" class="red card bookingService" value="TyreHotel">
+              <div class="header">Rengashotelli</div>
+              <div class="image">
+                <img src="/images/rengashotelli.jpeg">
+              </div>
+              <div class="content">
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </a>
+            <a id="TyreServices" class="red card bookingService" value="TyreServices">
+              <div class="header">Rengastyöt</div>
+              <div class="image">
+                <img src="/images/rengastyot.jpeg">
+              </div>
+              <div class="content">
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </a>
+            <a id="TyreWash" class="red card bookingService" value="TyreWash">
+              <div class="header">Renkaiden pesu</div>
+              <div class="image">
+                <img src="/images/rengaspesu.jpeg">
+              </div>
+              <div class="content">
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </a>
+          </div>
+          <div class="ui mobile celled list">
+            <div id="TyreHotel" class="item bookingService" value="TyreHotel">
+              <div class="content">
+                <div class="header">Rengashotelli</div>
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </div>
+            <div id="TyreServices" class="item bookingService" value="TyreServices">
+              <div class="content">
+                <div class="header">Rengastyöt</div>
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </div>
+            <div id="TyreWash" class="item bookingService" value="TyreWash">
+              <div class="content">
+                <div class="header">Renkaiden pesu</div>
+                <p>Valitse renkaiden koko</p>
+                <button class="ui orange small button tyretypeBtn" value="16">16" ja alle</button>
+                <button class="ui orange small button tyretypeBtn" value="17">17" ja yli</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui centered row">
+        <div class="ui twelve wide centered column">
+          <div id="errorMsg">
+            <% if(session.cart.items.length) { %>
+            <div class="ui info message">
+              <i class="close icon"></i>
+              <div class="header">
+                Huom!
+              </div>
+              <ul class="list">
+                <li>Valitse vähintään yksi palvelu jatkaaksesi.</li>
+              </ul>
+            </div>
+            <% } %>
+          </div>
+          <table class="ui stackable table">
+            <h4 class="black">Valitsemasi palvelut</h4>
+            <thead class="tablet desktop">
+              <tr>
+                <th>Palvelu</th>
+                <th></th>
+                <th>Kesto</th>
+                <th>Hinta</th>
+                <th>Yksikkö</th>
+                <th>Poista</th>
+              </tr>
+            </thead>
+            <tbody id="selectedServices">
+              <!-- here will be data inserted from booking.js file after succesful ajax request -->
+              <% cart.items.forEach(function(service) { %>
+                <tr class="service" value="<%= service._id %>">
+                  <td><%= service.name %></td>
+                  <td><%= service.tyre_size === 0 ? '16" ja alle / 17"' : service.tyre_size === 16 ? service.tyre_size+" ja alle" : service.tyre_size+" ja yli" %></td> 
+                  <td><%= service.duration %>min</td>
+                  <td><%= service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €" %></td>
+                  <td><%= service.additional_info %></td>
+                  <td>
+                    <form class="ui form">
+                        <button type="button" total_price="<%= service.discounted_unit_price === 0 ? service.unit_price : service.discounted_unit_price %>" total_tax_amount="<%= service.discounted_unit_price === 0 ? service.tax : service.discounted_tax %>" total_unit_price_excluding_tax="<%= service.discounted_unit_price === 0 ? service.unit_price_excluding_tax : service.discounted_unit_price_excluding_taxes %>" id="<%= service._id %>" class="removeService ui red button"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><strong>Yhteensä</strong></td>
+                <td><strong id="totalPrice" value="<%= cart.total_price_including_tax %>"><%= cart.total_price_including_tax %>,00 €</strong></td>
+              </tr>
+            </tfoot>
+          </table>
+          <table class="ui stackable table">
+            <thead class="tablet desktop">
+              <tr>
+                <th>Palvelu</th>
+                <th></th>
+                <th>Kesto</th>
+                <th>Hinta</th>
+                <th>Yksikkö</th>
+                <th>Valitse</th>
+              </tr>
+            </thead>
+            <tbody id="datarow">
+              <!-- here will be data inserted from booking.js file after succesful ajax request -->
+            </tbody>
+          </table>
+          <a id="submitBtn1" class="ui green button btn-disabled" href="/ajanvaraus/<%= session.cart._id %>/ajankohta" disabled="disabled">Valitse ajankohta</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <section>
   <div class="ui container">
     <div class="ui centered stackable grid">
       <div class="fourteen wide column">
@@ -14,4 +173,4 @@
       </div>
     </div> 
   </div>
-</section>
+</section> -->

@@ -40,40 +40,32 @@ module.exports.renderTimebookingForm = (req, res, next) => {
 module.exports.bookTime = (req, res, next) => {
 	
 };
-module.exports.getCalendar = (req, res, next) => {
+module.exports.getCalendar = async (req, res, next) => {
 	if(req.xhr) {
-		Calendar.find({"day": req.query.day+"T00:00:00.000Z"}).sort({"time": 1}).exec((err, times) => {
-			if(err || !times) {
-				return res.status(500).json({
-					message: "Ups! Yhtään vapaata aikaa ei löytynyt.",
-					error: "Tietokanta virhe."
-				});				
-			} else {
-				res.status(200).json({
-					times: times
-				});
-			}
+		const times = await Calendar.find({"day": req.query.day+"T00:00:00.000Z"}).sort({"time": 1});
+		return res.status(200).json({
+			times: times
 		});
 	} else {
+		const cart = await Cart.findById(req.params.id).populate("items").sort({"category": 1});
 		var today = new Date();
 		var year = today.getFullYear();
 		var month =today.getMonth() === 0 ? "01" : today.getMonth() === 1 ? "02" : today.getMonth() === 2 ? "03" : today.getMonth() === 3 ? "04" : today.getMonth() === 4 ? "05" : today.getMonth() === 5 ? "06" : today.getMonth() === 6 ? "07" : today.getMonth() === 7 ? "08" : today.getMonth() === 8 ? "09" : today.getMonth() === 9 ? "10" : today.getMonth() === 10 ? "11" : "12";
 		var day = today.getDate() < 10 ? 0+''+today.getDate() : today.getDate();
 		var	readyToday = year+"-"+month+"-"+day+'T00:00:00.000Z';
-		console.log(readyToday);
-		Calendar.find({"day": readyToday }).sort({"time": 1}).exec((err, times) => {
-			if(err || !times) {
-				req.flash("error", "Ups! Yhtään vapaata aikaa ei löytynyt.");
-				return res.redirect("back");
-			} else {
-				res.render("booking/dayAndTimeSelection.ejs", {
-					times: times
-				});
-			}
+		const times = await Calendar.find({"day": readyToday }).sort({"time": 1})
+		res.render("booking/dayAndTimeSelection.ejs", {
+			times: times,
+			cart: cart
 		});
 	}
 };
-module.exports.bookDate = (req, res, next) => {
+module.exports.bookDate = async (req, res, next) => {
+	const cart = await Cart.findById(req.params.id);
+	const time = await Calendar.findById(req.body.id);
+	if(cart.total_duration > 1) {
+		//const times = Calendar.find({""})
+	}
 	Cart.findById(req.params.id, (err, foundCart) => {
 		if(err || !foundCart) {
 			return res.status(404).json({

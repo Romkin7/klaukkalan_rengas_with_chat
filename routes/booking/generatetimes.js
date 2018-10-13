@@ -1,6 +1,8 @@
 "use strict";
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
+const Calendar = require('../../models/calendar');
 const adminAuthObj = require('../../api/admin/middleware/adminAuthObj');
 // Utility functions
 const util = require("../../lib/util");

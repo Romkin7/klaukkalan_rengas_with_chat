@@ -81,3 +81,18 @@
 ul {
     list-style: none;
 }
+/*slide-menu styles*/
+.slide-menu {
+  display: none;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  margin: 0 auto;
+}
+#tyre-category_menu {
+  display: none;
+  background-color: #ffffff;
+  color: #000000;
+  padding: 15px;
+  margin: 0 auto;
+}

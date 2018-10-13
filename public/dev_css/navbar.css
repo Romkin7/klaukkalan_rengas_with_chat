@@ -17,6 +17,15 @@
 	letter-spacing: 1.1px;
 	line-height: 1em;
 }
+.ui.basic.top.fixed.icon.menu .ui.dropdown.item {
+	color: #f6f5f3;
+	font-size: 20px;
+	letter-spacing: 1.1px;
+	line-height: 1em;
+}
+.ui.basic.top.fixed.icon.menu .ui.dropdown.item .menu .item a {
+color: #000000;
+}
 .ui.basic.top.fixed.icon.menu .navItem {
 	visibility: hidden;
 }

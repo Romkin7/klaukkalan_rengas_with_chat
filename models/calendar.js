@@ -7,4 +7,5 @@ const CalendarSchema = new Schema({
 	taken: {type: Boolean, default: false},
 	quantity: {type: Number, default: 3}
 });
+
 module.exports = mongoose.model("Calendar", CalendarSchema);
