@@ -26,78 +26,16 @@ function Person(firstname, lastname, email, phone, registernumber, street, index
 	this.city = city;
 };
 module.exports.renderTimebookingForm = (req, res, next) => {
-	Cart.findById(req.params.id).populate("items").sort({"category": 1}).exec((err, foundCart) => {
-    	if(err || !foundCart) {
-      		req.flash("error", "Ups! Ostoskoria ei voitu löytää!");
-      		return res.redirect("/");
-    	} else {
-    		res.render('booking/booking.ejs', {
-    			cart: foundCart
-    		});
-    	}
-  	});
+
 };
 module.exports.bookTime = (req, res, next) => {
 	
 };
 module.exports.getCalendar = async (req, res, next) => {
-	if(req.xhr) {
-		const times = await Calendar.find({"day": req.query.day+"T00:00:00.000Z"}).sort({"time": 1});
-		return res.status(200).json({
-			times: times
-		});
-	} else {
-		const cart = await Cart.findById(req.params.id).populate("items").sort({"category": 1});
-		var today = new Date();
-		var year = today.getFullYear();
-		var month =today.getMonth() === 0 ? "01" : today.getMonth() === 1 ? "02" : today.getMonth() === 2 ? "03" : today.getMonth() === 3 ? "04" : today.getMonth() === 4 ? "05" : today.getMonth() === 5 ? "06" : today.getMonth() === 6 ? "07" : today.getMonth() === 7 ? "08" : today.getMonth() === 8 ? "09" : today.getMonth() === 9 ? "10" : today.getMonth() === 10 ? "11" : "12";
-		var day = today.getDate() < 10 ? 0+''+today.getDate() : today.getDate();
-		var	readyToday = year+"-"+month+"-"+day+'T00:00:00.000Z';
-		const times = await Calendar.find({"day": readyToday }).sort({"time": 1})
-		res.render("booking/dayAndTimeSelection.ejs", {
-			times: times,
-			cart: cart
-		});
-	}
+
 };
 module.exports.bookDate = async (req, res, next) => {
-	const cart = await Cart.findById(req.params.id);
-	const time = await Calendar.findById(req.body.id);
-	if(cart.total_duration > 1) {
-		//const times = Calendar.find({""})
-	}
-	Cart.findById(req.params.id, (err, foundCart) => {
-		if(err || !foundCart) {
-			return res.status(404).json({
-				message: "Ups! Ostoskoria ei löytynyt.",
-				error: "Tietonkanta virhe."
-			});
-		} else {
-			Calendar.findById(req.body.id, (err, foundTime) => {
-				if(foundTime.taken) {
-					return res.status(500).json({
-						message: "Ups! Valitsemanne aika on varattu.",
-						error: "Aika on jo varattu!"
-					});
-				}
-				foundCart.time = foundTime;
-				foundCart.save((err, updatedCart) => {
-					if(err) {
-						return res.status(500).json({
-							message: "Ups! Jokin meni pieleen aikaa valittaessa.",
-							error: err.message
-						});
-					} else {
-						req.session.cart = updatedCart;
-						res.status(200).json({
-							message: "success",
-							cart: updatedCart
-						});
-					}
-				});
-			});
-		}
-	});
+	
 };
 module.exports.getBookForm = (req, res, next) => {
 	Cart.findById(req.params.id).populate("items").populate({path: "time", model: "Calendar"}).populate("time").exec((err, foundCart) => {
@@ -117,6 +55,25 @@ module.exports.getBookForm = (req, res, next) => {
 	});
 };
 module.exports.getFormInformation = (req, res, next) => {
+	let updatedTimes = await times.map((time) => {
+			Calendar.findById(time._id, (err, foundTime) => {
+				if(err || !foundTime) {
+					return res.status(500).json(err);
+				} else {
+					foundTime.quantity = Number(foundTime.quantity) !== 0 ? Number(foundTime.quantity) - 1 : Number(foundTime.quantity) = 0;
+					if(foundTime.quantity === 0) {
+						foundTime.taken = true;
+					}
+					foundTime.save((err, updatedTime) => {
+						if(err) {
+							return res.status(500).json(err);
+						} else {
+							return foundTime;
+						}
+					});
+				}
+			});
+		});
 	var firstname = capitalizeFirstLetter(req.body.firstname);
 	var lastname = capitalizeFirstLetter(req.body.lastname);
 	var phone = String(req.body.phone).trim();

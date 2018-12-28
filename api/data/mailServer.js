@@ -16,8 +16,8 @@ const options = {
 // };
 const mailer = nodemailer.createTransport(sgTransport(options));
 //Export methods to send different emails
-module.exports.notifyClientOnNewOrder = (req, res, order, next) => {
-	var day = order.time.day.getDate() + "." + (order.time.day.getMonth()+1) + "." + order.time.day.getFullYear();
+module.exports.notifyClientOnNewOrder = (req, res, order, times, next) => {
+	var day = times[0].day.getDate() + "." + (times[0].day.getMonth()+1) + "." + times[0].day.getFullYear();
 	async.series([
 		function(cb) {
 			let email = {
@@ -27,7 +27,8 @@ module.exports.notifyClientOnNewOrder = (req, res, order, next) => {
   				html: `
   					<h1>Arvoisa ${ order.client.name.firstname } ${ order.client.name.lastname }, </h1>
 					<p>Tämä on vahvistus siitä, että olette varanneet ajan online ajanvarauksen kautta.</p>
-					<p>Valittu aika: ${day} klo: ${order.time.time}</p>
+					<p>Valittu aika: ${day} klo: ${times[0].time}</p>
+					<p>Työn kesto: ${order.total_duration}min</p>
 					<p>Palvelut: </p>
 					<p>${order.services[0].name}, ${ order.services[0].discounted_unit_price !== 0 ? order.services[0].discounted_unit_price+",00 €" : order.services[0].unit_price+",00 €" }</p>
 					<p>Jos ette ole tehneet tätä varausta, olkaa hyvä ja ottakaa yhteyttä puhelimitse: <strong>+358 (0)45 186 30 33 </strong> tai sähköpostitse: <strong>klaukkalanrengas@gmail.com</strong>.</p>
@@ -54,7 +55,8 @@ module.exports.notifyClientOnNewOrder = (req, res, order, next) => {
   				html: `
   					<h1>Arvoisat ylläpitäjät,</h1>
 					<p>Tämä on ilmoitus siitä, että ajanvaraus järjestelmään on luotu uusi ajanvaraus.</p>
-					<p>Valittu aika: ${day} klo: ${order.time.time}</p>
+					<p>Valittu aika: ${day} klo: ${times[0].time}</p>
+					<p>Työn kesto: ${order.total_duration}min</p>
 					<p>Palvelut: </p>
 					<p>${order.services[0].name}, ${ order.services[0].discounted_unit_price !== 0 ? order.services[0].discounted_unit_price+",00 €" : order.services[0].unit_price+",00 €" }</p>
 					<p>Varaajan nimi: ${order.client.name.firstname}, ${order.client.name.lastname}</p>

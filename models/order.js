@@ -19,10 +19,9 @@ const OrderSchema = new Schema({
 			email: {type: String, required: true}
 		}
 	},
-	time: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: "Calendar"
-	},
+	times: [{
+		type: String
+	}],
 	services: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Service"
@@ -32,6 +31,11 @@ const OrderSchema = new Schema({
 {
 	usePushEach: true,
 	timestamps: true
+});
+OrderSchema.virtual("total_duration").get(function() {
+  let durations = this.services.map((item) => item.duration);
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  return durations.reduce(reducer);
 });
 // set Schema indexes
 OrderSchema.index({register_number: "text", name: "text"});

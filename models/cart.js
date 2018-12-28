@@ -9,16 +9,12 @@ const cartSchema = new Schema({
   total_price_including_tax: {type: Number, default: 0},
   total_price: {type: Number},
 	items: [{
-    item: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Service"
-    },
-    duration: Number
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service"
   }],
   expires: {type: Date},
   times: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Calendar"
+    _id: String
   }]
 },
 {

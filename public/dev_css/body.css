@@ -26,6 +26,15 @@ aside {
 .inline {
 	display: inline;
 }
+.bookable-time {
+	border: 0.3rem ridge #000000;
+	border-radius: 0.5rem;
+	background-color: #ffffff;
+	padding: 5px;
+}
+#times {
+	margin: 25px auto;
+}
 @media only screen and (max-width: 300px) {
 	.desktop,
 	.tablet {

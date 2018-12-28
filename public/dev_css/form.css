@@ -37,7 +37,9 @@
 }
 
 .radio .cr .cr-icon {
-    margin-left: 0.04em;
+  padding: 7px;
+  background: #eeeeee;
+  margin-left: 0.04em;
 }
 
 .checkbox label input[type="checkbox"],
@@ -95,4 +97,28 @@ ul {
   color: #000000;
   padding: 15px;
   margin: 0 auto;
+}
+/* Table styles */
+#confModal {
+  margin: 25% auto;
+  height: 20vh;
+}
+.time-box {
+  width: 100%;
+  padding: 5px;
+  margin: 0 0 5px 0;
+}
+.time-box:nth-child(even) {
+  background: #eeeeee;
+}
+#times td {
+  padding: 0;
+}
+.green-td-bg {
+  font-weight: 500;
+  background: rgba(152, 251, 152, 0.8) !important;
+  color: green;
+}
+#selectedTime {
+  display: none;
 }

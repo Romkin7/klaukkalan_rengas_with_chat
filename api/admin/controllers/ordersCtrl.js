@@ -1,6 +1,7 @@
 "use strict";
 const mongoose = require('mongoose');
 const Order = require('../../../models/order');
+const Calendar = require('../../../models/calendar');
 let sortObj = {};
 let queryObj = {};
 let queryString = "";
@@ -34,21 +35,18 @@ module.exports.getOrders = (req, res, next) => {
 		}
 	});
 }; 
-module.exports.showOrder = (req, res, next) => {
-	Order
-	.findById(req.params.id)
-	.populate("services")
-	.populate({path: "time", model: "Calendar"})
-	.exec((err, foundOrder) => {
-		if(err || !foundOrder) {
-			req.flash("error", "Ups! Tilauksen hakeminen epäonnistui!");
-			return res.redirect("/admin");
-		} else {
-			res.render("admin/orders/showOrder.ejs", {
-				order: foundOrder
-			});
-		}
-	});
+module.exports.showOrder = async(req, res, next) => {
+	const order = await Order.findById(req.params.id).populate("services");
+	const times = await Calendar.find({"_id": {$in: order.times}});
+	if(!order || !times) {
+		req.flash("error", "Ups! Tilauksen hakeminen epäonnistui!");
+		return res.redirect("/admin");
+	} else {
+		res.render("admin/orders/showOrder.ejs", {
+			order: order,
+			times: times
+		});
+	}
 };
 // Mark as complete
 module.exports.markAsComplete = (req, res, next) => {

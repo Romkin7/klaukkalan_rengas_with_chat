@@ -50,14 +50,14 @@
 								<table class="ui orange table">
 									<thead class="tablet desktop">
 										<tr>
-											<th>Valittu Päivänne</th>
-											<th>Valittu Aikanne</th>
+											<th>Päivä</th>
+											<th>Aloitusaika</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td><%= moment(cart.time.day).format('DD.MM.YYYY') %></td>
-											<td>klo: <%= cart.time.time %></td>
+											<td><%= moment(times[0].day).format('DD.MM.YYYY') %></td>
+											<td>klo: <%= times[0].time %></td>
 										</tr>
 									</tbody>
 								</table>

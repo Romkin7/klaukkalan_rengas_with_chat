@@ -41,7 +41,7 @@ const authRoutes = require("./api/client/routes/auth");
 const tyreHotelRoutes = require("./api/client/routes/tyrehotel");
 const tyreServiceRoutes = require("./api/client/routes/tyreservices");
 const tyreRoutes = require("./routes/tyres/tyre");
-const bookingRoutes = require("./api/client/routes/booking");
+const bookingRoutes = require("./routes/booking/booking");
 const priceListRoutes = require("./api/client/routes/pricelist");
 //Admin routes
 const adminRoutes = require("./api/admin/routes/");
@@ -141,6 +141,15 @@ app.use((req, res, next) => {
 require("moment/min/locales.min");
 moment.locale("fi");
 app.locals.moment = moment;
+app.locals.timesByHours = function(times, hour, cb) {
+	let filteredTimes = times.filter((time) => {
+		var shortTime = time.time.split(":");
+		if(shortTime[0] === hour) {
+			return time
+		}
+	});
+	return cb(filteredTimes);
+};
 //Local variables
 app.use(function(req, res, next) {
 	//res.cookie("_csrfToken", req.csrfToken());

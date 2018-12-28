@@ -6,6 +6,9 @@ const Calendar = require('../../models/calendar');
 const adminAuthObj = require('../../api/admin/middleware/adminAuthObj');
 // Utility functions
 const util = require("../../lib/util");
+function getSequenceValue(sequence_value) {
+	return 
+}
 // this route will get the year and month from the Admin, and sends a message for confirmation
 router.post("/generate-times-confirmation", adminAuthObj.isAdmin, (req, res) => {
 	const data = util.generateTimes(req.body.year, req.body.month, "data");
