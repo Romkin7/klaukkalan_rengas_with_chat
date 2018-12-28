@@ -24,6 +24,9 @@
   "bugs": {
     "url": "https://github.com/Romkin7/klaukkalan_rengas_hotelli/issues"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "homepage": "https://www.klaukkalanrengas.fi",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
