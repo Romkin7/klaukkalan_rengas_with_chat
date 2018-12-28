@@ -263,7 +263,6 @@ router.post("/:id/henkilotiedot", async(req, res, next) => {
 						req.flash("error", err.message);
 						return res.redirect("/ajanvaraus/"+foundCart.id+"/henkilotiedot");
 					} else {
-						console.log(times);
 						mailServer.notifyClientOnNewOrder(req, res, newOrder, times, next);
 						req.session.cart = updatedCart;
 						res.render("booking/confirmation.ejs", {
