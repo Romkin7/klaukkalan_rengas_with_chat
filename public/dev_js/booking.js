@@ -326,6 +326,10 @@ $(document).ready(function() {
         });
       }
     });
+    $("#times").on("mouseleave", ".time-box", function(event) {
+      event.stopPropagation();
+      request_limit = 1;
+    });
     var selectedTime = $("#selectedTime");
     var selectedTimesTable = $("#selectedTimesTable");
     var timeSelectionTable = $("#timeSelectionTable");
