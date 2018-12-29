@@ -298,6 +298,7 @@ $(document).ready(function() {
     });
     //Book time
     var timeIds = [];
+    var request_limit = 1;
     $("#times").on("mouseenter", ".time-box", function(event) {
       var confirmationModal = $("#confModal");
       event.stopPropagation();
@@ -305,20 +306,25 @@ $(document).ready(function() {
         id: $(this).attr("time_id"),
         duration: $("#duration").val()
       };
-     
+     if(request_limit > 0) {
         $.ajax({
           url: "/ajanvaraus/"+cartId+"/kesto",
           method: "PATCH",
           data: time_id,
           success: function(times) {
             timeIds = [];
+            request_limit = 0;
             $(".time-box").removeClass("green-td-bg");
             for(var i = 0; i < times.length; i++) {
               $("#"+times[i]._id).addClass("green-td-bg");
               timeIds.push(times[i]._id);
             }
-          } 
+          },
+          error: function() {
+            request_limit = 1;
+          }
         });
+      }
     });
     var selectedTime = $("#selectedTime");
     var selectedTimesTable = $("#selectedTimesTable");
