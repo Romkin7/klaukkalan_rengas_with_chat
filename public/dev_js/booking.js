@@ -298,7 +298,7 @@ $(document).ready(function() {
     });
     //Book time
     var timeIds = [];
-    $("#times").on("mouseover", ".time-box", function(event) {
+    $("#times").on("mouseenter", ".time-box", function(event) {
       var confirmationModal = $("#confModal");
       event.stopPropagation();
       var time_id = {
