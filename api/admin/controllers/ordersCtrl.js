@@ -68,6 +68,24 @@ module.exports.markAsComplete = (req, res, next) => {
 		}
 	});
 };
+module.exports.deleteOrder = async(req, res, next) => {
+	let order = await Order.findById(req.params.id);
+	let times = await Calendar.find({"_id": { $in: order.times}});
+	if(!order || !times) {
+		return res.status(500).json({
+			"message": "Valitettavasti tällä hetkellä tietokannasta ei voitu hakea tilausta eikä aikoja. Yritä hetken kuluttua uudelleen."
+		});
+	}
+	await times.forEach((time) => {
+		time.quantity = parseInt(time.quantity) + 1;
+		time.taken = time.taken === true ? false : false;
+		time.save();
+	});
+	await order.remove();
+	res.status(200).json({
+		"message": "Onnistui! Tilaus on onnistuneesti poistettu ja ajat palautettu varattaviksi!"
+	});
+};
 //sanitze input
 function escapeRegex(text){
 	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
