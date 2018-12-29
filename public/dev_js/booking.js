@@ -248,7 +248,7 @@ $(document).ready(function() {
             timesByHours(times.times, count < 10 ? "0"+String(count) : String(count), function(filteredTimes) { 
               filteredTimes.forEach(function(time) {
                 $(count < 10 ? "#td0"+String(count) : "#td"+String(count)).append(`
-                  <form class="time-box" time_id="${time._id }" id="${ time._id }">
+                  <form class="time-box" time_id="${time._id }" id="${ time._id }" hour="${ time.time }">
                     <input type="hidden" name="id" value="${ time._id }">
                     <p>${ time.time }</p>
                     <p>${ time.quantity }/3</p>
@@ -299,12 +299,13 @@ $(document).ready(function() {
     //Book time
     var timeIds = [];
     var request_limit = 1;
-    $("#times").on("mouseenter", ".time-box", function(event) {
+    $("#times").on("mouseover", ".time-box", function(event) {
       var confirmationModal = $("#confModal");
       event.stopPropagation();
       var time_id = {
         id: $(this).attr("time_id"),
-        duration: $("#duration").val()
+        duration: $("#duration").val(),
+        hour: $(this).attr("")
       };
      if(request_limit > 0) {
         $.ajax({

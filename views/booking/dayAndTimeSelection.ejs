@@ -107,7 +107,7 @@
 											<td id="td07" class="timesTd">
 												<% timesByHours(times, "07", function(filteredTimes) { %>
 													<% filteredTimes.forEach(function(time) { %>
-														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>">
+														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -118,7 +118,7 @@
 											<td id="td08" class="timesTd">
 												<% timesByHours(times, "08", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>">
+														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -129,7 +129,7 @@
 											<td id="td09" class="timesTd">
 												<% timesByHours(times, "09", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -140,7 +140,7 @@
 											<td id="td10" class="timesTd">
 												<% timesByHours(times, "10", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -151,7 +151,7 @@
 											<td id="td11" class="timesTd">
 												<% timesByHours(times, "11", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -162,7 +162,7 @@
 											<td id="td12" class="timesTd">
 												<% timesByHours(times, "12", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -173,7 +173,7 @@
 											<td id="td13" class="timesTd">
 												<% timesByHours(times, "13", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -184,7 +184,7 @@
 											<td id="td14" class="timesTd">
 												<% timesByHours(times, "14", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -195,7 +195,7 @@
 											<td id="td15" class="timesTd">
 												<% timesByHours(times, "15", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -206,7 +206,7 @@
 											<td id="td16" class="timesTd">
 												<% timesByHours(times, "16", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>
@@ -217,7 +217,7 @@
 											<td id="td17" class="timesTd">
 												<% timesByHours(times, "17", function(filteredTimes) { %>
 													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>">
+														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
 															<input type="hidden" name="id" value="<%= time._id %>">
 															<p><%= time.time %></p>
 															<p><%= time.quantity %>/3</p>

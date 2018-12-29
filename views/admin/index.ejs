@@ -306,16 +306,15 @@ function sendForConfirmation(e) {
 // submit to server to save the times into DB
 function finalSubmit() {
 	loadingModal();
-
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.status === 200) {
 			document.querySelector("#final-message").innerHTML =
-				"Success! All those times were saved to Database.";
+				"Onnistui! Kaikki ajat on lisätty tietokantaan.";
 			messageModal();
 		} else if (this.status === 500) {
 			document.querySelector("#final-message").innerHTML =
-				"An unkown error occured, please refresh the page and try again.";
+				"Tapahtui odottamaton virhe! Päivitä sivua ja yritä uudelleen.";
 			messageModal();
 		}
 	};

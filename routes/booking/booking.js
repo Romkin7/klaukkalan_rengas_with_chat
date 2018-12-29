@@ -148,10 +148,14 @@ router.patch("/:id/kesto", async(req, res, next) => {
 	let curId = Number(req.body.id);
 	if(duration === 1) {
 		let time = await Calendar.findById(req.body.id);
-		req.session.times.push(time);
-		return res.status(200).json(time);
+		let times = [];
+		times = [];
+		times.push(time);
+		req.session.times = times;
+		return res.status(200).json(times);
 	} else {
 		let times = await Calendar.find({}).sort({"_id": 1}).skip(curId-1).limit(duration);
+
 		req.session.times = times;
 		return res.status(200).json(times);
 	}
