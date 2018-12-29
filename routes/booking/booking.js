@@ -146,7 +146,7 @@ router.patch("/:id/kesto", async(req, res, next) => {
 	const duration = parseInt(req.body.duration) / 10;
 	let count = 0;
 	let curId = Number(req.body.id);
-	if(duration === 1) {
+	if(duration === 1 || req.body.hour === "17:00") {
 		let time = await Calendar.findById(req.body.id);
 		let times = [];
 		times = [];
@@ -155,7 +155,6 @@ router.patch("/:id/kesto", async(req, res, next) => {
 		return res.status(200).json(times);
 	} else {
 		let times = await Calendar.find({}).sort({"_id": 1}).skip(curId-1).limit(duration);
-
 		req.session.times = times;
 		return res.status(200).json(times);
 	}
