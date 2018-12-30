@@ -152,23 +152,6 @@
             </thead>
             <tbody class="datarow">
               <h4 class="black">Rengaspesu palvelut</h4>
-              <% washServices.forEach(function(service) { %>
-              <tr class="service" value="<%= service._id %>">
-                <td><%= service.name %></td>
-                <td><%= service.tyre_size === 0 ? '16" ja alle / 17"' : service.tyre_size === 16 ? service.tyre_size+" ja alle" : service.tyre_size+" ja yli" %></td> 
-                <td><%= service.duration %>min</td>
-                <td><%= service.discounted_unit_price !== 0 ? service.discounted_unit_price+",00 €" : service.unit_price+",00 €" %></td>
-                <td><%= service.additional_info %></td>
-                <td>
-                  <div class="checkbox">
-                    <label class="text-left" style="font-size: 18px">
-                      <input type="checkbox" total_price="<%= service.discounted_unit_price === 0 ? service.unit_price : service.discounted_unit_price %>" total_tax_amount="<%= service.discounted_unit_price === 0 ? service.tax : service.discounted_tax %>" total_unit_price_excluding_tax="<%= service.discounted_unit_price === 0 ? service.unit_price_excluding_tax : service.discounted_unit_price_excluding_taxes %>" id="<%= service._id %>" class="checkbox2">
-                      <span class="cr"><i class="cr-icon fa fa-check"></i></span>
-                    </label>
-                  </div>
-                </td>
-              </tr>
-              <% }); %>
                <% washServices.forEach(function(service) { %>
               <tr class="service" value="<%= service._id %>">
                 <td><%= service.name %></td>
