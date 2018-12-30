@@ -402,6 +402,8 @@ $(document).ready(function() {
       });
     });
     $("#changeTime").on("click", function() {
+      timeSelectionTable.removeClass("hide");
+      timeSelectionTable.addClass("show");
       timeSelectionTable.show(500);
     });
   }

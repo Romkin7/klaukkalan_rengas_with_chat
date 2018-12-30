@@ -122,3 +122,9 @@ ul {
 #selectedTime {
   display: none;
 }
+.hide {
+  display: none !important;
+}
+.show {
+  display: inline-block;
+}

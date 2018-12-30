@@ -84,7 +84,7 @@
 									</div>
 								</div>
 							</div>
-							<div id="timeSelectionTable" class="sixteen wide column">
+							<div id="timeSelectionTable" class="sixteen wide column <%= session.times && session.times.length ? 'hide' : 'show' %>">
 								<h4 id="day" class="black"></h4>
 								<table class="ui celled stackable table">
 									<thead>
