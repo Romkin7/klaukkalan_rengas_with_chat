@@ -268,6 +268,7 @@ router.post("/:id/henkilotiedot", async(req, res, next) => {
 					} else {
 						mailServer.notifyClientOnNewOrder(req, res, newOrder, times, next);
 						req.session.cart = updatedCart;
+						req.session.times = [];
 						res.render("booking/confirmation.ejs", {
 							order: newOrder,
 							times: times

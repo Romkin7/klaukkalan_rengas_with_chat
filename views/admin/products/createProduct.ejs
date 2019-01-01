@@ -9,7 +9,7 @@
 					<hr>
 				</div>
 				<div class="ui segment">
-					<div id="errorMsg"></div>
+					<div id="messages"></div>
 					<form id="productCreateForm" class="ui form" action="/admin/products" method="POST" enctype="multipart/form-data">
 						<h4 class="ui dividing header">Luo renkaat tai vanteet</h4>
 						<div class="field">
@@ -168,16 +168,31 @@
 								<div class="field">
 									<label class="custom-file-upload" for="cover" id="imageInput">Kuva</label>
 									<input id="cover" name="cover" type="file" accept="image/*" required>
-									<div id="imgPreviewContainer">
+									<div id="imgPreviewContainer" class="hidden">
 										<img id="imgPreview" src="" alt="">
 									</div>
 								</div>
-								<div id="imgBtns" class="two fields">
-									<div class="field">
-										<button type="reset" class="ui yellow button" id="resetImage">Kumoa valinta</button>
-									</div>
-									<div  class="field">
-										<button type="button" class="ui green button" id="submitImage">Lähetä kuva</button>
+								<div class="field">
+									<div class="two fields">
+										<div class="field">
+											<div class="ui orange buttons hidden" id="aspectRatioButtons">
+												<button type="button" class="ui button ratioBtn" ratio="1.66666" width="660" height="372">16:9</button>
+												<button type="button" class="ui button ratioBtn" ratio="1.33333" width="495" height="372">4:3</button>
+												<button type="button" class="ui button ratioBtn" ratio="1" width="372" height="372">1:1</button>
+												<button type="button" class="ui button ratioBtn" ratio="0.66666" width="247" height="372">2:3</button>
+												<button type="button" class="ui button ratioBtn" ratio="NaN" width="660" height="372">Free</button>
+											</div>
+										</div>
+										<div id="imgBtns" class="field hidden">
+											<div class="two fields">
+												<div class="field">
+													<button type="reset" class="ui yellow button" id="resetImage">Kumoa valinta</button>
+												</div>
+												<div  class="field">
+													<button type="button" class="ui green button" id="submitImage">Lähetä kuva</button>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 								<div class="field">

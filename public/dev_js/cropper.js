@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
 	var _URL = window.URL || widndow.webkitURL;
-	if(window.location.pathname === "/portfolio/new") {
-		function setErrorMsg(msgCase, message) {
+	if(window.location.pathname === "/admin/products/new") {
+		function scrollTop() {
+      		return $('html, body').animate({ scrollTop: 0 }, 'medium');
+    	};
+		function setErrorMsg(msgCase, message, status) {
 			return `
-				<div class="ui warning message">
+				<div class="ui ${status} message">
 					<i class="close icon"></i>
 					<div class="header">
 						${msgCase}!
@@ -12,13 +15,14 @@ document.addEventListener("DOMContentLoaded", function() {
 				</div>
 			`;
 		};
-		var imageInput = document.querySelector("#imageInput");
-		var imageView = document.querySelector("#imageView");
-		var fileUploadButton = document.getElementById("custom-file-upload");
-		var imagePreviewContainer = document.querySelector("#imagePreviewContainer");
+		var imageInput = document.querySelector("#cover");
+		var imageView = document.querySelector("#imgPreview");
+		var fileUploadButton = document.querySelector(".custom-file-upload");
+		var imgPreviewContainer = document.querySelector("#imgPreviewContainer");
 		var messages = document.querySelector("#messages");
 		var aspectRatioButtons = document.querySelector("#aspectRatioButtons");
 		var ratioBtns = document.querySelectorAll(".ratioBtn");
+		var imageSelectionBtns = document.getElementById("imgBtns");
 		var ratio = 1/1;
 		var width = 400;
 		var height = 400;
@@ -26,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		for(var i = 0; i < ratioBtns.length; i++) {
 			ratioBtns[i].addEventListener("click", function(event) {
 				event.preventDefault();
+				console.log(this);
 				ratio = this.getAttribute("ratio");
 				width = Number(this.getAttribute("width"));
 				height = Number(this.getAttribute("height"));
@@ -34,16 +39,16 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		// Listen for change input state event, to create new filereader and open cropper for validated image.
 		imageInput.addEventListener("change", function(event) {
-			if(sizeValid(this, 3000000) && typeValid("imageInput")) {
+			if(sizeValid(this, 3000000) && typeValid("cover")) {
 				messages.innerHTML = "";
 				var reader = new FileReader();
-				console.log(reader);
 				reader.onload = function(event) {
 					imageView.src = event.target.result;
 					imageView.onload = function() {
 						fileUploadButton.classList.toggle("hidden");
-						imagePreviewContainer.classList.toggle("hidden");
+						imgPreviewContainer.classList.toggle("hidden");
 						aspectRatioButtons.classList.toggle("hidden");
+						imageSelectionBtns.classList.toggle("hidden");
 						cropImage(ratio, width, height);
 					}
 				}
@@ -54,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		function sizeValid(self, size) {
 			if(self.files[0].size > size) {
 				reset();
-				messages.innerHTML = `${setErrorMsg("Внимание", "Максимальный размер фотографии является 3МБ.")}`;
+				messages.innerHTML = `${setErrorMsg("Внимание", "Максимальный размер фотографии является 3МБ.", "warning")}`;
 				return false;
 			} else {
 				return true;
@@ -67,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			type = type.toString();
 			if(type !== "image/jpg" && type !== "image/png" && type !== "image/jpeg" && type !== "image/bmp") {
 				reset();
-				messages.innerHTML = `${setErrorMsg("Внимание", "Формат фотографии не разрешен. Фотографии могут быть формата jpg, jpeg, png или gif.")}`;
+				messages.innerHTML = `${setErrorMsg("Внимание", "Формат фотографии не разрешен. Фотографии могут быть формата jpg, jpeg, png или gif.", "warning")}`;
 				return false;
 			} else {
 				return true;
@@ -75,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 		//Crop image
 		function cropImage(aspect, minW, minH) {
-			$("#imageView").cropper("destroy").cropper({
+			$("#imgPreview").cropper("destroy").cropper({
 				aspectRatio: aspect,
 				viewMode: 1,
 				responsive: true,
@@ -95,5 +100,25 @@ document.addEventListener("DOMContentLoaded", function() {
 			messages.innerHTML = "";
 			imageInput.value = "";
 		};
+		//Submit image
+		$("#submitImage").on("click", function(event) {
+			event.preventDefault();
+			cover = $("#imgPreview").cropper("getData", true);
+			$.post("/admin/products/cropperdata", cover, function(response) {
+				if(response === "success") {
+					$("#imgPreview").cropper("destroy");
+					$("#imgPreview").removeAttr("src");
+					fileUploadButton.classList.toggle("hidden");
+					imgPreviewContainer.classList.toggle("hidden");
+					aspectRatioButtons.classList.toggle("hidden");
+					imageSelectionBtns.classList.toggle("hidden");
+					$("#imageInput").prop("disabled", true);
+					scrollTop();
+					messages.innerHTML = `${setErrorMsg("Onnistui!", "Kuva on onnistuneesti lähetetty palvelimelle.", "success")}`;
+			} else {
+				return;
+			}
+		});
+		})
 	}
 });

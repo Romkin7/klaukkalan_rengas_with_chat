@@ -46,6 +46,12 @@
       									<button class="ui green button" type="submit" id="MarkOrderBtn"><i class="fa fa-check" aria-hidden="true"></i></button>
       								</div>
       							</form>
+      							<form class="ui form inline" action="/admin/orders/<%= order._id %>?_method=DELETE" method="POST">
+      								<div class="field">
+      									<input type="hidden" name="id" value="<%= order._id %>">
+      									<button class="ui red button" type="submit" id="DeleteOrderBtn"><i class="fa fa-trash" aria-hidden="true"></i></button>
+      								</div>
+      							</form>
     						</div>
 							<h3 class="header">Varaus rekisterinumerolle <%= order.client.register_number %></h3>
     						<p class="lead in"><%= order.client.name.firstname %>, <%= order.client.name.lastname %> </p>

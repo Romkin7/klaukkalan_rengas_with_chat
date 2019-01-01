@@ -4,7 +4,6 @@ $(document).ready(function() {
 	$(".suv").hide();
 	$("#car_type").on("change", function(event) {
 		var car_type = $("#car_type").val();
-		console.log(car_type);
 		if(car_type === "Henkilöauto") {
 			$(".henkiloauto").show();
 			$(".c-ll").hide();

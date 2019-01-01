@@ -127,6 +127,9 @@ aside .header {
 .ui.horizontal.centered.divider {
 	font-size: 0.9rem;
 }
+.hidden {
+	display: none !important;
+}
 table tr,
 table th {
 		font-size: 16px;

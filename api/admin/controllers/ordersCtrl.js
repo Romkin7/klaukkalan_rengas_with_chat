@@ -72,9 +72,8 @@ module.exports.deleteOrder = async(req, res, next) => {
 	let order = await Order.findById(req.params.id);
 	let times = await Calendar.find({"_id": { $in: order.times}});
 	if(!order || !times) {
-		return res.status(500).json({
-			"message": "Valitettavasti tällä hetkellä tietokannasta ei voitu hakea tilausta eikä aikoja. Yritä hetken kuluttua uudelleen."
-		});
+		req.flash("error", "Valitettavasti tällä hetkellä tietokannasta ei voitu hakea tilausta eikä aikoja. Yritä hetken kuluttua uudelleen.");
+		return res.redirect("/admin/orders");
 	}
 	await times.forEach((time) => {
 		time.quantity = parseInt(time.quantity) + 1;
@@ -82,9 +81,8 @@ module.exports.deleteOrder = async(req, res, next) => {
 		time.save();
 	});
 	await order.remove();
-	res.status(200).json({
-		"message": "Onnistui! Tilaus on onnistuneesti poistettu ja ajat palautettu varattaviksi!"
-	});
+	req.flash("success", "Onnistui! Tilaus on onnistuneesti poistettu ja ajat palautettu varattaviksi!");
+	res.redirect("/admin/orders");
 };
 //sanitze input
 function escapeRegex(text){

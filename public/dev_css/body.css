@@ -127,9 +127,6 @@ section {
 	background: transparent;
 	border: 1px ridge #3498db;
 }
-#imgBtns {
-	display: none;
-}
 #paginationMenu {
 	margin: 25px auto;
 }

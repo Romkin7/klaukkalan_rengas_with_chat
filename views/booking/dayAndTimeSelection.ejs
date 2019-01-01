@@ -63,9 +63,9 @@
                     									</tr>
                   									</thead>
                   									<tbody id="selectedTimesTable">
-                  										<% if(cart.times.length) { %>
+                  										<% if(session.times && session.times.length) { %>
                   											<tr>
-                												<td><%= moment(cart.times[0].day).format('DD.MM.YYYY') %></td>
+                												<td><%= moment(session.times[0].day).format('DD.MM.YYYY') %></td>
                 												<td>alkaen klo <%= session.times[0].time %></td>
               												</tr>
               											<% } %>

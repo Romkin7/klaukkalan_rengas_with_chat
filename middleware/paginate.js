@@ -40,7 +40,7 @@ const init = async function(req, res, category, done) {
 	//Set title
 	queryString = "";
 	queryObj = {
-		category: category ? category : "Kesärenkaat",
+		category: category !== undefined ? category : "Kesärenkaat",
 		manufacturer: req.query.manufacturer ? req.query.manufacturer : manufacturers,
 		car_type: req.query.car_type ? req.query.car_type : "Henkilöauto"
 	};
@@ -148,7 +148,6 @@ module.exports.paginateItems = async (req, res, items, category, cb) => {
 					}
 					return;
 				});
-
 			} else {
 				items.find(queryObj)
 				.skip((page - 1) * perPage)

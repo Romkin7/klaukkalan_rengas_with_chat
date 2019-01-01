@@ -9,5 +9,6 @@ router
 router
 	.route("/:id")
 	.get(adminAuthObj.isAdmin, ordersCtrl.showOrder)
-	.patch(adminAuthObj.isAdmin, ordersCtrl.markAsComplete);
+	.patch(adminAuthObj.isAdmin, ordersCtrl.markAsComplete)
+	.delete(adminAuthObj.isAdmin, ordersCtrl.deleteOrder);
 module.exports = router;

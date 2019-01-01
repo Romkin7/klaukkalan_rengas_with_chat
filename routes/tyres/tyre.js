@@ -21,7 +21,9 @@ router.get("/", async (req, res, next) => {
 				searchTerm: dataObj.search,
 				category: req.query.category
 			});
+			return;
 		} else {
+			console.log(req.query.category);
 			return res.render("tyres/tyres", {
 				tyres: dataObj.output.data,
 				pages: dataObj.output.pages,
