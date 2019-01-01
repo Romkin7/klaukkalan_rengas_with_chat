@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		//Validate file Size
 		function sizeValid(self, size) {
 			if(self.files[0].size > size) {
-				reset();
+				imageInput.value = "";
 				messages.innerHTML = `${setErrorMsg("Внимание", "Максимальный размер фотографии является 3МБ.", "warning")}`;
 				return false;
 			} else {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
 			var type = document.getElementById(id).files[0].type;
 			type = type.toString();
 			if(type !== "image/jpg" && type !== "image/png" && type !== "image/jpeg" && type !== "image/bmp") {
-				reset();
+				imageInput.value = "";
 				messages.innerHTML = `${setErrorMsg("Внимание", "Формат фотографии не разрешен. Фотографии могут быть формата jpg, jpeg, png или gif.", "warning")}`;
 				return false;
 			} else {
@@ -99,6 +99,12 @@ document.addEventListener("DOMContentLoaded", function() {
 		function reset() {
 			messages.innerHTML = "";
 			imageInput.value = "";
+			$('#imgPreview').cropper('destroy');
+    		$("#imgPreview").removeAttr("src");
+    		fileUploadButton.classList.toggle("hidden");
+			imgPreviewContainer.classList.toggle("hidden");
+			aspectRatioButtons.classList.toggle("hidden");
+			imageSelectionBtns.classList.toggle("hidden");
 		};
 		//Submit image
 		$("#submitImage").on("click", function(event) {
@@ -115,10 +121,15 @@ document.addEventListener("DOMContentLoaded", function() {
 					$("#imageInput").prop("disabled", true);
 					scrollTop();
 					messages.innerHTML = `${setErrorMsg("Onnistui!", "Kuva on onnistuneesti lähetetty palvelimelle.", "success")}`;
-			} else {
-				return;
-			}
+				} else {
+					return;
+				}
+			});
 		});
-		})
+		//Reset image event
+		$("#resetImage").on("click", function(event) {
+			event.preventDefault();
+			reset();
+		});
 	}
 });
