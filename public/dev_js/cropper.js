@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		};
 		//function to reset image selection
 		function reset() {
+			scrollTop();
 			messages.innerHTML = "";
 			imageInput.value = "";
 			$('#imgPreview').cropper('destroy');

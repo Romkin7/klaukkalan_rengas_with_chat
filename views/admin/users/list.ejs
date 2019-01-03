@@ -1,0 +1,34 @@
+<% layout('admin') -%>
+<section>
+	<div class="ui container">
+		<div class="ui stackable centered grid">
+			<div class="fourteen wide column">
+				<div class="ui page header">
+					<h2><i class="fa fa-edit" aria-hidden="true"></i> <%= title %></h2>
+					<hr>
+				</div>
+			</div>
+			<div class="fourteen wide column">
+				<div class="ui stackable grid">
+					<div class="four wide column"></div>
+					<div class="eight wide column">
+						<div class="ui large fluid icon input">
+  							<input type="text" placeholder="Hae käyttäjiä...">
+  							<i class="search icon"></i>
+						</div>
+					</div>
+					<div class="four wide column"></div>
+				</div>
+			</div>
+			<div class="fourteen wide column">
+				<% users.forEach(function(user) { %>
+					<div class="ui raised orange segment">
+						<h4 class="black"><%= user.name.firstname %>, <%= user.name.lastname %></h4>
+						<p>Liittynyt: <%= moment(user.created).format('DD.MMMM.YYYY') %></p>
+						<p>Viimeksi online: <%= moment(user.created, "YYYYMMDD").fromNow() %></p>
+					</div>
+				<% }); %>
+			</div>
+		</div>
+	</div>
+</section>

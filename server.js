@@ -46,6 +46,7 @@ const priceListRoutes = require("./api/client/routes/pricelist");
 //Admin routes
 const adminRoutes = require("./api/admin/routes/");
 const adminOrdersRoutes = require("./api/admin/routes/orders");
+const adminUsersRoutes = require("./routes/admin/users");
 const adminProductRoutes = require("./api/admin/routes/products");
 const serviceRoutes = require("./api/admin/routes/service");
 const calendarRoutes = require("./api/admin/routes/calendar");
@@ -172,6 +173,7 @@ app.use("/hinnasto", priceListRoutes);
 app.use("/admin", adminRoutes);
 app.use("/admin/generate-times", generateTimesRoutes);
 app.use("/admin/orders", adminOrdersRoutes);
+app.use("/admin/users", adminUsersRoutes);
 app.use("/admin/products", adminProductRoutes);
 app.use("/admin/services", serviceRoutes);
 app.use("/admin/calendar", calendarRoutes);

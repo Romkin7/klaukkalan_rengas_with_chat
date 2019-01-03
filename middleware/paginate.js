@@ -1,6 +1,7 @@
 "use strict";
 const mongoose = require('mongoose');
 const Tyre = require("../models/tyre");
+const User = require("../models/user");
 var page = 1;
 var perPage = 32;
 var title = "RengasCenter Klaukkala - Renkaat Klaukkala";
@@ -33,39 +34,58 @@ var output = {
 };
 //initialize settings function
 const init = async function(req, res, category, done) {
-	manufacturers = await Tyre.aggregate([{$group: {_id: "$manufacturer", total: {$sum: 1}}}]);
-	manufacturers = await manufacturers.map((manufacturer) => manufacturer._id);
 	page = 1;
 	output.pages.visiblePages = [];
 	//Set title
 	queryString = "";
-	queryObj = {
-		category: category !== undefined ? category : "Kesärenkaat",
-		manufacturer: req.query.manufacturer ? req.query.manufacturer : manufacturers,
-		car_type: req.query.car_type ? req.query.car_type : "Henkilöauto"
-	};
-	//Set sort object
-	sortObj = {
-		"createdAt": -1,
-		"name": 1,
-		"brand": 1
-	};
-	if(req.query && req.query.page) {
-		page = parseInt(req.query.page, 10);
-	}
-	if(req.query && req.query.perPage) {
-		perPage = parseInt(req.query.perPage, 10);
-	}
-	if(req.query && req.query.search) {
-		if(req.query.search === "undefined" || req.query.search === undefined) {
-			queryString = "";
-		} else {
-			queryString = new RegExp(escapeRegex(req.query.search), "gi");
+	if(category === "user") {
+		title = "Käyttäjähallinta";
+		queryObj = {
+			"admin.isAdmin": req.query.admin === "true" ? false : true
+		};
+		sortObj = {
+			"createdAt": -1
+		};
+		if(req.query && req.query.search) {
+			if(req.query.search === "undefined" || req.query.search === undefined) {
+				queryString = "";
+			} else {
+				queryString = new RegExp(escapeRegex(req.query.search), "gi");
+				return done(null, true);
+			}
+		}
+		return done(null, true);
+	} else {
+		manufacturers = await Tyre.aggregate([{$group: {_id: "$manufacturer", total: {$sum: 1}}}]);
+		manufacturers = await manufacturers.map((manufacturer) => manufacturer._id);
+		queryObj = {
+			category: category !== undefined ? category : "Kesärenkaat",
+			manufacturer: req.query.manufacturer ? req.query.manufacturer : manufacturers,
+			car_type: req.query.car_type ? req.query.car_type : "Henkilöauto"
+		};
+		//Set sort object
+		sortObj = {
+			"createdAt": -1,
+			"name": 1,
+			"brand": 1
+		};
+		if(req.query && req.query.page) {
+			page = parseInt(req.query.page, 10);
+		}
+		if(req.query && req.query.perPage) {
+			perPage = parseInt(req.query.perPage, 10);
+		}
+		if(req.query && req.query.search) {
+			if(req.query.search === "undefined" || req.query.search === undefined) {
+				queryString = "";
+			} else {
+				queryString = new RegExp(escapeRegex(req.query.search), "gi");
+				return done(null, true);
+			}
+		}
+		if(title && queryObj && sortObj && page && perPage) {
 			return done(null, true);
 		}
-	}
-	if(title && queryObj && sortObj && page && perPage) {
-		return done(null, true);
 	}
 };
 //Set output function

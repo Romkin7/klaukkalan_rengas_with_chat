@@ -312,6 +312,7 @@ $(document).ready(function() {
           url: "/ajanvaraus/"+cartId+"/kesto",
           method: "PATCH",
           data: time_id,
+          global: false,
           success: function(times) {
             timeIds = [];
             request_limit = 0;
