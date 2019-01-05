@@ -151,6 +151,15 @@ app.locals.timesByHours = function(times, hour, cb) {
 	});
 	return cb(filteredTimes);
 };
+app.locals.getLocalTime = function(date) {
+	//added to convert UTC to local Time
+    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+    var offset = date.getTimezoneOffset() / 60;
+    var hours = date.getHours();
+    newDate.setHours(hours - offset);
+    newDate = newDate.getTime();
+    return newDate;
+};
 //Local variables
 app.use(function(req, res, next) {
 	//res.cookie("_csrfToken", req.csrfToken());
