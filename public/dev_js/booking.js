@@ -134,16 +134,6 @@ $(document).ready(function () {
       return cb(filteredTimes);
     };
 
-    //added to convert UTC to local Time
-    var getLocalTime = function getLocalTime(date) {
-      var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-      var offset = date.getTimezoneOffset() / 60;
-      var hours = date.getHours();
-      newDate.setHours(hours - offset);
-      newDate = newDate.getTime();
-      return newDate;
-    };
-
     var reverseString = function reverseString(str) {
       var stringParts = str.split('.');
       var newString = stringParts[2] + '-' + stringParts[1] + '-' + stringParts[0];
@@ -183,7 +173,10 @@ $(document).ready(function () {
     var timesTd = $(".timesTd");
     var selectedTime = $("#selectedTime");
     var message = $("#message");
-    ;;
+    ;
+    Date.prototype.sameDay = function (d) {
+      return this.getFullYear() === d.getFullYear() && this.getDate() === d.getDate() && this.getMonth() === d.getMonth();
+    };
     ;
     date = new Date();
     newDate = 'Aikoja p\xE4iv\xE4lle ' + moment(date).format("DD.MM.YYYY");
@@ -202,7 +195,7 @@ $(document).ready(function () {
               filteredTimes.forEach(function (time) {
                 date1 = moment(time.day).format('DD/MM/YYYY');
                 date1 = new Date(date1);
-                date2 = moment(getLocalTime(Date.now())).format('DD/MM/YYYY');
+                date2 = moment(Date.now()).format('DD/MM/YYYY');
                 date2 = new Date(date2);
                 $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n                  <form class="time-box ' + (time.taken ? 'red-td-bg' : date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
               });
