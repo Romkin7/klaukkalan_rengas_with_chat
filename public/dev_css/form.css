@@ -100,11 +100,18 @@ ul {
 }
 /* Table styles */
 #confModal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  top: 27rem;
-  left: 37rem;
+  margin:0 auto;
+  display:none;
+  position: absolute;
+  left: 0;
+  right:0;
+  top: 50%; 
+  border:1px solid;
+  -webkit-transform:translateY(-50%);
+  -moz-transform:translateY(-50%);
+  -ms-transform:translateY(-50%);
+  -o-transform:translateY(-50%);
+  transform:translateY(-50%);
   height: 20vh;
 }
 .time-box {
