@@ -45,7 +45,7 @@
 								 <% } %>
 								</div>
 								<div class="ui centered grid">
-									<div class="eight wide column">
+									<div class="eight wide column serviceSection <%= session.times && session.times.length ? '' : hidden %>">
 										<% cart.items.forEach(function(item) { %>
 										<div class="ui raised segment">
 											<p class="black"><%= item.name %></p>
@@ -53,7 +53,7 @@
 										</div>
 										<% }); %>
 									</div>
-									<div class="eight wide column">
+									<div class="eight wide column serviceSection <%= session.times && session.times.length ? '' : hidden %>">
 										<div class="ui raised segment">
 											<input type="hidden" name="duration" id="duration" value="<%= cart.total_duration %>">
 											<div id="selectedTime">
@@ -81,16 +81,16 @@
 									</div>
 								</div>
 							</div>
-							<div class="five wide column centered">
+							<div id="timeSelectionInput" class="nine wide column centered <%= session.times && session.times.length ? 'hidden' : '' %>">
 								<div class="ui icon input" id="calendar">
 									<i class="calendar icon"></i>
-									<input type="text" placeholder="<%= moment(Date.now()).format('DD.MM.YYYY') %>" data-toggle="datepicker">
+									<label class="ui huge label" for="datePick">Aikoja päivälle:</label>
+									<input type="text" placeholder="<%= moment(Date.now()).format('DD.MM.YYYY') %>" data-toggle="datepicker" id="datePick">
 								</div>
 							</div>
-							<div id="timeSelectionTable" class="sixteen wide column <%= session.times && session.times.length ? 'hide' : 'show' %>">
-								<h4 id="day" class="black"></h4>
+							<div id="timeSelectionTable" class="sixteen wide column <%= session.times && session.times.length ? 'hidden' : '' %>">
 								<table class="ui celled stackable table">
-									<thead class="desktop">
+									<thead class="desktop tablet">
 										<tr>
 											<th>07</th>
 											<th>08</th>

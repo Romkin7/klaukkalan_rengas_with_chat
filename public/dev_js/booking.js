@@ -207,7 +207,6 @@ $(document).ready(function() {
     //=========================================================================================
     //Calendar events to pick time
     var date;
-    var day = $("#day");
     var newDate;
     var td07 = $("#td07");
     var td08 = $("#td08");
@@ -239,11 +238,8 @@ $(document).ready(function() {
     };
     date = new Date();
     newDate = `Aikoja päivälle ${moment(date).format("DD.MM.YYYY")}`;
-    day.html(newDate);
     $('[data-toggle="datepicker"]').on("change", function() {
       var selectedDate = $('[data-toggle="datepicker"]').datepicker("getDate", true);
-      day.html("");
-      day.html(`Aikoja päivälle ${selectedDate}`);
       $.ajax({
         url: `/ajanvaraus/${cartId}/ajankohta?day=${reverseString(selectedDate)}`,
         type: "GET",
@@ -316,8 +312,10 @@ $(document).ready(function() {
       event.stopPropagation();
       request_limit = 1;
     });
+    var serviceSection = $(".serviceSection");
     var selectedTime = $("#selectedTime");
     var selectedTimesTable = $("#selectedTimesTable");
+    var timeSelectionInput = $("#timeSelectionInput");
     var timeSelectionTable = $("#timeSelectionTable");
     $("#times").on("click", ".time-box", function(event) {
       event.stopPropagation();
@@ -339,7 +337,6 @@ $(document).ready(function() {
           method: "PUT",
           data: timeIds,
           success: function(times) {
-            console.log(times);
             message.html(`
               <div class="ui success message">
                 <i class="close icon"></i>
@@ -359,7 +356,9 @@ $(document).ready(function() {
             $('#confModal')
               .modal('hide')
             ;
-            timeSelectionTable.hide(500);
+            timeSelectionTable.toggleClass("hidden")
+            serviceSection.toggleClass("hidden");
+            timeSelectionInput.toggleClass("hidden");
             $("#submitBtn2").prop("disabled", false);
             $('html, body').animate({ scrollTop: 0 }, 'medium');
             checkTime();
@@ -387,9 +386,9 @@ $(document).ready(function() {
       });
     });
     $("#changeTime").on("click", function() {
-      timeSelectionTable.removeClass("hide");
-      timeSelectionTable.addClass("show");
-      timeSelectionTable.show(500);
+      timeSelectionInput.toggleClass("hidden");
+      timeSelectionTable.toggleClass("hidden");
+      serviceSection.toggleClass("hidden");
     });
   }
   //===============================================================================================
