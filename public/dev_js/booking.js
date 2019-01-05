@@ -264,6 +264,7 @@ $(document).ready(function () {
               selectedTime.show(200);
               selectedTimesTable.html('\n              <tr>\n                <td>' + moment(times[0].day).format('DD.MM.YYYY') + '</td>\n                <td>alkaen klo ' + times[0].time + '</td>\n              </tr>\n            ');
               $('#confModal').modal('hide');
+              $(".time-box").css("pointer-events", "auto");
               timeSelectionTable.toggleClass("hidden");
               serviceSection.toggleClass("hidden");
               timeSelectionInput.toggleClass("hidden");
@@ -272,6 +273,7 @@ $(document).ready(function () {
               checkTime();
             },
             error: function error(_error3) {
+              $(".time-box").css("pointer-events", "auto");
               message.html("");
               message.html('\n                <div class="ui warning message">\n                  <i class="close icon"></i>\n                  <div class="header">\n                    ' + _error3.responseJSON.error + '\n                  </div>\n                  ' + _error3.responseJSON.message + '\n                </div>\n              ');
             }
