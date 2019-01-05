@@ -100,13 +100,17 @@ ul {
 }
 /* Table styles */
 #confModal {
-  margin: 25% auto;
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  top: 27rem;
+  left: 37rem;
   height: 20vh;
 }
 .time-box {
   width: 100%;
   padding: 5px;
-  margin: 0 0 5px 0;
+  margin: 0;
 }
 .time-box:nth-child(even) {
   background: #eeeeee;

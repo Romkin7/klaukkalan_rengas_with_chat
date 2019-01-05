@@ -52,6 +52,8 @@
 											<p>kesto: <%= item.duration %>min / hinta: <%= item.unit_price %>,00 €</p>
 										</div>
 										<% }); %>
+									</div>
+									<div class="eight wide column">
 										<div class="ui raised segment">
 											<input type="hidden" name="duration" id="duration" value="<%= cart.total_duration %>">
 											<div id="selectedTime">
@@ -77,11 +79,12 @@
 											</div>
 										</div>
 									</div>
-									<div class="eight wide column">
-										<div class="ui calendar" id="calendar">
-									
-										</div>
-									</div>
+								</div>
+							</div>
+							<div class="five wide column centered">
+								<div class="ui icon input" id="calendar">
+									<i class="calendar icon"></i>
+									<input type="text" placeholder="<%= moment(Date.now()).format('DD.MM.YYYY') %>" data-toggle="datepicker">
 								</div>
 							</div>
 							<div id="timeSelectionTable" class="sixteen wide column <%= session.times && session.times.length ? 'hide' : 'show' %>">

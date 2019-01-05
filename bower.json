@@ -29,7 +29,7 @@
     "semantic": "^2.2.14",
     "font-awesome": "fontawesome#^4.7.0",
     "cookies-eu-banner": "^1.2.10",
-    "zabuto_calendar": "^1.2.2",
-    "moment": "^2.23.0"
+    "moment": "^2.23.0",
+    "fengyuanchen-datepicker": "^1.0.3"
   }
 }

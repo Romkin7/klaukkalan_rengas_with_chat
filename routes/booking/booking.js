@@ -160,7 +160,6 @@ router.patch("/:id/kesto", async(req, res, next) => {
 	}
 });
 router.put("/:id/ajankohta", async(req, res, next) => {
-
 	let cart = await Cart.findById(req.params.id);
 	let timeIds = await req.session.times.map((time) => {return time._id});
 	let times = await Calendar.find({"_id": { $in: timeIds}, "taken": false});
