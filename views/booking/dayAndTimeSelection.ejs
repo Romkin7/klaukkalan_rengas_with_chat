@@ -25,55 +25,53 @@
 						<div class="ui centered stackable grid">
 							<div class="sixteen wide column">
 								<div id="message">
-								 <% if(error && error.length > 0) { %>
-								 <div class="ui negative message">
-								 	<i class=" close icon"></i>
-								 	<div class="header">
-								 		Ups!
-								 	</div>
-								 	<p><%= error %></p>
-								 </div>
-								 <% } %>
-								 <% if(success && success.length > 0) { %>
-								 <div class="ui success message">
-								 	<i class="close icon"></i>
-								 	<div class="header">
-								 		Onnistui!
-								 	</div>
-								 	<p><%= success %></p>
-								 </div>
-								 <% } %>
+									<% if(error && error.length > 0) { %>
+									<div class="ui negative message">
+										<i class=" close icon"></i>
+										<div class="header">
+											Ups!
+										</div>
+										<p><%= error %></p>
+									</div>
+									<% } %>
+									<% if(success && success.length > 0) { %>
+									<div class="ui success message">
+										<i class="close icon"></i>
+										<div class="header">
+											Onnistui!
+										</div>
+										<p><%= success %></p>
+									</div>
+									<% } %>
 								</div>
 								<div class="ui centered grid">
-									<div class="eight wide column serviceSection <%= session.times && session.times.length ? '' : hidden %>">
+									<div class="sixteen wide column serviceSection <%= session.times && session.times.length ? '' : hidden %>">
 										<% cart.items.forEach(function(item) { %>
 										<div class="ui raised segment">
 											<p class="black"><%= item.name %></p>
 											<p>kesto: <%= item.duration %>min / hinta: <%= item.unit_price %>,00 €</p>
 										</div>
 										<% }); %>
-									</div>
-									<div class="eight wide column serviceSection <%= session.times && session.times.length ? '' : hidden %>">
 										<div class="ui raised segment">
 											<input type="hidden" name="duration" id="duration" value="<%= cart.total_duration %>">
 											<div id="selectedTime">
-                								<table class="ui stackable table">
-                  									<thead class="tablet desktop">
-                    									<tr>
-                     	 									<th>Päivä</th>
-                      										<th>Alkamisaika</th>
-                    									</tr>
-                  									</thead>
-                  									<tbody id="selectedTimesTable">
-                  										<% if(session.times && session.times.length) { %>
-                  											<tr>
-                												<td><%= moment(session.times[0].day).format('DD.MM.YYYY') %></td>
-                												<td>alkaen klo <%= session.times[0].time %></td>
-              												</tr>
-              											<% } %>
-                  									</tbody>
-                								</table>
-                								<p class="black">Kokonaiskesto:</p>
+												<table class="ui stackable table">
+													<thead class="tablet desktop">
+														<tr>
+															<th>Päivä</th>
+															<th>Alkamisaika</th>
+														</tr>
+													</thead>
+													<tbody id="selectedTimesTable">
+														<% if(session.times && session.times.length) { %>
+														<tr>
+															<td><%= moment(session.times[0].day).format('DD.MM.YYYY') %></td>
+															<td>alkaen klo <%= session.times[0].time %></td>
+														</tr>
+														<% } %>
+													</tbody>
+												</table>
+												<p class="black">Kokonaiskesto:</p>
 												<p>kesto: <%= cart.total_duration %>min</p>
 												<button id="changeTime" class="ui orange button">Vaihda aikaa</button>
 											</div>
@@ -109,139 +107,139 @@
 										<tr id="times">
 											<td id="td07" class="timesTd">
 												<% timesByHours(times, "07", function(filteredTimes) { %>
-													<% filteredTimes.forEach(function(time) { %>
-														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<% filteredTimes.forEach(function(time) { %>
+												<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td08" class="timesTd">
 												<% timesByHours(times, "08", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form class="time-box" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td09" class="timesTd">
 												<% timesByHours(times, "09", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td10" class="timesTd">
 												<% timesByHours(times, "10", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td11" class="timesTd">
 												<% timesByHours(times, "11", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td12" class="timesTd">
 												<% timesByHours(times, "12", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td13" class="timesTd">
 												<% timesByHours(times, "13", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td14" class="timesTd">
 												<% timesByHours(times, "14", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td15" class="timesTd">
 												<% timesByHours(times, "15", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td16" class="timesTd">
 												<% timesByHours(times, "16", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 											<td id="td17" class="timesTd">
 												<% timesByHours(times, "17", function(filteredTimes) { %>
-													<%  filteredTimes.forEach(function(time) { %>
-														<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
-															<input type="hidden" name="id" value="<%= time._id %>">
-															<p><%= time.time %></p>
-															<p><%= time.quantity %>/3</p>
-														</form>
-													<% }); %>
+												<%  filteredTimes.forEach(function(time) { %>
+												<form time_id="<%= time._id %>" class="time-box" id="<%= time._id %>" hour="<%= time.time %>">
+													<input type="hidden" name="id" value="<%= time._id %>">
+													<p><%= time.time %></p>
+													<p><%= time.quantity %>/3</p>
+												</form>
+												<% }); %>
 												<% }); %>
 											</td>
 										</tr>
 									</tbody>
 								</table>
 								<div id="confModal" class="ui mini modal">
-								  <div class="header">Vahvista valinta</div>
-								  <div class="content">
-								    <p>Olette varaamassa aikaa alkaen klo: </p>
-								    <button id="acceptTime" class="ui secondary button">
-									  Hyväksy
-									</button>
-									<button id="cancelTime" class="ui button">
-									  Kumoa
-									</button>
-								  </div>
+									<div class="header">Vahvista valinta</div>
+									<div class="content">
+										<p>Olette varaamassa aikaa alkaen klo: </p>
+										<button id="acceptTime" class="ui secondary button">
+											Hyväksy
+										</button>
+										<button id="cancelTime" class="ui button">
+											Kumoa
+										</button>
+									</div>
 								</div>
 							</div>
 							<div class="ui sixteen wide column">
