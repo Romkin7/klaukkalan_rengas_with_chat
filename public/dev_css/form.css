@@ -127,7 +127,7 @@ ul {
 }
 .green-td-bg {
   font-weight: 500;
-  background: rgba(152, 251, 152, 0.8) !important;
+  background: rgba(33, 186, 69, 0.8) !important;
   color: white;
 }
 .red-td-bg {
@@ -144,7 +144,7 @@ ul {
 }
 .orange-td-bg {
   font-weight: 500;
-  background: rgba(242, 113, 28, 0.8) !important;
+  background: rgba(10, 72, 13, 0.8) !important;
   color: white;
 }
 #selectedTime {
