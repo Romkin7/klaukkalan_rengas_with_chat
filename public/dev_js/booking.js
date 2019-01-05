@@ -280,6 +280,7 @@ $(document).ready(function () {
       });
       $("#cancelTime").on("click", function () {
         event.stopPropagation();
+        $(".time-box").css("pointer-events", "auto");
         $('#confModal').modal('hide');
       });
     });
