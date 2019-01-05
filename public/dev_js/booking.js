@@ -211,6 +211,7 @@ $(document).ready(function () {
     $("#times").on("mouseover", ".time-box", function (event) {
       var confirmationModal = $("#confModal");
       event.stopPropagation();
+      $(".time-box").css("pointer-events", "none");
       var time_id = {
         id: $(this).attr("time_id"),
         duration: $("#duration").val(),
