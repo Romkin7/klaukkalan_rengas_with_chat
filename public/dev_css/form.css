@@ -128,7 +128,24 @@ ul {
 .green-td-bg {
   font-weight: 500;
   background: rgba(152, 251, 152, 0.8) !important;
-  color: green;
+  color: white;
+}
+.red-td-bg {
+  pointer-events: none;
+  font-weight: 500;
+  background: rgba(219, 40, 40, 0.8) !important;
+  color: white;
+}
+.gray-td-bg {
+  pointer-events: none;
+  font-weight: 500;
+  background: rgba(232, 232, 232, 0.8) !important;
+  color: white;
+}
+.orange-td-bg {
+  font-weight: 500;
+  background: rgba(242, 113, 28, 0.8) !important;
+  color: white;
 }
 #selectedTime {
   display: none;

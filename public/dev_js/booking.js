@@ -174,6 +174,9 @@ $(document).ready(function () {
     var selectedTime = $("#selectedTime");
     var message = $("#message");
     ;
+    Date.prototype.sameDay = function (d) {
+      return this.getFullYear() === d.getFullYear() && this.getDate() === d.getDate() && this.getMonth() === d.getMonth();
+    };
     ;
     date = new Date();
     newDate = 'Aikoja p\xE4iv\xE4lle ' + moment(date).format("DD.MM.YYYY");
@@ -185,10 +188,16 @@ $(document).ready(function () {
         success: function success(times, textStatus, xhr) {
           timesTd.html("");
           var count = 7;
+          var date1;
+          var date2;
           while (count < 18) {
             timesByHours(times.times, count < 10 ? "0" + String(count) : String(count), function (filteredTimes) {
               filteredTimes.forEach(function (time) {
-                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n                  <form class="time-box" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
+                date1 = moment(time.day).format('DD/MM/YYYY');
+                date1 = new Date(date1);
+                date2 = moment(Date.now()).format('DD/MM/YYYY');
+                date2 = new Date(date2);
+                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n                  <form class="time-box ' + (time.taken ? 'red-td-bg' : date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
               });
             });
             count++;
@@ -220,9 +229,9 @@ $(document).ready(function () {
           success: function success(times) {
             timeIds = [];
             request_limit = 0;
-            $(".time-box").removeClass("green-td-bg");
+            $(".time-box").removeClass("orange-td-bg");
             for (var i = 0; i < times.length; i++) {
-              $("#" + times[i]._id).addClass("green-td-bg");
+              $("#" + times[i]._id).addClass("orange-td-bg");
               timeIds.push(times[i]._id);
             }
           },
