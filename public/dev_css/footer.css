@@ -11,14 +11,21 @@ footer.ui.footer.segment {
 footer p {
 	margin-bottom: 5px;
 }
+.ui.massive.horizontal.divided.list.social-buttons {
+	padding: .2rem;
+	display: inline-flex;
+}
+.ui.divided.horizontal.list>.item:not(:last-child) {
+	padding: .5em;
+}
 div.social-buttons div a {
 	text-align: center;
-	display: block;
+	display: inline-block;
 	background-color: #434343;
 	height: 60px;
 	width: 60px;
 	border-radius: 100%;
-	font-size: 26px;
+	font-size: 2rem;
 	line-height: 60px;
 	color: white;
 	outline: none;
@@ -28,7 +35,6 @@ div.social-buttons div a {
 }
 div.social-buttons div a .fa {
 	text-align: center;
-	display: inline-block;
 	font: normal normal normal 26px/1 FontAwesome;
 	font-size: inherit;
 	text-rendering: auto;
