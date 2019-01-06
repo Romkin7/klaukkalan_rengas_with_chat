@@ -130,7 +130,7 @@ ul {
   background: rgba(33, 186, 69, 0.8) !important;
   color: white;
 }
-.red-td-bg {
+.red-td-bg, .red2-td-bg {
   pointer-events: none;
   font-weight: 500;
   background: rgba(219, 40, 40, 0.8) !important;
@@ -142,7 +142,7 @@ ul {
   background: rgba(232, 232, 232, 0.8) !important;
   color: white;
 }
-.orange-td-bg {
+.dark_green-td-bg {
   font-weight: 500;
   background: rgba(10, 72, 13, 0.8) !important;
   color: white;

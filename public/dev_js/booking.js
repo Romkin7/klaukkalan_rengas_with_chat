@@ -193,7 +193,8 @@ $(document).ready(function () {
                 date1 = new Date(date1);
                 date2 = moment(Date.now()).format('DD/MM/YYYY');
                 date2 = new Date(date2);
-                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n                  <form class="time-box ' + (time.taken ? 'red-td-bg' : date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
+                console.log(moment(Date.now()).format('dd/MM/YYYY').split('/')[0]);
+                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n<form class="time-box ' + (time.taken ? 'red-td-bg' : date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
               });
             });
             count++;
@@ -201,7 +202,7 @@ $(document).ready(function () {
         },
         error: function error(_error2) {
           message.html("");
-          message.html('\n            <div class="ui warning message">\n              <i class="close icon"></i>\n              <div class="header">\n                ' + err.responseJSON.error + '\n              </div>\n              ' + err.responseJSON.message + '\n              Yritt\xE4k\xE4\xE4 hetken kuluttua uudelleen.\n            </div>\n          ');
+          message.html('\n<div class="ui warning message">\n<i class="close icon"></i>\n<div class="header">\n                ' + err.responseJSON.error + '\n              </div>\n              ' + err.responseJSON.message + '\n              Yritt\xE4k\xE4\xE4 hetken kuluttua uudelleen.\n            </div>\n          ');
         }
       });
     });
@@ -223,12 +224,22 @@ $(document).ready(function () {
           data: time_id,
           global: false,
           success: function success(times) {
+            var freeTimes = times.filter(function(time) {
+              return time.taken === false;
+            });
             timeIds = [];
             request_limit = 0;
-            $(".time-box").removeClass("orange-td-bg");
-            for (var i = 0; i < times.length; i++) {
-              $("#" + times[i]._id).addClass("orange-td-bg");
-              timeIds.push(times[i]._id);
+            $(".time-box").removeClass("red2-td-bg");
+            $(".time-box").removeClass("dark_green-td-bg");
+            if(freeTimes.length < times.length) {
+              for(var i = 0; i < times.length; i++) {
+                $("#" + times[i]._id).addClass("red2-td-bg");
+              }
+            } else {
+              for (var i = 0; i < times.length; i++) {
+                $("#" + times[i]._id).addClass("dark_green-td-bg");
+                timeIds.push(times[i]._id);
+              }
             }
           },
           error: function error() {
