@@ -93,7 +93,6 @@
 								<table class="ui celled stackable table">
 									<thead class="desktop tablet">
 										<tr>
-											<th>07</th>
 											<th>08</th>
 											<th>09</th>
 											<th>10</th>
@@ -108,17 +107,6 @@
 									</thead>
 									<tbody>
 										<tr id="times">
-											<td id="td07" class="timesTd">
-												<% timesByHours(times, "07", function(filteredTimes) { %>
-												<% filteredTimes.forEach(function(time) { %>
-												<form class="time-box <%= time.taken ? 'red-td-bg' : moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'su' || new Date(moment(time.day).format('DD/MM/YYYY')) <= new Date(moment(Date.now()).format('DD/MM/YYYY')) && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg' %>" time_id="<%= time._id %>" id="<%= time._id %>" hour="<%= time.time %>">
-													<input type="hidden" name="id" value="<%= time._id %>">
-													<p><%= time.time %></p>
-													<p><%= time.quantity %>/3</p>
-												</form>
-												<% }); %>
-												<% }); %>
-											</td>
 											<td id="td08" class="timesTd">
 												<% timesByHours(times, "08", function(filteredTimes) { %>
 												<%  filteredTimes.forEach(function(time) { %>

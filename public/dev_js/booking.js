@@ -158,7 +158,6 @@ $(document).ready(function () {
     //Calendar events to pick time
     var date;
     var newDate;
-    var td07 = $("#td07");
     var td08 = $("#td08");
     var td09 = $("#td09");
     var td10 = $("#td10");
@@ -183,7 +182,7 @@ $(document).ready(function () {
         type: "GET",
         success: function success(times, textStatus, xhr) {
           timesTd.html("");
-          var count = 7;
+          var count = 8;
           var date1;
           var date2;
           while (count < 18) {

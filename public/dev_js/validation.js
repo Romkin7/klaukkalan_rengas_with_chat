@@ -27,7 +27,7 @@ $(document).ready(function() {
 	};
 	$("#firstname").on("change", function() {
 		var firstnameVal = $("#firstname").val();
-		if(firstnameVal === "" || !/^[a-zA-Z]{2,30}$/.test(firstnameVal)) {
+		if(firstnameVal === "" || !/^[a-zA-ZäöüÄÖÜß]{2,30}$/.test(firstnameVal)) {
 			$("#firstname").removeClass("success");
 			client.firstname = "";
 			if(errors.indexOf('Etunimen on oltava vähintään 2 merkkiä pitkä ja se voi sisältää vain kirjaimia a-z.') === -1) {
@@ -49,7 +49,7 @@ $(document).ready(function() {
 	});
 	$("#lastname").on("change", function() {
 		var lastnameVal = $("#lastname").val();
-		if(lastnameVal === "" || !/^[a-zA-Z]{2,30}$/.test(lastnameVal)) {
+		if(lastnameVal === "" || !/^[a-zA-ZäöüÄÖÜß]{2,30}$/.test(lastnameVal)) {
 			$("#lastname").removeClass("success");
 			client.lastname = "";
 			if(errors.indexOf('Sukunimen vähimmäis pituus on 2 merkkiä ja se voi sisältää vain kirjaimia a-z.') === -1) {
@@ -93,7 +93,7 @@ $(document).ready(function() {
 	});
 	$("#email").on("change", function() {
 		var emailVal = $("#email").val();
-		if(emailVal === "" || !/^[a-zA-Z0-9\_\-\.]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}$/.test(emailVal)) {
+		if(emailVal === "" || !/^[a-zA-ZäöüÄÖÜß0-9\_\-\.]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,4}$/.test(emailVal)) {
 			$("#email").removeClass("success");
 			client.email = "";
 			if(errors.indexOf('Antamanne sähköpostiosoite, ei vastaa virallista sähköpostiosoitteen formaattia.') === -1) {
@@ -115,7 +115,7 @@ $(document).ready(function() {
 	});
 	$("#street").on("change", function() {
 		var streetVal = $("#street").val();
-		if(streetVal === "" || !/^[a-zA-Z0-9" "]{8,30}$/.test(streetVal)) {
+		if(streetVal === "" || !/^[a-zA-ZäöüÄÖÜß0-9- " "]{8,30}$/.test(streetVal)) {
 			$("#street").removeClass("success");
 			client.street = "";
 			if(errors.indexOf('Antamanne katuosoite on virheellinen.') === -1) {
@@ -137,7 +137,7 @@ $(document).ready(function() {
 	});
 	$("#city").on("change", function() {
 		var cityVal = $("#city").val();
-		if(cityVal === "" || !/^[a-zA-Z]{2,30}$/.test(cityVal)) {
+		if(cityVal === "" || !/^[a-zA-ZäöüÄÖÜß -]{2,30}$/.test(cityVal)) {
 			$("#city").removeClass("success");
 			client.city = "";
 			if(errors.indexOf('Antamanne paikkakunta on virheellinen.') === -1) {
