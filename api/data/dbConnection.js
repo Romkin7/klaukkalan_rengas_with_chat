@@ -9,7 +9,7 @@ mongoose.connect(dburl, {
 	keepAlive: true,
 	useNewUrlParser: true
 });
-
+mongoose.set('useCreateIndex', true);
 //Mongoose events
 //Successfull Connection
 mongoose.connection.on("connected", function() {

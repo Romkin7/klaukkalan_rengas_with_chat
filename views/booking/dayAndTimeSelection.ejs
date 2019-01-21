@@ -80,9 +80,14 @@
 								</div>
 							</div>
 							<div id="timeSelectionInput" class="nine wide column centered <%= session.times && session.times.length ? 'hidden' : '' %>">
-								<% if(moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'su') { %>
-									<h4 class="black">Sunnuntaisin ei ole varattavia aikoja, liikeen ollessa kiinni.</h4>
+								<% if(moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'su' || moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'la') { %>
+									<div class="uiu orange message">
+										<h4 class="black">Lauantaisin ja Sunnuntaisin ei ole varattavia aikoja, liikeen ollessa kiinni.</h4>
+									</div>
 								<% } %>
+								<div id="warningHeading" class="ui orange message" style="display: none">
+									<h4 class="black">Lauantaisin ja Sunnuntaisin ei ole varattavia aikoja, liikeen ollessa kiinni.</h4>
+								</div>
 								<div class="ui icon input" id="calendar">
 									<i class="calendar icon"></i>
 									<label class="ui huge orange label" for="datePick">Aikoja päivälle:</label>
@@ -121,7 +126,7 @@
 											<td id="td09" class="timesTd">
 												<% timesByHours(times, "09", function(filteredTimes) { %>
 												<%  filteredTimes.forEach(function(time) { %>
-												<form time_id="<%= time._id %>" class="time-box <%= time.taken ? 'red-td-bg' : moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'su' || new Date(moment(time.day).format('DD/MM/YYYY')) <= new Date(moment(Date.now()).format('DD/MM/YYYY')) && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg' %>" id="<%= time._id %>" hour="<%= time.time %>">
+												<form time_id="<%= time._id %>" class="time-box <%= time.taken ? 'red-td-bg' : moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'Sa' || moment(Date.now()).format('dd/MM/YYYY').split('/')[0] === 'su' || new Date(moment(time.day).format('DD/MM/YYYY')) <= new Date(moment(Date.now()).format('DD/MM/YYYY')) && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg' %>" id="<%= time._id %>" hour="<%= time.time %>">
 													<input type="hidden" name="id" value="<%= time._id %>">
 													<p><%= time.time %></p>
 													<p><%= time.quantity %>/3</p>

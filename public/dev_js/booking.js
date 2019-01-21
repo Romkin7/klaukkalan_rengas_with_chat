@@ -177,6 +177,7 @@ $(document).ready(function () {
     newDate = 'Aikoja p\xE4iv\xE4lle ' + moment(date).format("DD.MM.YYYY");
     $('[data-toggle="datepicker"]').on("change", function () {
       var selectedDate = $('[data-toggle="datepicker"]').datepicker("getDate", true);
+      console.log(selectedDate);
       $.ajax({
         url: '/ajanvaraus/' + cartId + '/ajankohta?day=' + reverseString(selectedDate),
         type: "GET",
@@ -185,6 +186,8 @@ $(document).ready(function () {
           var count = 8;
           var date1;
           var date2;
+          var dayString;
+          var warningHeading = $("#warningHeading");
           while (count < 18) {
             timesByHours(times.times, count < 10 ? "0" + String(count) : String(count), function (filteredTimes) {
               filteredTimes.forEach(function (time) {
@@ -192,8 +195,14 @@ $(document).ready(function () {
                 date1 = new Date(date1);
                 date2 = moment(Date.now()).format('DD/MM/YYYY');
                 date2 = new Date(date2);
-                console.log(moment(Date.now()).format('dd/MM/YYYY').split('/')[0]);
-                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n<form class="time-box ' + (time.taken ? 'red-td-bg' : date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
+                dayString = moment(time.day).format('dd/MM/YYYY').split('/')[0];
+                console.log(moment(time.day).format('dd/MM/YYYY').split('/')[0]);
+                if(moment(time.day).format('dd/MM/YYYY').split('/')[0] === 'Sa') {
+                  warningHeading.show(600);
+                } else {
+                  warningHeading.hide(500);
+                }
+                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n<form class="time-box ' + (time.taken ? 'red-td-bg' : dayString === "Sa" || date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
               });
             });
             count++;

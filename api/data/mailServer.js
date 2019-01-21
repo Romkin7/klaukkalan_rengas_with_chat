@@ -31,7 +31,7 @@ module.exports.notifyClientOnNewOrder = (req, res, order, times, next) => {
 					<p>Työn kesto: ${order.total_duration}min</p>
 					<p>Palvelut: </p>
 					<p>${order.services[0].name}, ${ order.services[0].discounted_unit_price !== 0 ? order.services[0].discounted_unit_price+",00 €" : order.services[0].unit_price+",00 €" }</p>
-					<p>Jos ette ole tehneet tätä varausta, olkaa hyvä ja ottakaa yhteyttä puhelimitse: <strong>+358 (0)45 186 30 33 </strong> tai sähköpostitse: <strong>klaukkalanrengas@gmail.com</strong>.</p>
+					<p>Jos ette ole tehneet tätä varausta, olkaa hyvä ja ottakaa yhteyttä puhelimitse: <strong>+358 (0)50 591 73 22 </strong> tai sähköpostitse: <strong>klaukkalanrengas@gmail.com</strong>.</p>
 					<p>Huom! Tämä on automaattinen viesti, älä vastaa tähän viestiin.</p>
 					<p>Ystävällisin Terveisin, </p>
 					<p>Klaukkalan Rengas </p>
