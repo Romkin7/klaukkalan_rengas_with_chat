@@ -1,27 +1,20 @@
 "use strict";
 const mongoose = require('mongoose');
-const Tyre = require("../models/tyre");
-const User = require("../models/user");
-var page = 1;
-var perPage = 32;
-var title = "RengasCenter Klaukkala - Renkaat Klaukkala";
-var car_type = "Henkilöauto";
-let manufacturers;
-let size = "";
-var queryString = "";
-var queryObj = {};
-var sortObj = {};
-var output = {
+const User = require('../models/user');
+const Tyre = require('../models/tyre');
+let page = 1;
+let perPage = 2;
+let output = {
 	data: null,
 	pages: {
 		start: 1,
 		end: 1,
-		current: page,
-		next: 0,
+		current: 1,
+		next: 1,
 		hasNext: false,
-		prev: 0,
+		prev: 1,
 		hasPrev: false,
-		total: 0,
+		total: 1,
 		first: 1,
 		last: 1,
 		visiblePages: []
@@ -32,66 +25,23 @@ var output = {
 		total: 0
 	}
 };
-//initialize settings function
-const init = async function(req, res, category, done) {
-	page = 1;
+async function init(req, res) {
 	output.pages.visiblePages = [];
-	//Set title
-	queryString = "";
-	if(category === "user") {
-		title = "Käyttäjähallinta";
-		queryObj = {
-			"admin.isAdmin": req.query.admin === "true" ? false : true
-		};
-		sortObj = {
-			"createdAt": -1
-		};
-		if(req.query && req.query.search) {
-			if(req.query.search === "undefined" || req.query.search === undefined) {
-				queryString = "";
-			} else {
-				queryString = new RegExp(escapeRegex(req.query.search), "gi");
-				return done(null, true);
-			}
-		}
-		return done(null, true);
-	} else {
-		manufacturers = await Tyre.aggregate([{$group: {_id: "$manufacturer", total: {$sum: 1}}}]);
-		manufacturers = await manufacturers.map((manufacturer) => manufacturer._id);
-		queryObj = {
-			category: category !== undefined ? category : "Kesärenkaat",
-			manufacturer: req.query.manufacturer ? req.query.manufacturer : manufacturers,
-			car_type: req.query.car_type ? req.query.car_type : "Henkilöauto"
-		};
-		//Set sort object
-		sortObj = {
-			"createdAt": -1,
-			"name": 1,
-			"brand": 1
-		};
-		if(req.query && req.query.page) {
-			page = parseInt(req.query.page, 10);
-		}
-		if(req.query && req.query.perPage) {
-			perPage = parseInt(req.query.perPage, 10);
-		}
-		if(req.query && req.query.search) {
-			if(req.query.search === "undefined" || req.query.search === undefined) {
-				queryString = "";
-			} else {
-				queryString = new RegExp(escapeRegex(req.query.search), "gi");
-				return done(null, true);
-			}
-		}
-		if(title && queryObj && sortObj && page && perPage) {
-			return done(null, true);
-		}
+	if(req.query && req.query.page) {
+		page = parseInt(req.query.page);
 	}
+	if(req. baseUrl === "/renkaat") {
+		perPage = 2;
+	} else {
+		perPage = 7;
+	}
+	return;
 };
-//Set output function
-function setOutput(items, count, cb) {
+//se output function async await fashion
+async function setOutput(items, itemsCount, cb) {
+	output.pages.visiblePages = [];
 	//Set items
-	output.items.total = count;
+	output.items.total = Number(itemsCount);
 	//Set Data
 	output.data = items;
 	//Set pages
@@ -137,73 +87,17 @@ function setOutput(items, count, cb) {
 		output.pages.visiblePages.push(count);
 		count++;
 	};
-	return cb(null, true);
+	return;
 };
-module.exports.paginateItems = async (req, res, items, category, cb) => {
-	init(req, res, category, ((err, done) => {
-		if(done) {
-			if(queryString !== "") {
-				items.find({$or: [{"size": queryString}, {"car_type": queryString},{"category": queryString}, {"manufacturer": queryString}]})
-				.skip((page - 1) * perPage)
-				.limit(perPage)	
-				.sort(sortObj)
-				.exec((err, things) => {
-					if(err || !things) {
-						return cb({"status": 404, "message": `Valitettavasti hakusanalla "${req.query.search}", ei löytynyt yhtään hakutulosta.`});
-					} else {
-						items.count({$or: [{"size": queryString}, {"car_type": queryString},{"category": queryString}, {"manufacturer": queryString}]})
-						.exec((err, count)=> {
-							if(err || !count) {
-								return cb({"status": 404, "message": `Valitettavasti hakusanalla "${req.query.search}", ei löytynyt yhtään hakutulosta.`});
-							} else {
-								setOutput(things, count, () => {
-									return cb({
-										search: queryString,
-										output: output
-									});
-									return;
-								});
-							}
-						});
-					}
-					return;
-				});
-			} else {
-				items.find(queryObj)
-				.skip((page - 1) * perPage)
-				.limit(perPage)	
-				.sort(sortObj)
-				.exec((err, things) => {
-					if(err || !things) {
-						req.flash("error", "Извиняемся, на сервере возникла временная проблема с базой данных...");
-						return res.redirect("back");
-					} else {
-						items.count(queryObj)
-						.exec((err, count)=> {
-							if(err || !count) {
-								req.flash("error", "Извиняемся, на сервере возникла временная проблема с базой данных...");
-								return res.redirect("back");
-							} else {
-								setOutput(things, count, () => {
-									return cb({
-										search: queryString,
-										output: output,
-										page_heading: title,
-										car_type: car_type,
-										manufacturer: req.query.manufacturer !== undefined ? req.query.manufacturers : "Kaikki",
-										size: size
-									});
-									return;
-								});
-							}
-						});
-					}
-				});
-			}
-		}
-	}));
-};
-//sanitze input
-function escapeRegex(text){
-	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+module.exports.paginate = async(req, res, model, queryOptions, sortOptions, cb) => {
+	await init(req, res);
+	let items;
+	let itemsCount;
+	items = await model.find(queryOptions).skip((page - 1) * perPage).limit(perPage).sort(sortOptions);
+	itemsCount = await model.countDocuments(queryOptions);
+	if(!items || !itemsCount) {
+		return cb(true, null);
+	}
+	await setOutput(items, itemsCount);
+	cb(null, output);
 };

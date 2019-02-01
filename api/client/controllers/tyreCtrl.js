@@ -1,65 +1,52 @@
 "use strict";
 const mongoose = require('mongoose');
 const Tyre = require('../../../models/tyre');
-const manufacturers = [
-	"Nokian Renkaat", 
-	"Nokian Nordman", 
-	"Continental", 
-	"Nexen",
-	"Bridgestone",
-	"Toyo",
-	"Nordexx",
-	"Sava",
-	"Goodyear"
-];
-let manufacturer = "Kaikki";
-let car_type = "";
+const paginate = require('../../../middleware/paginate');
+const helpers = reuire('../../../middleware/helperFunctions');
+let manufacturers = [];
 let queryObj = {};
+let sortObj = {};
 let queryString = "";
-let size= null;
-let page_heading = "RengasCenter Klaukkala - Renkaat Klaukkala";
-function setQueryObj(req, res, next) {
-	queryObj = {};
-	size = null;
-	manufacturer = req.query.manufacturer !== undefined ? req.query.manufacturer : req.query.manufacturer === "Kaikki" ? "Kaikki" : "Kaikki";
-	car_type = req.query.car_type !== undefined ? req.query.car_type : "";
-	page_heading = "RengasCenter Klaukkala - Renkaat Klaukkala";
-	queryObj = {
-		"category": "Kesärenkaat",
-		"car_type": req.query.car_type !== undefined ? req.query.car_type : "Henkilöauto",
-		"manufacturer": req.query.manufacturer === "Kaikki" ? {$in: manufacturers} : req.query.manufacturer === undefined ? {$in: manufacturers} : req.query.manufacturer
-	};
+module.exports.getTyresPage = (req, res, next) => {
+	//Set title
+	queryString = "";
+	manufacturers = await Tyre.aggregate([{$group: {_id: "$manufacturer", total: {$sum: 1}}}]);
+	manufacturers = await manufacturers.map((manufacturer) => manufacturer._id);
 	if(req.query && req.query.size) {
 		queryObj = {
-		"category": "Kesärenkaat",
-		"car_type": req.query.car_type !== undefined ? req.query.car_type : "Henkilöauto",
-		"manufacturer": req.query.manufacturer === "Kaikki" ? {$in: manufacturers} : req.query.manufacturer === undefined ? {$in: manufacturers} : req.query.manufacturer,
+		"category": req.query.category ? req.query.category : "Kesärenkaat",
+		"car_type": req.query.car_type ? req.query.car_type : "Henkilöauto",
+		"manufacturer": req.query.manufacturer ? req.query.manufacturer : {$in: manufacturers},
 		"size_and_price.size": req.query.size
 		};
 		size = req.query.size;
 		page_heading = "Kaikki renkaat "+req.query.car_type+" koolle \""+req.query.size+"\"";
-	}
-	if(req.query && req.query.search) {
-		queryString = new RegExp(escapeRegex(req.query.search), "gi");
+	} else if(req.query.search) {
+		queryString = await new RegExp(helpers.escapeRegex(req.query.search));
+		queryObj = {$or: [{"size": queryString}, {"car_type": queryString},{"category": queryString}, {"manufacturer": queryString}]}
+	} else {
 		queryObj = {
-			$or: [{'manufacturer': queryString}, {'model': queryString}, {'car_type': queryString}, {'size_and_price.size': queryString}]
+			category: req.query.category ? req.query.category : "Kesärenkaat",
+			manufacturer: req.query.manufacturer ? req.query.manufacturer : manufacturers,
+			car_type: req.query.car_type ? req.query.car_type : "Henkilöauto"
 		};
-		page_heading = "Tuloksia hakusanalle \""+req.query.search+"\"";
 	}
-}
-module.exports.getTyresPage = (req, res, next) => {
-	setQueryObj(req, res, next);
-	Tyre.find(queryObj).sort({"size_and_price.unit_price": 1}).exec((err, tyres) => {
+	//Set sort object
+	sortObj = {
+		"size_and_price.unit_price": 1,
+		"createdAt": -1
+	};
+	paginate.paginate(req, res, Tyre, queryObj, sortObj, (err, tyres) => {
 		if(err || !tyres) {
 			req.flash("error", "Ups! Valitettavasti emme voineet hakea yhtään rengasta tietokannasta.");
 			return res.redirect("/");
 		} else {
 			res.render("tyres/tyres.ejs", {
 				tyres: tyres,
-				page_heading: page_heading,
-				size: size,
-				manufacturer: manufacturer,
-				car_type: car_type
+				page_heading: helpers.setTiltle(req.query.category, req.query.car_type, queryString, req.query.size),
+				size: req.query.size,
+				manufacturer: req.query.manufacturer ? req.query.manufacturer : "",
+				car_type: req,query.car_type ? req,query.car_type : "Henkilöauto"
 			});
 		}
 	});
@@ -81,8 +68,4 @@ module.exports.getTyrePackagePage = (req, res, next) => {
 };
 module.exports.getDisksPage = (req, res, next) => {
 	res.render("tyres/disks.ejs");
-};
-//sanitze input
-function escapeRegex(text){
-	return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 };

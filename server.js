@@ -161,7 +161,6 @@ app.use(function(req, res, next) {
 	res.locals.success = req.flash("success");
 	next();
 });
-console.log(moment(Date.now()).format('dd/MM/YYYY').split('/')[0]);
 // client routes
 app.use("/", indexRoutes);
 app.use("/", authRoutes);

@@ -12,24 +12,24 @@
 					</div>
 					<div class="ui stackable centered grid">
 						<div class="sixteen wide column">
-							<div class="ui fluid six item silver stackable menu">
+							<div class="ui fluid six item silver stackable menu sortMenu">
 								<div class="ui floating dropdown icon button item">
 									Merkit
 									<i class="dropdown icon"></i>
 									<div class="menu">
-										<div class="item"><a href="/renkaat?manufacturer=Nokian Renkaat&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nokian</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Nokian Nordman&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nordman</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Nexen&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nexen</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Bridgestone&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Bridgestone</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Toyo&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Toyo</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Continental&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Continental</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Nordexx&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Nordexx</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Sava&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Sava</a></div>
-										<div class="item"><a href="/renkaat?manufacturer=Goodyear&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>">Goodyear</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nokian Renkaat&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nokian</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nokian Nordman&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nordman</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nexen&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nexen</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Bridgestone&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Bridgestone</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Toyo&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Toyo</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Continental&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Continental</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nordexx&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nordexx</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Sava&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Sava</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Goodyear&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Goodyear</a></div>
 									</div>
 								</div>
 								<div class="item" id="a-1">
-									<form class="ui horizontal form" action="/renkaat?category=<%= category %>" method="GET">
+									<form class="ui horizontal form" url="/renkaat?category=<%= category %>&page=1" method="GET">
 										<div class="ui icon input">
 											<i class="search icon"></i>
   											<input type="text" name="search" placeholder="Haew renkaita...">
@@ -39,10 +39,10 @@
 								<div class="ui floating dropdown icon button item">
 									Automallit
 									<i class="dropdown icon"></i>
-									<div class="menu">
-										<div class="item"><a href="/renkaat?car_type=Henkilöauto&category=<%= category %>&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">Henkilöauto</a></div>
-										<div class="item"><a href="/renkaat?car_type=SUV&category=<%= category %>&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">City Maasturi/SUV</a></div>
-										<div class="item"><a href="/renkaat?car_type=C-LL&category=<%= category %>&manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>">C/LL</a></div>
+									<div class="menu" class="sortMenu">
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&car_type=Henkilöauto&page=1">Henkilöauto</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&car_type=SUV&page=1">City Maasturi/SUV</a></div>
+										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&car_type=C-LL&page=1">C/LL</a></div>
 									</div>
 								</div>
 								<div class="item open-slidedown_menu" toggle-data="car-sizes">
@@ -55,54 +55,54 @@
 									Koot C/LL
 								</div>
 							</div><!-- menu ends here -->
-								<div class="slide-menu" id="car-sizes">
+								<div class="slide-menu sortMenu" id="car-sizes">
 									<div class="ui centered grid">
 										<div class="three wide column">
 											<h5>14 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=155/65-14">155/65-14</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=175/65-14">175/65-14</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=155/65-14&page=1">155/65-14</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=175/65-14&page=1">175/65-14</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>15 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/65-15">185/65-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/65-15">195/65-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/65-15">205/65-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/60-15">185/60-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/60-15">195/60-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=185/55-15">185/55-15</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/55-15">195/55-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=185/65-15&page=1">185/65-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=195/65-15&page=1">195/65-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=205/65-15&page=1">205/65-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=185/60-15&page=1">185/60-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=195/60-15&page=1">195/60-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=185/55-15&page=1">185/55-15</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=195/55-15&page=1">195/55-15</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>16 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/60-16">205/60-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=195/55-16">195/55-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/55-16">205/55-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/55-16">225/55-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=205/60-16">205/60-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=195/55-16">195/55-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=205/55-16">205/55-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=225/55-16">225/55-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=215/55-16">215/55-16</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>17 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/55-17">215/55-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/55-17">225/55-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=205/50-17">205/50-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/50-17">215/50-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/50-17">225/50-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=215/45-17">215/45-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/45-17">225/45-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/45-17">235/45-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=215/55-17">215/55-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=225/55-17">225/55-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=205/50-17">205/50-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=215/50-17">215/50-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=225/50-17">225/50-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=215/45-17">215/45-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer%>&car_type=Henkilöauto&size=225/45-17"> 225/45-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=235/45-17">235/45-17</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>18 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/45-18">245/45-18</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=225/40-18">225/40-18</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/40-18">235/40-18</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/40-18">245/40-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=245/45-18">245/45-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=225/40-18">225/40-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=235/40-18">235/40-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=245/40-18">245/40-18</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>19 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=235/35-19">235/35-19</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=Henkilöauto&size=245/40-19">245/40-19</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=235/35-19">235/35-19</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=Henkilöauto&size=245/40-19">245/40-19</a></div>
 										</div>
 									</div>
 								</div>
@@ -110,26 +110,26 @@
 									<div class="ui centered grid">
 										<div class="three wide column">
 											<h5>16 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=215/65-16">215/65-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=215/60-16">215/60-16</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/60-16">235/60-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=215/65-16">215/65-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=215/60-16">215/60-16</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=235/60-16">235/60-16</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>17 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=225/60-17">225/60-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=225/65-17">225/65-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/65-17">235/65-17</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/55-17">235/55-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=225/60-17">225/60-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=225/65-17">225/65-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=235/65-17">235/65-17</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=235/55-17">235/55-17</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>18 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/60-18">235/60-18</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=255/55-18">255/55-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=235/60-18">235/60-18</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=255/55-18">255/55-18</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>19 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=235/55-19">235/55-19</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&car_type=SUV&size=255/50-19">255/50-19</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=235/55-19">235/55-19</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=SUV&size=255/50-19">255/50-19</a></div>
 										</div>
 									</div>
 								</div>
@@ -137,27 +137,34 @@
 									<div class="ui centered grid">
 										<div class="three wide column">
 											<h5>14 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=175/65-14C">175/65-14C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=175/65-14C">175/65-14C</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>15 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=195/70-15C">195/70-15C</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=225/70-15C">225/70-15C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=195/70-15C">195/70-15C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=225/70-15C">225/70-15C</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>16 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=205/65-16C">205/65-16C</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=215/65-16C">215/65-16C</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=225/65-16C">225/65-16C</a></div>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=235/65-16C">235/65-16C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=205/65-16C">205/65-16C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=215/65-16C">215/65-16C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=225/65-16C">225/65-16C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=235/65-16C">235/65-16C</a></div>
 										</div>
 										<div class="three wide column">
 											<h5>17 tuumaa</h5>
-											<div class="item"><a href="/renkaat?manufacturer=<%= manufacturer !== 'Kaikki' ? manufacturer : 'Kaikki' %>&cartype=C-LL&size=215/60-17C">215/60-17C</a></div>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&cartype=C-LL&size=215/60-17C">215/60-17C</a></div>
 										</div>
 									</div>
 								</div>
 							<hr>
+						</div>
+						<div class="row">
+							<div class="ui centered grid">
+								<div class="twelve wide column">
+									<div id="error"></div>
+								</div>
+							</div>
 						</div>
 						<div class="row" id="results">
 							<% tyres.forEach(function(tyre) { %>
@@ -185,13 +192,13 @@
 						</div>
 						<div class="ui centered grid">
 							<div class="ui pagination menu" id="paginationMenu">
-  								<a class="item" id="first" url="/renkaat?page=<%= pages.first %>&category=<%= category %>&search=<%= searchTerm %>"><%= pages.first %></a>
-  								<a class="item" id="prev" url="/renkaat?page=<%= pages.prev %>&category=<%= category %>&search=<%= searchTerm %>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+  								<a class="item" id="first" url="/renkaat?page=<%= pages.first %>&category=<%= category %>&search=<%= searchTerm %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type %>&size=<%= size %>"><%= pages.first %></a>
+  								<a class="item" id="prev" url="/renkaat?page=<%= pages.prev %>&category=<%= category %>&search=<%= searchTerm %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type %>&size=<%= size %>"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
   								<% pages.visiblePages.forEach(function(page) { %>
-  									<a class="item <%= page === pages.current ? 'active' : 'notActive' %>" id="page<%= page %>" url="/renkaat?page=<%= page %>&category=<%= category %>&search=<%= searchTerm %>"><%= page %></a>
+  									<a class="item <%= page === pages.current ? 'active' : 'notActive' %>" id="page<%= page %>" url="/renkaat?page=<%= page %>&category=<%= category %>&search=<%= searchTerm %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type %>&size=<%= size %>"><%= page %></a>
   								<% }); %>
-  								<a class="item" id="next" url="/renkaat?page=<%= pages.next %>&category=<%= category %>&search=<%= searchTerm %>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-  								<a class="item" id="last" url="/renkaat?page=<%= pages.last %>&category=<%= category %>&search=<%= searchTerm %>"><%= pages.last %></a>
+  								<a class="item" id="next" url="/renkaat?page=<%= pages.next %>&category=<%= category %>&search=<%= searchTerm %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type %>&size=<%= size %>"><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+  								<a class="item" id="last" url="/renkaat?page=<%= pages.last %>&category=<%= category %>&search=<%= searchTerm %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type %>&size=<%= size %>"><%= pages.last %></a>
 							</div>
 						</div>
 						<div class="ui fourteen wide column">
