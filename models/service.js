@@ -12,7 +12,7 @@ const serviceSchema = new Schema({
 	discounted_tax: Number,
 	discounted_unit_price: Number,
 	discounted_unit_price_excluding_taxes: Number,
-	tyre_size: Number,
+	tyre_size: String,
 	additional_info: String,
 	category: String,
 	duration: {type: Number, default: null}	
