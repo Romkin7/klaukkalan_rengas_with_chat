@@ -53,6 +53,7 @@ router.get("/", async (req, res, next) => {
 		}
 		if(req.xhr) {
 			return res.status(200).json({
+				tyre: "",
 				tyres: output.data,
 				pages: output.pages,
 				items: output.items,
@@ -68,6 +69,7 @@ router.get("/", async (req, res, next) => {
 			return;
 		} else {
 			return res.render("tyres/tyres", {
+				tyre: "",
 				tyres: output.data,
 				pages: output.pages,
 				items: output.items,
