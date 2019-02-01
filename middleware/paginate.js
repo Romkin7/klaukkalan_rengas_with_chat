@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const User = require('../models/user');
 const Tyre = require('../models/tyre');
 let page = 1;
-let perPage = 2;
+let perPage = 28;
 let output = {
 	data: null,
 	pages: {
@@ -31,7 +31,7 @@ async function init(req, res) {
 		page = parseInt(req.query.page);
 	}
 	if(req. baseUrl === "/renkaat") {
-		perPage = 2;
+		perPage = 28;
 	} else {
 		perPage = 7;
 	}
