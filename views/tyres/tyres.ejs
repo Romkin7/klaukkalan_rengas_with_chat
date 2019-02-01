@@ -12,6 +12,15 @@
 					</div>
 					<div class="ui stackable centered grid">
 						<div class="sixteen wide column">
+							<% if(error.length) { %>
+								<div class="ui orange message">
+									<i class="close icon"></i>
+  										<div class="header">
+    										Ei tuloksia!
+  										</div>
+										<p><%= error %></p>
+									</div>
+							<% } %>
 							<div class="ui fluid six item silver stackable menu sortMenu">
 								<div class="ui floating dropdown icon button item">
 									Merkit

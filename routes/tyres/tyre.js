@@ -47,7 +47,7 @@ router.get("/", async (req, res, next) => {
 				});
 			} else {
 				req.flash("error", "Valitettavasti ei löytynyt yhtään hakutulosta.");
-				return res.redirect(req.session.errorReturnUrl ? req.session.errorReturnUrl : "/renkaat");
+				return res.redirect("/renkaat?category=Kesärenkaat&page=1");
 			}
 			return;
 		}
