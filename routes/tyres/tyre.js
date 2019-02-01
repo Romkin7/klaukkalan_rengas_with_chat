@@ -87,7 +87,9 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
 	let tyre = await Tyre.findById(req.params.id);
 	res.render("tyres/show", {
-		tyre: tyre
+		tyre: tyre,
+		size: "",
+		searchTerm: ""
 	});
 });
 //Export router
