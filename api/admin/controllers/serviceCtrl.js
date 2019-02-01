@@ -75,7 +75,7 @@ module.exports.postService = (req, res, next) => {
   		unit_price_excluding_tax: (parseInt(req.body.unit_price) - tax).toFixed(2),
   		discounted_unit_price: Number(req.body.discounted_unit_price),
   		discounted_unit_price_excluding_taxes: Number(req.body.discounted_unit_price) !== 0 ? (parseInt(req.body.discounted_unit_price) - tax).toFixed(2) : 0,
-		tyre_size: parseInt(req.body.tyre_size),
+		tyre_size: req.body.tyre_size,
 		additional_info: req.body.additional_info !== "" ? req.body.additional_info.trim() : "",
 		category: req.body.category.trim(),
 		duration: req.body.duration
@@ -121,7 +121,7 @@ module.exports.updateService = (req, res, next) => {
   			foundService.unit_price_excluding_tax = (parseInt(req.body.unit_price) - tax).toFixed(2);
   			foundService.discounted_unit_price = Number(req.body.discounted_unit_price);
   			foundService.discounted_unit_price_excluding_taxes = Number(req.body.discounted_unit_price) !== 0 ? (parseInt(req.body.discounted_unit_price) - tax).toFixed(2) : 0;
-			foundService.tyre_size = parseInt(req.body.tyre_size);
+			foundService.tyre_size = req.body.tyre_size;
 			foundService.additional_info = req.body.additional_info !== "" ? req.body.additional_info.trim() : "";
 			foundService.category = req.body.category.trim();
 			foundService.time_cost = req.body.time_cost;
