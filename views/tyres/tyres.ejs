@@ -26,15 +26,9 @@
 									Merkit
 									<i class="dropdown icon"></i>
 									<div class="menu">
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nokian Renkaat&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nokian</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nokian Nordman&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nordman</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nexen&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nexen</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Bridgestone&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Bridgestone</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Toyo&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Toyo</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Continental&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Continental</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Nordexx&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Nordexx</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Sava&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Sava</a></div>
-										<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=Goodyear&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1">Goodyear</a></div>
+										<% manufacturers.forEach(function(manufacturer) { %>
+											<div class="item"><a class="sortMenuItem" url="/renkaat?category=<%= category %>&manufacturer=<%= manufacturer %>&car_type=<%= car_type !== '' ? car_type : 'Henkilöauto' %>&page=1"><%= manufacturer %></a></div>
+										<% }); %>
 									</div>
 								</div>
 								<div class="item" id="a-1">
