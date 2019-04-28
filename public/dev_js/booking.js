@@ -210,7 +210,7 @@ $(document).ready(function () {
         },
         error: function error(_error2) {
           message.html("");
-          message.html('\n<div class="ui warning message">\n<i class="close icon"></i>\n<div class="header">\n                ' + err.responseJSON.error + '\n              </div>\n              ' + err.responseJSON.message + '\n              Yritt\xE4k\xE4\xE4 hetken kuluttua uudelleen.\n            </div>\n          ');
+          message.html('\n<div class="ui warning message">\n<i class="close icon"></i>\n<div class="header">\n' + err.responseJSON.error + '\n</div>\n' + err.responseJSON.message + '\nYritt\xE4k\xE4\xE4 hetken kuluttua uudelleen.\n</div>\n');
         }
       });
     });
@@ -268,10 +268,12 @@ $(document).ready(function () {
     $("#times").on("click", ".time-box", function (event) {
       event.stopPropagation();
       $(".time-box").css("pointer-events", "none");
+      $("#time-suggestion").html("");
+      $("#time-suggestion").html(moment($(this).attr("day")).locale("fi").format("DD.MM.YYYY")+", alkaen klo: "+$(this).attr("hour"));
       $('#confModal').modal('show');
       $("#acceptTime").on("click", function () {
         function setTimes(time) {
-          return '\n              <tr>\n                <td>' + moment(time.day).format('DD.MM.YYYY') + '</td>\n                <td>' + time.time + '</td>\n              </tr>\n            ';
+          return '\n<tr>\n<td>' + moment(time.day).format('DD.MM.YYYY') + '</td>\n<td>' + time.time + '</td>\n</tr>\n';
         }
         if (timeIds.length) {
           $.ajax({
@@ -279,9 +281,9 @@ $(document).ready(function () {
             method: "PUT",
             data: timeIds,
             success: function success(times) {
-              message.html('\n              <div class="ui success message">\n                <i class="close icon"></i>\n                <div class="header">\n                  Onnistui! Aika on onnistuneesti lis\xE4tty.\n                </div>\n                <p>Mik\xE4li olette p\xE4\xE4tt\xE4net haluamanne ajan, voitte siirty\xE4 t\xE4ytt\xE4m\xE4\xE4n henkil\xF6tietonne.</p>\n              </div>\n            ');
+              message.html('\n<div class="ui success message">\n<i class="close icon"></i>\n<div class="header">\nOnnistui! Aika on onnistuneesti lis\xE4tty.\n</div>\n<p>Mik\xE4li olette p\xE4\xE4tt\xE4net haluamanne ajan, voitte siirty\xE4 t\xE4ytt\xE4m\xE4\xE4n henkil\xF6tietonne.</p>\n</div>\n');
               selectedTime.show(200);
-              selectedTimesTable.html('\n              <tr>\n                <td>' + moment(times[0].day).format('DD.MM.YYYY') + '</td>\n                <td>alkaen klo ' + times[0].time + '</td>\n              </tr>\n            ');
+              selectedTimesTable.html('\n<tr>\n<td>' + moment(times[0].day).format('DD.MM.YYYY') + '</td>\n<td>alkaen klo ' + times[0].time + '</td>\n</tr>\n');
               $('#confModal').modal('hide');
               $(".time-box").css("pointer-events", "auto");
               timeSelectionTable.toggleClass("hidden");
@@ -294,7 +296,7 @@ $(document).ready(function () {
             error: function error(_error3) {
               $(".time-box").css("pointer-events", "auto");
               message.html("");
-              message.html('\n                <div class="ui warning message">\n                  <i class="close icon"></i>\n                  <div class="header">\n                    ' + _error3.responseJSON.error + '\n                  </div>\n                  ' + _error3.responseJSON.message + '\n                </div>\n              ');
+              message.html('\n<div class="ui warning message">\n<i class="close icon"></i>\n<div class="header">\n' + _error3.responseJSON.error + '\n                  </div>\n                  ' + _error3.responseJSON.message + '\n                </div>\n              ');
             }
           });
         }
