@@ -1,14 +1,5 @@
 header {
     display: none;
-} 
-@media only screen and (min-width: 767px) {
-    header {
-        display: block;
-        position: absolute;
-        height: 100vh;
-        width: 100vw;
-        z-index: 0;
-    }
 }
 /* CrossFade */
 #CrossFade {
@@ -73,6 +64,37 @@ header {
     position: relative;
     width: 40px;
     height: 40px;
+}
+.flex-container, .four.wide.center.aligned.column.logo-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.flex-container > h3 {
+        order: 2;
+    }
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px){
+ .four.wide.center.aligned.column.logo-container {
+        display: block;
+    }
+}
+@media only screen and (min-width: 767px) {
+    .flex-container > * {
+    order: 2;
+}
+.flex-container > h3 {
+    order: 1;
+}
+    header {
+        display: block;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        z-index: 0;
+    }
 }
 @media only screen and (min-width: 767px) {
     #spLogo {

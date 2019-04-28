@@ -1,4 +1,7 @@
 * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 	font-family: 'Exo 2', sans-serif;
 }
 .headlines h1,
@@ -122,7 +125,7 @@ aside .header {
 	color: #f6f5f3;
 }
 .header {
-	margin-top: 45px;
+	margin-top: 25px;
 }
 .ui.horizontal.centered.divider {
 	font-size: 0.9rem;
@@ -139,8 +142,8 @@ table th {
 		font-size: 72px;
 		text-align: left;
 	}
-	h1:first-child {
-		margin-top: 70px;
+	h3:first-child {
+		margin-top: 25px;
 	}
 	.headlines .four.wide.column {
 		margin: 0;
