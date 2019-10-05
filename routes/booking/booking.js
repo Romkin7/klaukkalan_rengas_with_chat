@@ -88,7 +88,7 @@ router.patch("/:id", async (req, res, next) => {
   				});
   			} else {
   				Cart.findById(updatedCart.id).populate("items").exec((err, foundUpdatedCart) => {
-  					if(err || !foundCart) {
+  					if(err || !foundUpdatedCart) {
   						res.status(500).json({
   							message: "Ups! Valitettavasti osotoskoria ei voitu löytää.",
   							error: "Tietokanta virhe."
