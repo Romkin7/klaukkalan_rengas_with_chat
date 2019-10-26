@@ -1,5 +1,5 @@
 <% layout('layout') -%>
-<section>
+<!-- <section>
   <input type="hidden" id="cartId" value="<%=session.cart._id%>">
   <div class="ui container">
     <div class="ui doubling stackable grid">
@@ -46,9 +46,9 @@
                 <th>Poista</th>
               </tr>
             </thead>
-            <tbody id="selectedServices">
+            <tbody id="selectedServices"> -->
               <!-- here will be data inserted from booking.js file after succesful ajax request -->
-              <% cart.items.forEach(function(service) { %>
+              <!-- <% cart.items.forEach(function(service) { %>
                 <tr class="service" value="<%= service._id %>">
                   <td><%= service.name %></td>
                   <td><%= service.tyre_size %></td> 
@@ -176,8 +176,8 @@
       </div>
     </div>
   </div>
-</section>
-<!-- <section>
+</section> -->
+<section>
   <div class="ui container">
     <div class="ui centered stackable grid">
       <div class="fourteen wide column">
@@ -191,4 +191,4 @@
       </div>
     </div> 
   </div>
-</section> -->
+</section>
