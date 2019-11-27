@@ -1,69 +1,98 @@
+"use strict";
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-class Item {
-  constructor(data) {
-    this.item = data;
-    this.quantity = Number(data.quantity);
-    this._id = data._id;
-  }
-}
+const cartSchema = new Schema({
+  total: {type: Number, default: 0},
+  total_price_excluding_tax: {type: Number, default: 0},
+  total_tax_amount: {type: Number, default: 0},
+  total_price_including_tax: {type: Number, default: 0},
+  total_price: {type: Number},
+	items: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service"
+  }],
+  expires: {type: Date},
+  times: [{
+    _id: String
+  }]
+},
+{
+  timestamps: true,
+  usePushEach: true
+});
+cartSchema.virtual("total_duration").get(function() {
+  let durations = this.items.map((item) => item.duration);
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  return durations.reduce(reducer);
+});
+module.exports = mongoose.model("Cart", cartSchema);
 
-class Customer {
-  constructor(data) {
-    this.firstname = data.firstname;
-    this.lastname = data.lastname;
-    this.address = date.address;
-    this.zipcode = data.zipcode;
-    this.city = data.city;
-  }
-}
+// class Item {
+//   constructor(data) {
+//     this.item = data;
+//     this.quantity = Number(data.quantity);
+//     this._id = data._id;
+//   }
+// }
 
-module.exports = class Cart {
-  constructor(oldcart) {
-    this.items = oldcart.items || {};
-    this.customer = oldcart.customer || {};
-    this.times = oldcart.times || {};
-  }
+// class Customer {
+//   constructor(data) {
+//     this.firstname = data.firstname;
+//     this.lastname = data.lastname;
+//     this.address = date.address;
+//     this.zipcode = data.zipcode;
+//     this.city = data.city;
+//   }
+// }
 
-  itemsToArray() {
-    let array = [];
-    for(let item in this.items) {
-        array.push(this.items[item]);
-    }
-    return array;
-  }
+// module.exports = class Cart {
+//   constructor(oldcart) {
+//     this.items = oldcart.items || {};
+//     this.customer = oldcart.customer || {};
+//     this.times = oldcart.times || {};
+//   }
 
-  addItem(item) {
-    let existingItem = this.items[data._id];
-    if(existingItem) {
-      this.removeItem(data._id);
-    } else {
-      existingItem = this.items[data._id] = new Item(data);
-    }
-    return this;
-  }
+//   itemsToArray() {
+//     let array = [];
+//     for(let item in this.items) {
+//         array.push(this.items[item]);
+//     }
+//     return array;
+//   }
 
-  removeItem(id) {
-    delete this.items[id];
-    return this;
-  }
+//   addItem(item) {
+//     let existingItem = this.items[data._id];
+//     if(existingItem) {
+//       this.removeItem(data._id);
+//     } else {
+//       existingItem = this.items[data._id] = new Item(data);
+//     }
+//     return this;
+//   }
 
-  addCustomer(data) {
-    let customer = new Customer(data);
-    this.customer = customer;
-    return this;
-  }
+//   removeItem(id) {
+//     delete this.items[id];
+//     return this;
+//   }
 
-  total_duration() {
-    let durations = this.items.map((item) => item.duration);
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    return durations.reduce(reducer);
-  }
+//   addCustomer(data) {
+//     let customer = new Customer(data);
+//     this.customer = customer;
+//     return this;
+//   }
 
-  getTotalPrice() {
+//   total_duration() {
+//     let durations = this.items.map((item) => item.duration);
+//     const reducer = (accumulator, currentValue) => accumulator + currentValue;
+//     return durations.reduce(reducer);
+//   }
 
-  }
+//   getTotalPrice() {
 
-  getTotalQuanity() {
+//   }
 
-  }
-}
+//   getTotalQuanity() {
+
+//   }
+// }
