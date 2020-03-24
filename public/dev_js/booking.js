@@ -200,7 +200,7 @@ $(document).ready(function () {
                 } else {
                   warningHeading.hide(500);
                 }
-                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n<form class="time-box ' + (time.taken ? 'red-td-bg' : dayString === "Sa" || date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '" day="' +time.day + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/3</p>\n                  </form>\n                ');
+                $(count < 10 ? "#td0" + String(count) : "#td" + String(count)).append('\n<form class="time-box ' + (time.taken ? 'red-td-bg' : dayString === "Sa" || date1 <= date2 && parseFloat(time.time.split(':').join('.')).toFixed(2) * 100 < parseFloat(moment(Date.now()).format('HH.mm')).toFixed(2) * 100 ? 'gray-td-bg' : 'green-td-bg') + '" time_id="' + time._id + '" id="' + time._id + '" hour="' + time.time + '" day="' +time.day + '">\n                    <input type="hidden" name="id" value="' + time._id + '">\n                    <p>' + time.time + '</p>\n                    <p>' + time.quantity + '/1</p>\n                  </form>\n                ');
               });
             });
             count++;

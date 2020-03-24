@@ -16,21 +16,22 @@ function capitalizeFirstLetter(string) {
 	}
 };
 
-// async function updateTimes() {
-// 	const times = await Calendar.find();
-// 	const updatedTimes = await times.map(async (time) => {
-// 		if(time.quantity === 3 || time.quantity === 2 || time.quantity === 1) {
-// 			time.quantity = 1;
-// 			const updatedTime = await time.save();
-// 			return updatedTime;
-// 		} else {
-// 			time.quantity = 0;
-// 			const updatedTime = await time.save();
-// 			return updatedTime;
-// 		}
-// 	});
-// }
-// updateTimes();
+async function updateTimes() {
+	const times = await Calendar.find();
+	const updatedTimes = times.map(async (time) => {
+		if(time.quantity === 3 || time.quantity === 2 || time.quantity === 1) {
+			time.quantity = 1;
+			const updatedTime = await time.save();
+			return updatedTime;
+		} else {
+			time.quantity = 0;
+			const updatedTime = await time.save();
+			return updatedTime;
+		}
+	});
+	console.log(updatedTimes);
+}
+updateTimes();
 //person constructor
 class Person {
 	constructor(firstname, lastname, email, phone, registernumber, street, index, city) {
