@@ -182,7 +182,7 @@ $(document).ready(function() {
 	// Car detail validation
 	$("#registernumber").on("change", function() {
 		var registernumberVal = $("#registernumber").val();
-		if(registernumberVal === "" || !/^[A-Z]{3}?[-]{1}?[0-9]{3}$/.test(registernumberVal)) {
+		if(registernumberVal === "" || !/^[A-ZäöüÄÖÜß]{2,3}?[-]{1}?[0-9]{1,3}$/.test(registernumberVal)) {
 			$("#registernumber").removeClass("success").addClass("error");
 			client.registernumber = "";
 			if(errors.indexOf('Antamanne ajoneuvon rekisterinumero, ei vastaa Suomen virallista ajoneuvon rekisterinumero formaattia.') === -1) {
